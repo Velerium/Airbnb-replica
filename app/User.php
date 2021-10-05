@@ -8,6 +8,12 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+
+    // one to many relations between User and Apartment
+    public function apartment() {
+        return $this->hasMany(Apartment::class);
+    }
+
     use Notifiable;
 
     /**
