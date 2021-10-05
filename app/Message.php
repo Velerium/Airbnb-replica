@@ -8,6 +8,6 @@ class Message extends Model
 {
     // one to many relations between Message and Apartment
     public function apartment() {
-        return $this->hasMany(Apartment::class);
+        return $this->belongsTo(Apartment::class);
     }
 }
