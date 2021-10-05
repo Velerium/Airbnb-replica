@@ -23,8 +23,8 @@ class CreateApartmentsTable extends Migration
             $table->unsignedSmallInteger('square_meters');
             $table->text('summary');
             $table->string('address', 150);
-            $table->float('latitude', 9,6);
-            $table->float('longitude', 9,6);
+            $table->float('latitude', 7,4);
+            $table->float('longitude', 7,4);
             $table->decimal('price', 8,2);
             $table->boolean('visible');
             $table->unsignedBigInteger('user_id');
