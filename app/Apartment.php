@@ -8,17 +8,17 @@ class Apartment extends Model
 {
     // many to many relations between Apartment and Service
     public function service() {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class, 'apartment_service');
     }
 
     // many to many relations between Apartment and Visitor
     public function visitor() {
-        return $this->belongsToMany(Visitor::class);
+        return $this->belongsToMany(Visitor::class, 'apartment_visitor');
     }
 
     // many to many relations between Apartment and Sponsorship
     public function sponsorship() {
-        return $this->belongsToMany(Sponsorship::class);
+        return $this->belongsToMany(Sponsorship::class, 'apartment_sponsorhip');
     }
 
     // one to many relations between Apartment and Image
