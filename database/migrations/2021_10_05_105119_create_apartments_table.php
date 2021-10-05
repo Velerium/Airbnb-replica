@@ -15,7 +15,7 @@ class CreateApartmentsTable extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 63)->unique();
+            $table->string('title', 65)->unique()->index();
             $table->unsignedTinyInteger('rooms_n');
             $table->unsignedTinyInteger('beds_n');
             $table->unsignedTinyInteger('bathrooms_n');
@@ -25,8 +25,10 @@ class CreateApartmentsTable extends Migration
             $table->string('address', 150);
             $table->float('latitude', 9,6);
             $table->float('longitude', 9,6);
-            $table->decimal('price', 4,2);
-            $table->boolean('visible'); 
+            $table->decimal('price', 8,2);
+            $table->boolean('visible');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users'); 
             $table->timestamps();
         });
     }

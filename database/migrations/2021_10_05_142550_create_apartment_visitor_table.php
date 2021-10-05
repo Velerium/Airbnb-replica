@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMessagesTable extends Migration
+class CreateApartmentVisitorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateMessagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('apartment_visitor', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name', 30);
-            $table->string('last_name', 40);
-            $table->string('email', 100);
-            $table->text('content');
+            // apartment column's id
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartments')->index(); 
+            $table->foreign('apartment_id')->references('id')->on('apartments')->index('apartment_id');
+
+            // service column's id 
+            $table->unsignedBigInteger('visitor_id');
+            $table->foreign('visitor_id')->references('id')->on('visitors');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreateMessagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('apartment_visitor');
     }
 }
