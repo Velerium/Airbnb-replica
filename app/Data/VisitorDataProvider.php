@@ -1,28 +1,12 @@
 <?php
 
-namespace App\Providers;
+namespace App\Data;
 
-use Illuminate\Support\ServiceProvider;
-
-class VisitorDataProvider extends ServiceProvider
+class VisitorDataProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+    public $viewData = [
+        // empty array whichi will be populated wit faker
+        'IP_address' => [],
+    ];
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
 }

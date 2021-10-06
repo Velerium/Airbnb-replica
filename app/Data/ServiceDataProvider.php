@@ -1,28 +1,32 @@
 <?php
 
-namespace App\Providers;
+namespace App\Data;
 
-use Illuminate\Support\ServiceProvider;
-
-class ServiceDataProvider extends ServiceProvider
+class ServiceDataProvider 
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
+    public $serviceData = [
+
+        'service_name' => [
+            'wi-fi',
+            'free_parking',
+            'air_conditioning',
+            'pets_allowed',
+            'pool',
+            'sauna',
+            'sea_view',
+            'mountain_view',
+            'concierge',
+            'kitchen',
+            'TV',
+            'alarm',
+            'washing_machine',
+        ],
+
+        // 'service_status' => [
+        //     'false',
+        //     'true',
+        // ]
+
+    ];
 }

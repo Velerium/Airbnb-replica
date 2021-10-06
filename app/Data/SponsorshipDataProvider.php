@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Providers;
+namespace App\Data;
 
-use Illuminate\Support\ServiceProvider;
-
-class SponsorshipDataProvider extends ServiceProvider
+class SponsorshipDataProvider 
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+    public $sponsorData = [
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
+        'type' => [
+            'Basic',
+            'Premium',
+            'Gold'
+        ],
+    
+        'cost_sponsorship' => [
+            '2.99',
+            '5.99',
+            '9.99'
+        ],
+
+        'duration' => [
+            '24',
+            '72',
+            '144'
+        ]
+
+        ];
 }

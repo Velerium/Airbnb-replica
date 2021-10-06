@@ -19,7 +19,7 @@ class MessageDataProvider
         return $this->messageData['first_name'][$id+1];
     }
 
-    public function geMessageLastName($id) {
+    public function getMessageLastName($id) {
         return $this->messageData['last_name'][$id+1];
     }
 
