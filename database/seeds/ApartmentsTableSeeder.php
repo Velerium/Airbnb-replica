@@ -25,7 +25,6 @@ class ApartmentsTableSeeder extends Seeder
             $apt->square_meters = $functions->getSize($i);
             $apt->summary = $functions->getDesc($i);
             $apt->address = $functions->getAddress($i);
-            // $apt->image = $functions->getImage($i);
             $apt->latitude = $functions->getLat($i);
             $apt->longitude = $functions->getLong($i);
             $apt->price = $functions->getPrice($i);
