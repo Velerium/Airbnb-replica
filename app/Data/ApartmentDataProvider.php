@@ -34,6 +34,18 @@ class ApartmentDataProvider
         'Gli Ulivi',
         'Oleandro',
         'Il Ciliegio', 
+        'Trilocale Mallert',
+        'Bilocale Gastinelli',
+        'Bilocale Danusso',
+        'Appartamento Margherita',
+        'Quadrilocale Chiaiano',
+        'Villetta Ignazio',
+        'Quadrilocale  Buonparte',
+        'Appartamento Broletto',
+        'Quadrilocale  CUSANI',
+        'Appartamento Murge',
+        'Appartamento Gaetano',
+        'Appartamento Amoruso',
 
         ],
 
@@ -66,32 +78,43 @@ class ApartmentDataProvider
             "Villa su due piani, accesso al mare con curato giardino sui quattro lati. Persiane esterne blindate, impianto d'allarme.", 
             "Alloggio su due piani vista colline ricavato in un ex frantoio della campagna tra vigneti ed oliveti a poca distanza dal centro storico.",
             "Appartamento primo piano in zona centrale pedonalizzata, un piccolo appartamento curato in ogni dettaglio in cui ti sentirai coccolato e potrai cucinarti un gustoso piatto di spaghetti nell angolo cucina.",
-
+            "Trilocale in via Robert Mallet Roma.L'Angelo is an elegant and spacious apartment located in  Rome.It is composed by a living room, one bedroom, one bathroom and a kitchen. All the main attractions are nearby and the place is well connected via public transportation with all the areas of the city. You will find a great variety of restaurants",
+            "Bilocale in via Luigi Gastinelli Roma. Storia, sapori, colori e tradizione, ecco come vivere una vera esperienza ROMANA in un quartiere vivace genuino e pulsante. Appartamento dallo stile minimal, studiato per essere accogliente, funzionale, confortevole e famigliare. ",
+            "Bilocale in via Arturo Danusso Roma. Questa nuova ed accogliente struttura è facilmente raggiungibile grazie al collegamento di tutti i mezzi pubblici. ",
+            "Appartamento su due piani in via Comunale Margherita Napoli. IL mio appartamentino è stato appena ristrutturato, risulta un ambiente molto caloroso e rilassante , è stato arredato nei minimi particolari seguendo uno stile SHABBYCHIC con colori tenui ma allo stesso tempo ricchi di vitalità",
+            "Quadrilocale in via Chiaiano Zona Ospedaliera Napoli . Appartamento composto da due camere da letto,cucina e bagno..Sarò più che felice di ospitarvi!",
+            "Villetta bifamiliare in viale San Ignazio Napoli. La sistemazione offerta è una camera con letto matrimoniale, piccolissimo angolo cottura e bagno con ampia doccia (140x60),completamente indipendenti rispetto alla struttura principale. ",
+            "Quadrilocale  in via Foro Buonparte Milano. Quadrilocale ottimo per chi vuole vivere l esperienza di una Milano di giorno , perdendosi tra le vie del centro storico per una settimana di piacere come per chi per una sola notte vuole gustare la milano da bere e i suoi meravigliosi vicoli ",
+            "Appartamento su due piani in via Broletto Milano. Splendido e silenzioso trilocale appena ristrutturato con elementi di ricercato design, dotato di comodo soggiorno, cucina a vista, un bellissimo bagno decorato con doccia e un'accogliente camera da letto matrimoniale con comoda postazione smart-working/studio.",
+            "Quadrilocale  in via CUSANI Milano. SANIFICATO OZONO+SANI-JET CLORO Stanza con ingresso e bagno privato, ristrutturato. ",
+            "Appartamento in via delle Murge Bari. L'appartamentino è formato da una grande camera con un letto matrimoniale ed un divano letto, un angolo colazione con macchine del caffè e bibite, infine un comodo e grande bagno dotato del necessario, l'appartamento è consigliato a coppie e piccole famiglie.",
+            "Attico in via Gaetano Devitofrancesco Bari. Gli ospiti avranno a disposizione lenzuola, asciugamani puliti e set da bagno. Una cucina con angolo cottura, frigo, macchina del caffè e gli utensili fondamentali saranno a disposizione degli ospiti. Tutte le attrazioni e i migliori ristoranti della città sono nelle vicinanze .",
+            "Appartamento in via mauro amoruso Bari.La struttura si trova in un piccolo condominio silenzioso e tranquillo in posizione centrale. La zona è ben servita , a pochi passi ci sono 2 garage , a 50 metri la fermata dei pullman che collega la zona con la stazione , l' aereoporto , il policlinico e le spiagge . L'appartamento è climatizzato dispone di WIFI gratuito e di 2 TV a schermo piatto.",
         ],
 
         'rooms_n' => [
             4, 11, 7, 5, 3, 1, 3, 3, 5, 3, 5, 7, 4, 10, 5, 9, 4, 2, 1, 3, 2, 3, 4, 
-            2, 2, 6, 6, 3, 
-        ],
+            2, 2, 6, 6, 3, 3, 2, 2, 4, 4, 8, 4, 3, 4, 5, 7, 6,
 
         'beds_n' => [
             3, 9, 6, 4, 1, 2, 2, 3, 3, 2, 2, 6, 2, 8, 3, 4, 4, 1, 1, 4, 2, 6, 2,
-            2, 3, 4, 4, 2, 
+            2, 3, 4, 4, 2, 1, 1, 1, 2, 2, 4 ,1 ,1, 2, 3, 3, 3,
+        ],
         ],
 
         'bathrooms_n' => [
             1, 2, 4, 2, 1, 1, 1, 2, 3, 1, 1, 2, 1, 4, 1, 2, 1, 1, 1, 1, 1, 1, 2,
-            1, 2, 2, 2, 1, 
+            1, 2, 2, 2, 1, 1, 1, 1, 1, 2, 2, 3, 2, 2, 2, 3, 3,
         ],
 
         'guests_n' =>[
             2, 9, 10, 4, 4, 2, 2, 3, 5, 2, 6, 8, 3, 8, 6, 8, 6, 2, 2, 6, 4, 6, 2, 
-            2, 3, 4, 3, 2, 
+            2, 3, 4, 3, 2, 1, 1, 1, 2, 2, 4, 1, 1, 2, 3, 3, 3, 
         ],
 
         'square_meters' => [
             50, 410, 290, 32, 70, 50, 120, 100, 230, 110, 50, 175, 125, 250, 96, 
-            196, 75, 55, 35, 95, 60, 75, 60, 50, 60, 320, 120, 60
+            196, 75, 55, 35, 95, 60, 75, 60, 50, 60, 320, 120, 60, 80, 55, 50, 160, 110, 248, 165, 109 ,  160, 135 , 300, 190,
         ],
 
         'address' => [
@@ -123,18 +146,33 @@ class ApartmentDataProvider
             'Largo Mare Nostro, Pisa (PI)',
             'San Pietro, Barga (LU)',
             'Vicolo Curie, Modena (MO)',
+            ' via Robert Mallet Roma (RM)',
+            ' via Luigi Gastinelli Roma (RM)',
+            ' via Arturo Danuss Romao (RM)',
+            ' via Comunale Margherita Napoli (NA)',
+            ' via Chiaiano Napoli (NA)',
+            ' in viale San Ignazio Napoli (NA)' ,
+            ' via Foro Buonparte Milano (MI)',
+            ' via Broletto  Milano (MI)',
+            'via CUSANI Milano (MI)',
+            ' via delle Murge Bari (BA)',
+            ' via Gaetano Devitofrancesco Bari (BA)',
+            ' via mauro amoruso Bari (BA)',
+
         ],
 
         'latitude' => [
             43.7318, 45.9719, 44.8652, 45.4704, 44.1707, 43.7323, 45.4698, 41.9089, 41.1255, 45.0663, 46.6513,
             46.7377, 46.5206, 45.1721, 46.8759, 39.1964, 41.8971, 45.4538, 45.4983, 46.8130, 40.6363,  45.5263, 
-            43.8788, 43.8853, 43.6692, 43.6395, 44.0761, 44.6420, 
+            43.8788, 43.8853, 43.6692, 43.6395, 44.0761, 44.6420, 41.9100, 41.9048, 41.9041, 40.8822, 40.8909, 40.8630, 
+            45.4704, 45.4672, 45.4687, 41.1102, 41.1153, 41.1034,
         ],
 
         'longitude' => [
             11.2104, 7.9572, 8.9189, 10.7741, 8.3505, 11.2165, 9.1968, 12.4792, 16.8706, 7.6935, 11.1649,
             10.8485, 11.3553, 7.9060, 11.4858, 9.1521, 12.4525, 11.0021, 9.1941, 11.9332, 14.5945, 10.7417, 
-            10.2384, 10.2471, 10.2770, 10.2913, 10.4797, 10.8965,
+            10.2384, 10.2471, 10.2770, 10.2913, 10.4797, 10.8965, 12.6484, 12.6565, 12.6611, 14.2119, 14.2173,
+            14.2047, 9.1832, 9.1857, 9.1840,  16.8536, 16.8663, 16.8583,
         ],
 
         'visible' => true,
@@ -142,7 +180,9 @@ class ApartmentDataProvider
         'price' => [
             390.00, 190.00, 199.00, 135.00, 158.00, 240.00, 350.00, 410.00, 550.00, 220.00, 193.00,
             112.00, 191.00, 287.00, 140.00, 236.00, 99.00, 120.00, 60.00, 140.00, 100.00, 109.00,
-            250.00, 150.00, 200.00, 490.00, 290.00, 130.00
+            250.00, 150.00, 200.00, 490.00, 290.00, 130.00 , 69.00, 49.00, 39.00, 95.00, 49.00, 50.00 ,
+            50.00 , 300.00, 650.00, 90.00, 50.00, 95.00,
+            
         ],
     ];
 
