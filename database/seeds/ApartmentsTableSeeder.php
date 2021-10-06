@@ -1,9 +1,8 @@
 <?php
 
-use App\Apartment;
 use Illuminate\Database\Seeder;
 use App\Data\ApartmentDataProvider;
-
+use App\Apartment;
 class ApartmentsTableSeeder extends Seeder
 {
     /**
