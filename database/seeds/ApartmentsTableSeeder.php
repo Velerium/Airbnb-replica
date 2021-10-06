@@ -46,13 +46,13 @@ class ApartmentsTableSeeder extends Seeder
             $apt->save();
         }
 
-        $functions = new ImageDataProvider;
+        // $functions = new ImageDataProvider;
 
-        for ($i = 0; $i < count($functions->imageData['url']) ; $i++) {
-            $img = new Image();
-            $img->url = $functions->getApartmentImage($i);
-            $img->save();
-        }
+        // for ($i = 0; $i < count($functions->imageData['url']) ; $i++) {
+        //     $img = new Image();
+        //     $img->url = $functions->getApartmentImage($i);
+        //     $img->save();
+        // }
 
         $functions = new MessageDataProvider;
 
