@@ -3,6 +3,13 @@
 use Illuminate\Database\Seeder;
 use App\Data\ApartmentDataProvider;
 use App\Apartment;
+use App\Data\ImageDataProvider;
+use App\Image;
+use App\Data\MessageDataProvider;
+use App\Message;
+use App\Data\UserDataProvider;
+use App\User;
+
 class ApartmentsTableSeeder extends Seeder
 {
     /**
@@ -15,7 +22,7 @@ class ApartmentsTableSeeder extends Seeder
 
         $functions = new ApartmentDataProvider;
 
-        for ($i = 0; $i < count($functions->apartmentData['title']) ; $i++) {
+        for ($i = 0; $i < count($functions->apartmentData['id']) ; $i++) {
             $apt = new Apartment();
             $apt->title = $functions->getTitle($i);
             $apt->rooms_n = $functions->getRooms($i);
@@ -31,5 +38,38 @@ class ApartmentsTableSeeder extends Seeder
             $apt->visible = $functions->getStatus();
             $apt->save();
         }
+
+        $functions = new ImageDataProvider;
+
+        for ($i = 0; $i < count($functions->imageData['id']) ; $i++) {
+            $img = new Image();
+            $img->url = $functions->getApartmentImage($i);
+            $img->save();
+        }
+
+        $functions = new MessageDataProvider;
+
+        for ($i = 0; $i < count($functions->messageData['id']) ; $i++) {
+            $message = new Message();
+            $message->first_name = $functions->getMessageFirstName($i);
+            $message->last_name = $functions->geMessageLastName($i);
+            $message->email = $functions->getMessageEmail($i);
+            $message->content = $functions->getMessageContent($i);
+            $message->save();
+        }
+
+        $functions = new UserDataProvider;
+
+        for ($i = 0; $i < count($functions->userData['id']) ; $i++) {
+            $message = new User();
+            $message->first_name = $functions->getUserFirstName($i);
+            $message->last_name = $functions->getUserLasttName($i);
+            $message->email = $functions->getUserEmail($i);
+            $message->content = $functions->getUserPassword($i);
+            $message->content = $functions->getUserDateOfBirth($i);
+            $message->save();
+        }
+
+
     }
 }

@@ -1,28 +1,33 @@
 <?php
 
-namespace App\Providers;
+namespace App\Data;
 
-use Illuminate\Support\ServiceProvider;
+class UserDataProvider {
+    public $userData = [
+        'first_name' => [],
+        'last_name' => [],
+        'email' => [],
+        'password' => [],
+        'date_of_birth' => [],
+    ];
 
-class UserDataProvider extends ServiceProvider
-{
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
+    public function getUserFirstName($id) {
+        return $this->userData['first_name'][$id];
     }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
+    public function getUserLasttName($id) {
+        return $this->userData['last_name'][$id];
+    }
+
+    public function getUserEmail($id) {
+        return $this->userData['email'][$id];
+    }
+
+    public function getUserPassword($id) {
+        return $this->userData['password'][$id];
+    }
+
+    public function getUserDateOfBirth($id) {
+        return $this->userData['date_of_birth'][$id];
     }
 }
