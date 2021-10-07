@@ -26,45 +26,6 @@ class ApartmentsTableSeeder extends Seeder
     public function run(Faker $faker)
     {
 
-        $functions = new ApartmentDataProvider;
-
-        for ($i = 0; $i < count($functions->apartmentData['title']) ; $i++) {
-            $apt = new Apartment();
-            $apt->title = $functions->getTitle($i);
-            $apt->rooms_n = $functions->getRooms($i);
-            $apt->beds_n = $functions->getBeds($i);
-            $apt->bathrooms_n = $functions->getBaths($i);
-            $apt->guests_n = $functions->getGuests($i);
-            $apt->square_meters = $functions->getSize($i);
-            $apt->summary = $functions->getDesc($i);
-            $apt->address = $functions->getAddress($i);
-            $apt->latitude = $functions->getLat($i);
-            $apt->longitude = $functions->getLong($i);
-            $apt->price = $functions->getPrice($i);
-            $apt->visible = $functions->getStatus();
-            $apt->user_id = 1;
-            $apt->save();
-        }
-
-        // $functions = new ImageDataProvider;
-
-        // for ($i = 0; $i < count($functions->imageData['url']) ; $i++) {
-        //     $img = new Image();
-        //     $img->url = $functions->getApartmentImage($i);
-        //     $img->save();
-        // }
-
-        $functions = new MessageDataProvider;
-
-        for ($i = 0; $i < count($functions->messageData['email']) ; $i++) {
-            $message = new Message();
-            $message->first_name = $faker->firstName($gender = null);
-            $message->last_name = $faker->lastName();
-            $message->email = $faker->safeEmail();
-            $message->content = $faker->paragraph(2);
-            $message->save();
-        }
-
         $functions = new UserDataProvider;
 
         for ($i = 0; $i < count($functions->userData['email']) ; $i++) {
@@ -91,24 +52,93 @@ class ApartmentsTableSeeder extends Seeder
         }
 
         $functions = new SponsorshipDataProvider;
+        // $listSponsorId = [];
 
-        foreach($functions->sponsorData as $sponsor) {
-            $i = 0;
+        for($i = 0; $i < 3; $i++) {
             $sponsorObj = new Sponsorship();
-            $sponsorObj->type = $sponsor['type'][$i];
-            $sponsorObj->cost_sponsorhip = $sponsor['cost_sponsorship'][$i];
-            $sponsorObj->duration = $sponsor['duration'][$i];
-            $i++;
+            $sponsorObj->type = $functions->getType($i);
+            $sponsorObj->cost_sponsorship = $functions->getCost($i);
+            $sponsorObj->duration = $functions->getDuration($i);
             $sponsorObj->save();
+            // $listSponsorId[] = $sponsorObj->id;
         }
 
         $functions = new VisitorDataProvider;
+        $listVisitorId = [];
 
-        for($x = 0; $x < 100; $x++) {
+        for($i = 0; $i < 100; $i++) {
             $visitorObj = new Visitor();
             $visitorObj->IP_address = $faker->localIpv4();
             $visitorObj->save();
+            $listVisitorId[] = $visitorObj->id;
         }
+
+        $functions = new ApartmentDataProvider;
+        // $users = Apartment::all();
+
+        for ($i = 0; $i < count($functions->apartmentData['title']) ; $i++) {
+            $apt = new Apartment();
+            $apt->title = $functions->getTitle($i);
+            $apt->rooms_n = $functions->getRooms($i);
+            $apt->beds_n = $functions->getBeds($i);
+            $apt->bathrooms_n = $functions->getBaths($i);
+            $apt->guests_n = $functions->getGuests($i);
+            $apt->square_meters = $functions->getSize($i);
+            $apt->summary = $functions->getDesc($i);
+            $apt->address = $functions->getAddress($i);
+            $apt->latitude = $functions->getLat($i);
+            $apt->longitude = $functions->getLong($i);
+            $apt->price = $functions->getPrice($i);
+            $apt->visible = $functions->getStatus();
+            $apt->user_id = 1;
+            // $apt->user_id = $users->random()->id;
+            $apt->save();
+
+            // pivot table apartament_service
+            $randServiceKey = array_rand($listServiceId, 2);
+            $service1 = $listServiceId[$randServiceKey[0]];
+            $service2 = $listServiceId[$randServiceKey[1]];
+    
+            $apt->service()->attach($service1);
+            $apt->service()->attach($service2);
+
+            // pivot table apartament_visitor
+            $randVisitorKey = array_rand($listVisitorId, 2);
+            $visitor1 = $listVisitorId[$randVisitorKey[0]];
+            $visitor2 = $listVisitorId[$randVisitorKey[1]];
+
+            $apt->visitor()->attach($visitor1);
+            $apt->visitor()->attach($visitor2);
+
+            // pivot table apartament_sponsorship
+            // $randSponsorKey = array_rand($listSponsorId, 3);
+            // $visitor1 = $listVisitorId[$randSponsorKey[0]];
+            // $visitor2 = $listVisitorId[$randSponsorKey[1]];
+
+            // $apt->sponsorship()->attach($visitor1);
+            // $apt->sponsorship()->attach($visitor2);
+        }
+
+        $functions = new MessageDataProvider;
+        $apartments = Apartment::all();
+
+        for ($i = 0; $i < 10; $i++) {
+            $message = new Message();
+            $message->first_name = $faker->firstName($gender = null);
+            $message->last_name = $faker->lastName();
+            $message->email = $faker->safeEmail();
+            $message->content = $faker->paragraph(2);
+            $message->apartment_id = $apartments->random()->id;
+            $message->save();
+        }
+
+        // $functions = new ImageDataProvider;
+
+        // for ($i = 0; $i < count($functions->imageData['url']) ; $i++) {
+        //     $img = new Image();
+        //     $img->url = $functions->getApartmentImage($i);
+        //     $img->save();
+        // }
 
     }
 }

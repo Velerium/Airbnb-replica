@@ -18,7 +18,7 @@ class Apartment extends Model
 
     // many to many relations between Apartment and Sponsorship
     public function sponsorship() {
-        return $this->belongsToMany(Sponsorship::class, 'apartment_sponsorhip');
+        return $this->belongsToMany(Sponsorship::class, 'apartment_sponsorship');
     }
 
     // one to many relations between Apartment and Image
