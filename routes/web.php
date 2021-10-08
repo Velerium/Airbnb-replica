@@ -14,10 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('homepage');
+
+Route::get('/dashbord', 'DashbordController@index')->name('dashbord');
+
+Route::resource('apartments', 'UserApartmentsController');
+
+Route::resource('allApartments', 'AllApartmentsController');
+
+
