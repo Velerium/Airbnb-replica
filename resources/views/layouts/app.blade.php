@@ -96,7 +96,7 @@
             @yield('content')
         </main>
 
-        <section>
+        {{-- <section>
             @yield('dashbord')
         </section>
 
@@ -107,6 +107,8 @@
         <section>
             @yield('singleApt')
         </section>
+
+        sec --}}
 
     </div>
 </body>

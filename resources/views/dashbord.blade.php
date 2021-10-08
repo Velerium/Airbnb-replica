@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('dashbord')
+@section('content')
     Qui sarà la dashbord dell'utente {{$user->name}} {{$user->id}} ;
     {{-- @dd($user) --}}
 

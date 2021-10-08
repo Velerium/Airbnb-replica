@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('allUserApt')
+@section('content')
     @if (count($aptByIdUser) === 0)
         Non hai nessun appartmento.
         {{-- To do --}}
@@ -8,7 +8,11 @@
 
     @else 
         @foreach ($aptByIdUser as $apt)
+        {{-- @dd($aptByIdUser) --}}
             <h4>Titolo: {{$apt->title}}</h4>
+            <button>
+                <a href="{{ route('apartments.show', $apt->id) }}">Dettagli appartamento</a>
+            </button>
 
         @endforeach
     @endif

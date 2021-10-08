@@ -1,5 +1,8 @@
-@extends('layout.app')
+@extends('layouts.app')
 
-@section('singleApt')
+@section('content')
     {{$apartment->summary}}
+    <div>
+        Il numero di visitatori è: {{ $visitorsNumber }}
+    </div>
 @endsection
