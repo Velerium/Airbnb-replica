@@ -51,6 +51,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            // 'last_name' => ['required', 'string', 'max:255'],
+            // 'date_oh_birth' => ['required', 'date_oh_birth'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -66,8 +68,17 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            // 'last_name' => $data['last_name'],
+            // 'date_oh_birth' => $data['date_oh_birth'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // $(document).ready(function() {
+        //     $('.it-date-datepicker').datepicker({
+        //       inputFormat: ["dd/MM/yyyy"],
+        //       outputFormat: 'dd/MM/yyyy',
+        //     });
+        // });
     }
 }

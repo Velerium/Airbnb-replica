@@ -4,19 +4,23 @@ namespace App\Data;
 
 class UserDataProvider {
     public $userData = [
-        'first_name' => [],
+        'name' => [],
         'last_name' => [],
+        'date_of_birth' => [],
         'email' => [],
         'password' => [],
-        'date_of_birth' => [],
     ];
 
     public function getUserFirstName($id) {
-        return $this->userData['first_name'][$id];
+        return $this->userData['name'][$id];
     }
 
     public function getUserLasttName($id) {
         return $this->userData['last_name'][$id];
+    }
+    
+    public function getUserDateOfBirth($id) {
+        return $this->userData['date_of_birth'][$id];
     }
 
     public function getUserEmail($id) {
@@ -27,7 +31,4 @@ class UserDataProvider {
         return $this->userData['password'][$id];
     }
 
-    public function getUserDateOfBirth($id) {
-        return $this->userData['date_of_birth'][$id];
-    }
 }

@@ -31,11 +31,11 @@ class ApartmentsTableSeeder extends Seeder
 
         for ($i = 0; $i < 15; $i++) {
             $user = new User();
-            $user->first_name = $faker->firstName($gender = null);
+            $user->name = $faker->firstName($gender = null);
             $user->last_name = $faker->lastName();
+            $user->date_of_birth = $faker->dateTimeBetween('-50 years', '-18 years');
             $user->email = $faker->safeEmail();
             $user->password = $faker->password();
-            $user->date_of_birth = $faker->dateTimeBetween('-50 years', '-18 years');
             $user->save();
         }
 
