@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="indexContainer">
         <div id="indexNav">
             <ul>
@@ -91,6 +92,6 @@
         </div>
 
         <div class="links">{{ $apartmentList->links() }}</div>
-
     </div>
+    
 @endsection
