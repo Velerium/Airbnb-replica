@@ -85,3 +85,4 @@ class AllApartmentsController extends Controller
         //
     }
 }
+

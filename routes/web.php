@@ -27,5 +27,3 @@ Route::get('/dashbord', 'DashbordController@index')->name('dashbord');
 Route::resource('apartments', 'UserApartmentsController');
 
 Route::resource('allApartments', 'AllApartmentsController');
-
-
