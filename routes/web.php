@@ -22,6 +22,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('homepage');
 
+Route::get('/allApartments', 'AllApartmentsController@index')->name('allApartments');
+
 Route::get('/dashbord', 'DashbordController@index')->name('dashbord');
 
 Route::resource('apartments', 'UserApartmentsController');

@@ -86,12 +86,12 @@
         </div>
 
         <div id="indexContent">
-        @foreach ($apartmentList as $item)
+        @foreach ($allApt as $item)
             <card></card>
         @endforeach
         </div>
 
-        <div class="links">{{ $apartmentList->links() }}</div>
+        <div class="links">{{ $allApt->links() }}</div>
     </div>
     
 @endsection
