@@ -45,6 +45,24 @@
         <label class="mt-2" for="address">Indirizzo appartamento</label>
         <textarea type="text" class="form-control"name="address" id="address" rows="2"></textarea>
 
+        <!-- img -->
+        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
+        <input type="text" class="form-control" name="image1" id="image">
+
+        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
+        <input type="text" class="form-control" name="image2" id="image">
+
+        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
+        <input type="text" class="form-control" name="image3" id="image">
+
+        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
+        <input type="text" class="form-control" name="image4" id="image">
+
+        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
+        <input type="text" class="form-control" name="image5" id="image">
+
+        <!-- img end -->
+
         <label class="mt-2" for="latitude">Latitudine</label>
         <input type="text" class="form-control" name="latitude" id="latitude">
 
