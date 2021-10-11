@@ -16,5 +16,11 @@
 
         @endforeach
     @endif
+
+    <div>
+        <button>
+            <a href="{{ route('apartments.create') }}">Aggiungi un nuovo appartamento</a>
+        </button>
+    </div>
             
 @endsection

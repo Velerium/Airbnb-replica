@@ -15,7 +15,7 @@ class AllApartmentsController extends Controller
     public function index()
     {
         $allApt = Apartment::all();
-        return view('allApartments.indexAll', compact('allApt'));
+        return view('searchApartments.indexAll', compact('allApt'));
     }
 
     /**
@@ -36,7 +36,7 @@ class AllApartmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -48,7 +48,7 @@ class AllApartmentsController extends Controller
     public function show($id)
     {
         $apartment = Apartment::find($id);
-        return view('allApartments.show', compact('apartment'));
+        return view('searchApartments.show', compact('apartment'));
     }
 
     /**

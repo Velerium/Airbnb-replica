@@ -24,8 +24,9 @@ Route::get('/', 'HomeController@index')->name('homepage');
 
 Route::get('/dashbord', 'DashbordController@index')->name('dashbord');
 
-Route::resource('apartments', 'UserApartmentsController');
+Route::resource('userApartments', 'UserApartmentsController');
 
-Route::resource('allApartments', 'AllApartmentsController');
+// Change controller name
+Route::resource('searchApartments', 'AllApartmentsController');
 
 
