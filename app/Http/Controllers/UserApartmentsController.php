@@ -69,8 +69,6 @@ class UserApartmentsController extends Controller
             'image5'=>'url',
         ]);
 
-
-
         $this->createAndSave($newApt, $request);
         return redirect()->route('userApartments.show', $newApt);
     }
@@ -141,7 +139,6 @@ class UserApartmentsController extends Controller
             'image3'=>'url',
             'image4'=>'url',
             'image5'=>'url',
-
         ]);
 
         $this->createAndSave($apt, $request);
@@ -181,7 +178,7 @@ class UserApartmentsController extends Controller
 
         $data = $request->all();
         $user = Auth::user();
-        $serviceID = Service::all();
+        // $serviceID = Service::all();
 
         $apt->title = $data['title'];
         $apt->summary = $data['summary'];
@@ -196,7 +193,7 @@ class UserApartmentsController extends Controller
         $apt->visible = $data['visible'];
         $apt->price = $data['price'];
         $apt->user_id = $user->id;
-        $apt->service_id = $serviceID->id;
+        // $apt->service_id = $serviceID->id;
         $apt->save();
 
         // add images

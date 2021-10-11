@@ -69,10 +69,12 @@
         <label class="mt-2" for="longitude">Longitudine</label>
         <input type="text" class="form-control" name="longitude" id="longitude">
 
-        {{-- EXTRA SERVICES --}}
-        <div class="mt-2">Servizi extra</div>
 
+        {{-- EXTRA SERVICES --}}
+        
         {{-- Added flex class so I can separate all better--}}
+        {{-- <div class="mt-2">Servizi extra</div>
+
         <div class="form-check form-check-inline d-flex flex-wrap">
 
             @foreach($services as $service)
@@ -82,7 +84,7 @@
                 </label>
             @endforeach
 
-        </div>
+        </div> --}}
         {{-- END EXTRA SERVICES --}}
 
         {{-- TO DO: Put a radio input, when checked true/1 --}}
