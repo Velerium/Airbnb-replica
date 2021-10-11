@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Apartment;
 
-class AllApartmentsController extends Controller
+class SearchApartmentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AllApartmentsController extends Controller
     public function index()
     {
         $allApt = Apartment::all();
-        return view('searchApartments.indexAll', compact('allApt'));
+        return view('searchApartments.index', compact('allApt'));
     }
 
     /**
@@ -36,7 +36,7 @@ class AllApartmentsController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**

@@ -22,11 +22,11 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('homepage');
 
-Route::get('/dashbord', 'DashbordController@index')->name('dashbord');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::resource('userApartments', 'UserApartmentsController');
 
 // Change controller name
-Route::resource('searchApartments', 'AllApartmentsController');
+Route::resource('searchApartments', 'SearchApartmentsController');
 
 

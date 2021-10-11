@@ -25,6 +25,6 @@
 </div> --}}
 
 Qusta è la homepage.
-<a href="{{ route('allApartments.index') }}">Guarda tutti gli appartamenti</a>
+<a href="{{ route('searchApartments.index') }}">Guarda tutti gli appartamenti</a>
 
 @endsection

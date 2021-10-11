@@ -6,14 +6,26 @@
 
     <h2 class="mt-4 mb-4">Aggiungi un nuovo appartamento</h2>
 
-    <form action="{{ route('apartments.store')}}" method="POST">
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>
+                    {{$error}}
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    <form action="{{ route('userApartments.store') }}" method="POST">
         @csrf
 
         <label class="mt-2" for="title">Titolo</label>
         <input type="text" class="form-control"name="title" id="title">
 
-        <label class="mt-2" for="description">Descrizione appartamento</label>
-        <textarea type="text" class="form-control"name="description" id="description" rows="10"></textarea>
+        <label class="mt-2" for="summary">Descrizione appartamento</label>
+        <textarea type="text" class="form-control"name="summary" id="summary" rows="10"></textarea>
         
         <label class="mt-2" for="rooms_n">Numero di stanze</label>
         <input type="text" class="form-control"name="rooms_n" id="rooms_n">

@@ -34,9 +34,8 @@ class UserApartmentsController extends Controller
      */
     public function create()
     {
-        $apartments = Apartment::all();
         $extraServices = Service::all();
-        return view('userApartments.create', compact('apartments', 'extraServices'));
+        return view('userApartments.create', compact('extraServices'));
     }
 
     /**
@@ -45,15 +44,15 @@ class UserApartmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Apartment $newApt)
     {
 
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
+            'summary' => 'required',
             'rooms_n' => 'required',
             'beds_n' => 'required',
-            'bathromms_n' => 'required',
+            'bathrooms_n' => 'required',
             'guests_n' => 'required',
             'square_meters' => 'required',
             'address' => 'required',
@@ -63,9 +62,8 @@ class UserApartmentsController extends Controller
             'price' => 'required',
         ]);
 
-        $newApt = new Apartment();
         $this->createAndSave($newApt, $request);
-        return redirect()->route('userApartments.show', $newApt->id);
+        return redirect()->route('userApartments.show', $newApt);
     }
 
     /**
@@ -76,9 +74,9 @@ class UserApartmentsController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::find($id);
+        $apt = Apartment::find($id);
         // getting visitor's number
-        $arrayViews = DB::table('apartment_visitor')->where('apartment_id', '=', $apartment->id)->get();
+        $arrayViews = DB::table('apartment_visitor')->where('apartment_id', '=', $apt->id)->get();
         $visitorsNumber = count($arrayViews);
         // get IP Address on click
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
@@ -86,7 +84,7 @@ class UserApartmentsController extends Controller
         // TO DO
         $this->addVisitors($hostname);
 
-        return view('userApartments.show', compact('apartment', 'visitorsNumber'));
+        return view('userApartments.show', compact('apt', 'visitorsNumber'));
     }
 
     /**
@@ -97,7 +95,9 @@ class UserApartmentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $apt = Apartment::find($id);
+        $extraServices = Service::all();
+        return view('userApartments.edit', compact('extraServices', 'apt'));
     }
 
     /**
@@ -107,9 +107,28 @@ class UserApartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Apartment $apt)
     {
-        //
+
+        $request->validate(
+        [
+            'title' => 'required',
+            'summary' => 'required',
+            'rooms_n' => 'required',
+            'beds_n' => 'required',
+            'bathrooms_n' => 'required',
+            'guests_n' => 'required',
+            'square_meters' => 'required',
+            'address' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'visible' => 'required',
+            'price' => 'required',
+        ]);
+
+        $this->createAndSave($apt, $request);
+
+        return redirect()->route('userApartments.show', $apt);
     }
 
     /**
@@ -135,23 +154,25 @@ class UserApartmentsController extends Controller
         }
     }
 
-    private function createAndSave(Apartment $newApt, Request $request) {
+    private function createAndSave(Apartment $apt, Request $request) {
 
         $data = $request->all();
+        $user = Auth::user();
 
-        $newApt->title = $data['title'];
-        $newApt->description = $data['description'];
-        $newApt->rooms_n = $data['rooms_n'];
-        $newApt->beds_n = $data['beds_n'];
-        $newApt->bathrooms_n = $data['bathrooms_n'];
-        $newApt->guests_n = $data['guests_n'];
-        $newApt->square_meters = $data['square_meters'];
-        $newApt->address = $data['address'];
-        $newApt->latitude = $data['latitude'];
-        $newApt->longitude = $data['longitude'];
-        $newApt->visible = $data['visible'];
-        $newApt->price = $data['price'];
-        $newApt->save();
+        $apt->title = $data['title'];
+        $apt->summary = $data['summary'];
+        $apt->rooms_n = $data['rooms_n'];
+        $apt->beds_n = $data['beds_n'];
+        $apt->bathrooms_n = $data['bathrooms_n'];
+        $apt->guests_n = $data['guests_n'];
+        $apt->square_meters = $data['square_meters'];
+        $apt->address = $data['address'];
+        $apt->latitude = $data['latitude'];
+        $apt->longitude = $data['longitude'];
+        $apt->visible = $data['visible'];
+        $apt->price = $data['price'];
+        $apt->user_id = $user->id;
+        $apt->save();
         // TODO: add images
     }
 }

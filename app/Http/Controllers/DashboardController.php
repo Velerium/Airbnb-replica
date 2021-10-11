@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 
-class DashbordController extends Controller
+class DashboardController extends Controller
 {
 
     /**
@@ -22,6 +22,6 @@ class DashbordController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('dashbord', compact('user'));
+        return view('dashboard', compact('user'));
     }
 }
