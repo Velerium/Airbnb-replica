@@ -40,7 +40,7 @@
                     </ul>
 
                     <ul>
-                        @if (Request::route()->getName() === 'dashbord')
+                        @if (Request::route()->getName() === 'dashboard')
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('homepage') }}">Torna alla homepage</a>
                             </li>
@@ -69,7 +69,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @if (Request::route()->getName() === 'homepage')
 
-                                        <a class="dropdown-item" href="{{ route('dashbord') }}">Area personale</a>
+                                        <a class="dropdown-item" href="{{ route('dashboard') }}">Area personale</a>
 
                                     @endif
 
@@ -95,20 +95,6 @@
         <main>
             @yield('content')
         </main>
-
-        {{-- <section>
-            @yield('dashbord')
-        </section>
-
-        <section>
-            @yield('allUserApt')
-        </section>
-
-        <section>
-            @yield('singleApt')
-        </section>
-
-        sec --}}
 
     </div>
 </body>

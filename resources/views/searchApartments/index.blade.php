@@ -94,4 +94,5 @@
         <div class="links">{{ $allApt->links() }}</div>
     </div>
     
+>>>>>>> master:resources/views/allApartments/indexAll.blade.php
 @endsection

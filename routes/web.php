@@ -22,10 +22,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('homepage');
 
-Route::get('/allApartments', 'AllApartmentsController@index')->name('allApartments');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::get('/dashbord', 'DashbordController@index')->name('dashbord');
+Route::resource('userApartments', 'UserApartmentsController');
 
-Route::resource('apartments', 'UserApartmentsController');
+Route::resource('searchApartments', 'SearchApartmentsController');
 
-Route::resource('allApartments', 'AllApartmentsController');
+

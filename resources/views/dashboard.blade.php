@@ -8,5 +8,5 @@
     <link rel="stylesheet" href="">
 
     {{-- Link fot redirect to view all your apartemnts --}}
-    <a href="{{ route('apartments.index') }}">Guarda tutti i tuoi appartamenti</a>
+    <a href="{{ route('userApartments.index') }}">Guarda tutti i tuoi appartamenti</a>
 @endsection

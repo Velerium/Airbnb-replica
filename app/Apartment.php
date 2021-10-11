@@ -6,6 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apartment extends Model
 {
+
+    protected $fillable = [
+        'title',
+        'summary',
+        'rooms_n',
+        'beds_n',
+        'bathrooms_n',
+        'guests_n',
+        'square_meters',
+        'address',
+        'latitude',
+        'longitude',
+        'visible',
+        'price',
+    ];
+
     // many to many relations between Apartment and Service
     public function service() {
         return $this->belongsToMany(Service::class, 'apartment_service');
