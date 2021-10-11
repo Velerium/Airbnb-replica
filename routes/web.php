@@ -26,7 +26,6 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::resource('userApartments', 'UserApartmentsController');
 
-// Change controller name
 Route::resource('searchApartments', 'SearchApartmentsController');
 
 

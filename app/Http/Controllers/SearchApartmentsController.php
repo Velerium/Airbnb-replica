@@ -85,3 +85,4 @@ class SearchApartmentsController extends Controller
         //
     }
 }
+

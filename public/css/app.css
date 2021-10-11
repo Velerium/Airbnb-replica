@@ -4605,6 +4605,104 @@ readers do not read off random characters that represent icons */
   font-weight: 900; }
 @charset "UTF-8";
 
+.indexContainer {
+  margin: 0 80px;
+}
+
+.indexContainer #indexNav {
+  height: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.indexContainer #indexNav ul {
+  list-style-type: none;
+  display: flex;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.indexContainer #indexNav ul li {
+  margin-right: 25px;
+}
+
+.indexContainer #indexNav .filters {
+  display: flex;
+  position: relative;
+}
+
+.indexContainer #indexNav .filters .time,
+.indexContainer #indexNav .filters .guests,
+.indexContainer #indexNav .filters .other {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.indexContainer #indexNav .filters .modal.show {
+  inset: 0px !important;
+}
+
+.indexContainer #indexNav .filters .modal.show .modal-dialog {
+  position: absolute;
+  padding: 5px;
+  width: 45vw;
+}
+
+.indexContainer #indexNav .filters .modal.show .modal-dialog .modal-header {
+  position: relative;
+  justify-content: center;
+  border-bottom: none;
+}
+
+.indexContainer #indexNav .filters .modal.show .modal-dialog .modal-header .close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.indexContainer #indexNav .filters .modal.show .modal-dialog .modal-body {
+  text-align: center;
+}
+
+.indexContainer #indexNav .filters .modal.show .modal-dialog.duration {
+  top: 120px;
+  right: 300px;
+}
+
+.indexContainer #indexNav .filters .modal.show .modal-dialog.guest {
+  top: 120px;
+  right: 200px;
+}
+
+.indexContainer #indexNav .filters .modal.show .modal-dialog.filter.dark {
+  position: static;
+  width: 50%;
+  max-width: unset;
+}
+
+.indexContainer #indexContent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.indexContainer .links .pagination {
+  justify-content: center;
+}
+
+.modal-backdrop {
+  background-color: #fff !important;
+}
+
+.modal-backdrop.show {
+  opacity: 0 !important;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
