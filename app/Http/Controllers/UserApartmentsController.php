@@ -34,8 +34,8 @@ class UserApartmentsController extends Controller
      */
     public function create()
     {
-        $extraServices = Service::all();
-        return view('userApartments.create', compact('extraServices'));
+        $services = Service::all();
+        return view('userApartments.create', compact('services'));
     }
 
     /**
@@ -147,7 +147,6 @@ class UserApartmentsController extends Controller
     public function addVisitors($hostname) { 
         
         $allVisitors = Visitor::all();
-        // dd($allVisitors[2]);
 
         if(!in_array($hostname, compact('allVisitors'))) {
             $visitor = new Visitor();
@@ -160,6 +159,7 @@ class UserApartmentsController extends Controller
 
         $data = $request->all();
         $user = Auth::user();
+        $serviceID = Service::all();
 
         $apt->title = $data['title'];
         $apt->summary = $data['summary'];
@@ -174,6 +174,7 @@ class UserApartmentsController extends Controller
         $apt->visible = $data['visible'];
         $apt->price = $data['price'];
         $apt->user_id = $user->id;
+        $apt->service_id = $serviceID->id;
         $apt->save();
         // TODO: add images
     }
