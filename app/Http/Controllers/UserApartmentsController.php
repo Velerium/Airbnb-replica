@@ -139,7 +139,9 @@ class UserApartmentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $apt = Apartment::find($id);
+        $apt->delete();
+        return redirect()->route('userApartments.index');
     }
 
     public function addVisitors($hostname) { 
