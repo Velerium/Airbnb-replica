@@ -17,8 +17,7 @@
         </ul>
     </div>
     @endif
-
-    <form action="{{ route('userApartments.update', $apt) }}" method="POST">
+    <form action="{{ route('userApartments.update', $apt->id) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -45,6 +44,19 @@
 
         <label class="mt-2" for="address">Indirizzo appartamento</label>
         <textarea type="text" class="form-control"name="address" id="address" rows="2">{{ $apt->address }}</textarea>
+
+        <!-- img -->
+
+        <?php $index=1;?>
+        @foreach($aptImages as $img)
+
+            <label class="mt-2" for="image">inserisci il link di un'immagine</label>
+            <input type="text" class="form-control" name="image{{$index}}" id="image" value="{{ $img->url }}">
+            <?php $index++;?>
+
+        @endforeach
+
+        <!-- img end -->
 
         <label class="mt-2" for="latitude">Latitudine</label>
         <input type="text" class="form-control" name="latitude" id="latitude" value="{{ $apt->latitude }}">
