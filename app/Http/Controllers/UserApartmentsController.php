@@ -93,7 +93,7 @@ class UserApartmentsController extends Controller
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
         // TO DO
-        $this->addVisitors($hostname);
+        $this->addVisitors($hostname,$apt);
 
         return view('userApartments.show', compact('apt', 'visitorsNumber'));
     }
@@ -160,15 +160,18 @@ class UserApartmentsController extends Controller
         //
     }
 
-    public function addVisitors($hostname) { 
+    public function addVisitors($hostname,$apt) { 
         
         $allVisitors = Visitor::all();
-        // dd($allVisitors[2]);
 
-        if(!in_array($hostname, compact('allVisitors'))) {
+        if(!in_array($hostname, compact('allVisitors') )) {
             $visitor = new Visitor();
             $visitor->IP_address = $hostname;
             $visitor->save();
+
+
+            $apt->visitor()->attach($visitor->id);
+
         }
     }
 
