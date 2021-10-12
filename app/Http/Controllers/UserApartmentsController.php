@@ -9,7 +9,7 @@ use App\Apartment;
 use App\Service;
 use App\Visitor;
 use App\Image;
-
+use App\Sponsorship;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -38,7 +38,8 @@ class UserApartmentsController extends Controller
     public function create()
     {
         $services = Service::all();
-        return view('userApartments.create', compact('services'));
+        $sponsorships = Sponsorship::all();
+        return view('userApartments.create', compact('services', 'sponsorships'));
     }
 
     /**
@@ -117,24 +118,6 @@ class UserApartmentsController extends Controller
     public function update(Request $request, $id)
     {
         $apt = Apartment::find($id);
-
-        $request->validate(
-        [
-            'title' => 'required',
-            'summary' => 'required',
-            'rooms_n' => 'required',
-            'beds_n' => 'required',
-            'bathrooms_n' => 'required',
-            'guests_n' => 'required',
-            'square_meters' => 'required',
-            'address' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'visible' => 'required',
-            'price' => 'required',
-            'images'=>['required',],
-        ]);
-
         $this->createAndSave($apt, $request);
         return redirect()->route('userApartments.show', 'apt');
     }
@@ -150,6 +133,7 @@ class UserApartmentsController extends Controller
         $apt = Apartment::find($id);
 
         $apt->service()->detach();
+        $apt->sponsorship()->detach();
         $apt->visitor()->detach();
         $apt->delete();
 
@@ -193,6 +177,10 @@ class UserApartmentsController extends Controller
 
         foreach($data['servicesList'] as $serviceId) {
             $apt->service()->attach($serviceId);
+        }
+
+        foreach($data['sponsorshipsList'] as $sponsorshipId) {
+            $apt->sponsorship()->attach($sponsorshipId);
         }
         
         foreach($data['images'] as $image){
