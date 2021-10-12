@@ -137,7 +137,6 @@ class UserApartmentsController extends Controller
             'images'=>['required',],
         ]);
 
-
         $this->createAndSave($apt, $request);
 
         return redirect()->route('userApartments.show', $apt);
