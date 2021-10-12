@@ -18,7 +18,7 @@
     </div>
     @endif
 
-    <form action="{{ route('userApartments.store') }}" method="POST">
+    <form   class="form-horizontal" action="{{ route('userApartments.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label class="mt-2" for="title">Titolo</label>
@@ -46,21 +46,8 @@
         <textarea type="text" class="form-control"name="address" id="address" rows="2"></textarea>
 
         <!-- img -->
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image1" id="image">
-
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image2" id="image">
-
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image3" id="image">
-
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image4" id="image">
-
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image5" id="image">
-
+        <label class="mt-2" for="image">inserisci  un'immagine</label>
+        <input required type="file" class="form-control" name="images[]" id="image" multiple>
         <!-- img end -->
 
         <label class="mt-2" for="latitude">Latitudine</label>
@@ -69,33 +56,27 @@
         <label class="mt-2" for="longitude">Longitudine</label>
         <input type="text" class="form-control" name="longitude" id="longitude">
 
-        <label class="mt-2" for="visible">Rendilo visibiole o no</label>
-        <input type="text" class="form-control" name="visible" id="visible">
+        {{-- EXTRA SERVICES --}}
+        <h4>Scegli i servizi extra del tuo appartamento</h4>
+        <div class="form-group">
+            @foreach($services as $service)
+                <div>
+                    <input name="servicesList[]" type="checkbox" value="{{ $service->id }}">
+                    <label>{{$service->service_name}}</label>
+                </div>
+            @endforeach
+        </div>
+        {{-- END EXTRA SERVICES --}}
+
+        <input type="checkbox" class="switch-input" name="visible" id="visible" value="1" {{ old('is_featured') ? 'checked="checked"' : '' }}/>
+        <label class="mt-2" for="visible">Rendilo visibile o no</label>
 
         <label class="mt-2" for="price">Prezzo a notte</label>
         <input type="text" class="form-control" name="price" id="price">
 
-        {{-- <div class="mt-2">Servizi extra</div>
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text mt-2" for="service_id">Opzioni</label>
-                </div>
-                <select class="custom-select mt-2" id="service_id" name="service_id">
-                    <option selected>Aggiungi i servizi extra</option>
-                    @foreach($extraServices as $extraService)
-                        <option value="{{$extraServices->id}}">{{ $extraServices->service_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div> --}}
-
-        {{-- <div class="mt-3 mb-3">
-            <label class="mt-2" for="image">Add image:</label>
-            <input type="file" name="image" id="image">
-        </div> --}}
-
-        <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Aggiungi appartamento</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Aggiungi appartamento</button>             
+        </div>
 
     </form>
 

@@ -11,6 +11,7 @@ use App\Visitor;
 use App\Image;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserApartmentsController extends Controller
 {
@@ -36,8 +37,8 @@ class UserApartmentsController extends Controller
      */
     public function create()
     {
-        $extraServices = Service::all();
-        return view('userApartments.create', compact('extraServices'));
+        $services = Service::all();
+        return view('userApartments.create', compact('services'));
     }
 
     /**
@@ -46,7 +47,7 @@ class UserApartmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Apartment $newApt)
+    public function store(Request $request, Apartment $apt)
     {
 
         $request->validate([
@@ -62,17 +63,12 @@ class UserApartmentsController extends Controller
             'longitude' => 'required',
             'visible' => 'required',
             'price' => 'required',
-            'image1'=>'url',
-            'image2'=>'url',
-            'image3'=>'url',
-            'image4'=>'url',
-            'image5'=>'url',
+            'images'=>'required',
         ]);
 
-
-
-        $this->createAndSave($newApt, $request);
-        return redirect()->route('userApartments.show', $newApt);
+        $this->createAndSave($apt, $request);
+        return redirect()->route('userApartments.show', $apt);
+      
     }
 
     /**
@@ -84,6 +80,7 @@ class UserApartmentsController extends Controller
     public function show($id)
     {
         $apt = Apartment::find($id);
+        
         // getting visitor's number
 
         $arrayViews = DB::table('apartment_visitor')->where('apartment_id', '=', $apt->id)->get();
@@ -92,8 +89,7 @@ class UserApartmentsController extends Controller
         // get IP Address on click
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
-        // TO DO
-        $this->addVisitors($hostname);
+        $this->addVisitors($hostname, $apt);
 
         return view('userApartments.show', compact('apt', 'visitorsNumber'));
     }
@@ -106,10 +102,9 @@ class UserApartmentsController extends Controller
      */
     public function edit($id)
     {
-        $aptImages = DB::table('Images')->where('apartment_id', '=', $id)->get();
         $apt = Apartment::find($id);
-        $extraServices = Service::all();
-        return view('userApartments.edit', compact('extraServices', 'apt','aptImages'));
+        $services = Service::all();
+        return view('userApartments.edit', compact('services', 'apt'));
     }
 
     /**
@@ -121,32 +116,8 @@ class UserApartmentsController extends Controller
      */
     public function update(Request $request, Apartment $apt)
     {
-
-        $request->validate(
-        [
-            'title' => 'required',
-            'summary' => 'required',
-            'rooms_n' => 'required',
-            'beds_n' => 'required',
-            'bathrooms_n' => 'required',
-            'guests_n' => 'required',
-            'square_meters' => 'required',
-            'address' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'visible' => 'required',
-            'price' => 'required',
-            'image1'=>'url',
-            'image2'=>'url',
-            'image3'=>'url',
-            'image4'=>'url',
-            'image5'=>'url',
-
-        ]);
-
         $this->createAndSave($apt, $request);
-
-        return redirect()->route('userApartments.show', $apt);
+        return redirect()->route('userApartments.show', 'apt');
     }
 
     /**
@@ -158,19 +129,26 @@ class UserApartmentsController extends Controller
     public function destroy($id)
     {
         $apt = Apartment::find($id);
+
+        $apt->service()->detach();
+        $apt->visitor()->detach();
         $apt->delete();
+
         return redirect()->route('userApartments.index');
     }
 
-    public function addVisitors($hostname) { 
+    
+
+    public function addVisitors($hostname, $apt) { 
         
         $allVisitors = Visitor::all();
-        // dd($allVisitors[2]);
 
-        if(!in_array($hostname, compact('allVisitors'))) {
+        if(!in_array($hostname, compact('allVisitors') )) {
             $visitor = new Visitor();
             $visitor->IP_address = $hostname;
             $visitor->save();
+
+            $apt->visitor()->attach($visitor->id);
         }
     }
 
@@ -194,29 +172,16 @@ class UserApartmentsController extends Controller
         $apt->user_id = $user->id;
         $apt->save();
 
-        // add images
-
-        $arrayOfImg=[];
-        $arrayOfImg[]=$data['image1'];
-        $arrayOfImg[]=$data['image2'];
-        $arrayOfImg[]=$data['image3'];
-        $arrayOfImg[]=$data['image4'];
-        $arrayOfImg[]=$data['image5'];
-
-        foreach($arrayOfImg as $img){
+        foreach($data['servicesList'] as $serviceId) {
+            $apt->service()->attach($serviceId);
+        }
+        
+        foreach($data['images'] as $image){
             $newImg= new Image();
+            $img = Storage::put('images',$image);
             $newImg->url = $img;
             $newImg->apartment_id = $apt->id;
             $newImg->save();
-        }
-
-
-
-
-
-
-
-
-
+        }  
     }
 }
