@@ -23,7 +23,11 @@
     </div>
 
     @foreach ($apt->service as $service)
-        <span>#{{ $service->service_name }}, </span>
+        <span>{{ $service->service_name }} </span>
     @endforeach 
+
+    {{-- <!--
+        to get image you need to do 
+         <img src"{{asset('storage/') . other code  }} -->  --}} 
 
 @endsection
