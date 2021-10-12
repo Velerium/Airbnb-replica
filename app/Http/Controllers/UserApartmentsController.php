@@ -179,12 +179,6 @@ class UserApartmentsController extends Controller
         $data = $request->all();
         $user = Auth::user();
 
-        
-        
-
-
-
-
         $apt->title = $data['title'];
         $apt->summary = $data['summary'];
         $apt->rooms_n = $data['rooms_n'];

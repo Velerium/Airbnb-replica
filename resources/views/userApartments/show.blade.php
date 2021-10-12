@@ -12,7 +12,6 @@
         Il numero di visitatori è: {{ $visitorsNumber }}
     </div>
 
-
     {{-- <!--
         to get image you need to do 
          <img src"{{asset('storage/') . other code  }} -->  --}} 

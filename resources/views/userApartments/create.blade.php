@@ -61,7 +61,6 @@
 
         <label class="mt-2" for="image">inserisci  un'immagine</label>
         <input required type="file" class="form-control" name="images[]" id="image" multiple>
-        
 
         <!-- img end -->
 
