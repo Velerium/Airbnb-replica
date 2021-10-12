@@ -10,4 +10,8 @@ class Image extends Model
     public function apartment() {
         return $this->belongsTo(Apartment::class);
     }
+    
+    protected $fillable = [
+        'url',
+    ];
 }

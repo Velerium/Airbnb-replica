@@ -15,10 +15,13 @@
         </ul>
     </div>
     @endif
+
+    <form class="form-horizontal" action="{{ route('userApartments.update', $apt->id) }}" method="POST">
+
     
     <h2 class="mt-4 mb-4">Modifica {{ $apt->title }}</h2>
 
-    <form action="{{ route('userApartments.update', $apt->id) }}" method="POST">
+
         @csrf
         @method('PUT')
 
@@ -48,6 +51,14 @@
 
         <!-- img -->
 
+        @foreach($aptImages as $img)
+
+            <label class="mt-2" for="image">inserisci un'immagine</label>
+            <input required type="file" class="form-control" name="images[]" id="image"  value="{{ $img->url }}" multiple> 
+
+        @endforeach
+
+
         <!-- img end -->
 
         <label class="mt-2" for="latitude">Latitudine</label>
@@ -76,6 +87,7 @@
                     </div>
                 @endforeach
             </div>
+
 
         </div>
         {{-- END SERVICES --}}

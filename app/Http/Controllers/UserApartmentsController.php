@@ -63,7 +63,7 @@ class UserApartmentsController extends Controller
             'longitude' => 'required',
             'visible' => 'required',
             'price' => 'required',
-            'images'=>['required','image'],
+            'images'=>['required',],
         ]);
 
         $this->createAndSave($apt, $request);
@@ -114,8 +114,27 @@ class UserApartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apt)
+    public function update(Request $request, $id)
     {
+        $apt = Apartment::find($id);
+
+        $request->validate(
+        [
+            'title' => 'required',
+            'summary' => 'required',
+            'rooms_n' => 'required',
+            'beds_n' => 'required',
+            'bathrooms_n' => 'required',
+            'guests_n' => 'required',
+            'square_meters' => 'required',
+            'address' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'visible' => 'required',
+            'price' => 'required',
+            'images'=>['required',],
+        ]);
+
         $this->createAndSave($apt, $request);
         return redirect()->route('userApartments.show', 'apt');
     }
