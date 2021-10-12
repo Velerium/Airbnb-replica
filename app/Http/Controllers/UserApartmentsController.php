@@ -11,6 +11,7 @@ use App\Visitor;
 use App\Image;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserApartmentsController extends Controller
 {
@@ -46,7 +47,7 @@ class UserApartmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Apartment $newApt)
+    public function store(Request $request, Apartment $apt)
     {
 
         $request->validate([
@@ -62,15 +63,13 @@ class UserApartmentsController extends Controller
             'longitude' => 'required',
             'visible' => 'required',
             'price' => 'required',
-            'image1'=>'url',
-            'image2'=>'url',
-            'image3'=>'url',
-            'image4'=>'url',
-            'image5'=>'url',
+            'images'=>'required',
         ]);
 
-        $this->createAndSave($newApt, $request);
-        return redirect()->route('userApartments.show', $newApt);
+        $this->createAndSave($apt, $request);
+      
+        return redirect()->route('userApartments.show', $apt);
+      
     }
 
     /**
@@ -174,7 +173,7 @@ class UserApartmentsController extends Controller
         }
     }
 
-    private function createAndSave(Apartment $apt, Request $request) {
+    public function createAndSave($apt, Request $request) {
 
         $data = $request->all();
         $user = Auth::user();
@@ -197,23 +196,14 @@ class UserApartmentsController extends Controller
         $apt->save();
 
         // add images
-
-        $arrayOfImg=[];
-        $arrayOfImg[]=$data['image1'];
-        $arrayOfImg[]=$data['image2'];
-        $arrayOfImg[]=$data['image3'];
-        $arrayOfImg[]=$data['image4'];
-        $arrayOfImg[]=$data['image5'];
-
-        foreach($arrayOfImg as $img){
-            $newImg= new Image();
-            $newImg->url = $img;
-            $newImg->apartment_id = $apt->id;
-            $newImg->save();
-        }
-
-
-
+        
+            foreach($data['images'] as $image){
+                $newImg= new Image();
+                $img = Storage::put('images',$image);
+                $newImg->url = $img;
+                $newImg->apartment_id = $apt->id;
+                $newImg->save();
+            }  
 
 
 

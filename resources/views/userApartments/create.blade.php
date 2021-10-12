@@ -18,7 +18,7 @@
     </div>
     @endif
 
-    <form action="{{ route('userApartments.store') }}" method="POST">
+    <form   class="form-horizontal" action="{{ route('userApartments.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label class="mt-2" for="title">Titolo</label>
@@ -46,20 +46,21 @@
         <textarea type="text" class="form-control"name="address" id="address" rows="2"></textarea>
 
         <!-- img -->
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image1" id="image">
+        
+        <label class="mt-2" for="image">inserisci  un'immagine</label>
+        <input required type="file" class="form-control" name="images[]" id="image" multiple>
 
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image2" id="image">
+        <label class="mt-2" for="image">inserisci  un'immagine</label>
+        <input required type="file" class="form-control" name="images[]" id="image" multiple>
 
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image3" id="image">
+        <label class="mt-2" for="image">inserisci  un'immagine</label>
+        <input required type="file" class="form-control" name="images[]" id="image" multiple>
 
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image4" id="image">
+        <label class="mt-2" for="image">inserisci  un'immagine</label>
+        <input required type="file" class="form-control" name="images[]" id="image" multiple>
 
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image5" id="image">
+        <label class="mt-2" for="image">inserisci  un'immagine</label>
+        <input required type="file" class="form-control" name="images[]" id="image" multiple>
 
         <!-- img end -->
 
@@ -110,10 +111,6 @@
             </div>
         </div> --}}
 
-        {{-- <div class="mt-3 mb-3">
-            <label class="mt-2" for="image">Add image:</label>
-            <input type="file" name="image" id="image">
-        </div> --}}
 
         <div class="text-right">
             <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Aggiungi appartamento</button>             
