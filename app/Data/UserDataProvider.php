@@ -4,7 +4,7 @@ namespace App\Data;
 
 class UserDataProvider {
     public $userData = [
-        'name' => [],
+        'first_name' => [],
         'last_name' => [],
         'date_of_birth' => [],
         'email' => [],
@@ -12,7 +12,7 @@ class UserDataProvider {
     ];
 
     public function getUserFirstName($id) {
-        return $this->userData['name'][$id];
+        return $this->userData['first_name'][$id];
     }
 
     public function getUserLasttName($id) {

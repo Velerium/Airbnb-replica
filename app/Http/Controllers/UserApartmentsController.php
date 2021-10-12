@@ -37,8 +37,8 @@ class UserApartmentsController extends Controller
      */
     public function create()
     {
-        $extraServices = Service::all();
-        return view('userApartments.create', compact('extraServices'));
+        $services = Service::all();
+        return view('userApartments.create', compact('services'));
     }
 
     /**
@@ -66,12 +66,10 @@ class UserApartmentsController extends Controller
             'images'=>'required',
         ]);
 
-
-
         $this->createAndSave($apt, $request);
-
-
+      
         return redirect()->route('userApartments.show', $apt);
+      
     }
 
     /**
@@ -140,7 +138,6 @@ class UserApartmentsController extends Controller
             'image3'=>'url',
             'image4'=>'url',
             'image5'=>'url',
-
         ]);
 
         $this->createAndSave($apt, $request);
@@ -156,7 +153,9 @@ class UserApartmentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $apt = Apartment::find($id);
+        $apt->delete();
+        return redirect()->route('userApartments.index');
     }
 
     public function addVisitors($hostname,$apt) { 
@@ -178,6 +177,7 @@ class UserApartmentsController extends Controller
 
         $data = $request->all();
         $user = Auth::user();
+        // $serviceID = Service::all();
 
         $apt->title = $data['title'];
         $apt->summary = $data['summary'];
@@ -192,6 +192,7 @@ class UserApartmentsController extends Controller
         $apt->visible = $data['visible'];
         $apt->price = $data['price'];
         $apt->user_id = $user->id;
+        // $apt->service_id = $serviceID->id;
         $apt->save();
 
         // add images

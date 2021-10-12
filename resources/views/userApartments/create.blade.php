@@ -70,11 +70,31 @@
         <label class="mt-2" for="longitude">Longitudine</label>
         <input type="text" class="form-control" name="longitude" id="longitude">
 
-        <label class="mt-2" for="visible">Rendilo visibiole o no</label>
+
+        {{-- EXTRA SERVICES --}}
+        
+        {{-- Added flex class so I can separate all better--}}
+        {{-- <div class="mt-2">Servizi extra</div>
+
+        <div class="form-check form-check-inline d-flex flex-wrap">
+
+            @foreach($services as $service)
+                <input class="form-check-input" type="checkbox" id="service_id" value="option1">
+                <label class="form-check-label mr-3" for="service_id">
+                    {{ $service->service_name }}
+                </label>
+            @endforeach
+
+        </div> --}}
+        {{-- END EXTRA SERVICES --}}
+
+        {{-- TO DO: Put a radio input, when checked true/1 --}}
+        <label class="mt-2" for="visible">Rendilo visibile o no</label>
         <input type="text" class="form-control" name="visible" id="visible">
 
         <label class="mt-2" for="price">Prezzo a notte</label>
         <input type="text" class="form-control" name="price" id="price">
+
 
         {{-- <div class="mt-2">Servizi extra</div>
         <div class="form-group">
@@ -92,7 +112,9 @@
         </div> --}}
 
 
-        <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Aggiungi appartamento</button>
+        <div class="text-right">
+            <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Aggiungi appartamento</button>             
+        </div>
 
     </form>
 
