@@ -56,7 +56,7 @@
         <label class="mt-2" for="longitude">Longitudine</label>
         <input type="text" class="form-control" name="longitude" id="longitude">
 
-
+        {{-- EXTRA SERVICES --}}
         <h4>Scegli i servizi extra del tuo appartamento</h4>
         <div class="form-group">
             @foreach($services as $service)
@@ -66,7 +66,6 @@
                 </div>
             @endforeach
         </div>
-
         {{-- END EXTRA SERVICES --}}
 
         <input type="checkbox" class="switch-input" name="visible" id="visible" value="1" {{ old('is_featured') ? 'checked="checked"' : '' }}/>
@@ -74,23 +73,6 @@
 
         <label class="mt-2" for="price">Prezzo a notte</label>
         <input type="text" class="form-control" name="price" id="price">
-
-
-        {{-- <div class="mt-2">Servizi extra</div>
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text mt-2" for="service_id">Opzioni</label>
-                </div>
-                <select class="custom-select mt-2" id="service_id" name="service_id">
-                    <option selected>Aggiungi i servizi extra</option>
-                    @foreach($extraServices as $extraService)
-                        <option value="{{$extraServices->id}}">{{ $extraServices->service_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div> --}}
-
 
         <div class="text-right">
             <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Aggiungi appartamento</button>             

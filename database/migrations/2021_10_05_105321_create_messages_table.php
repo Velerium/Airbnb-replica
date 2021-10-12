@@ -20,7 +20,7 @@ class CreateMessagesTable extends Migration
             $table->string('email', 100);
             $table->text('content');
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartments')->index(); 
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade')->index(); 
             $table->timestamps();
         });
     }

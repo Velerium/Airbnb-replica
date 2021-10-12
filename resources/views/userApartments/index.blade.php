@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (count($aptByIdUser) === 0)
-        Non hai nessun appartmento.
-        {{-- To do --}}
-        <a href="#">Clicca qui per inserire un nuovo appartmento</a>
 
+    @if (count($aptByIdUser) === 0)
+
+        <div>
+            Non hai nessun appartmento.
+        </div>
+
+        <button>
+            <a href="{{ route('userApartments.create') }}">Aggiungi un nuovo appartamento</a>
+        </button>
     @else 
         @foreach ($aptByIdUser as $apt)
         {{-- @dd($aptByIdUser) --}}
@@ -16,14 +21,15 @@
             {{-- <button>
                 <a href="{{ route('userApartments.edit', $apartment) }}">Modifica</a>
             </button> --}}
-
         @endforeach
+
+        <div>
+            <button>
+                <a href="{{ route('userApartments.create') }}">Aggiungi un nuovo appartamento</a>
+            </button>
+        </div>
     @endif
 
-    <div>
-        <button>
-            <a href="{{ route('userApartments.create') }}">Aggiungi un nuovo appartamento</a>
-        </button>
-    </div>
+ 
             
 @endsection
