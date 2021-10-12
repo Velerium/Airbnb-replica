@@ -17,7 +17,7 @@
         </ul>
     </div>
     @endif
-    <form action="{{ route('userApartments.update', $apt->id) }}" method="POST">
+    <form class="form-horizontal" action="{{ route('userApartments.update', $apt->id) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -46,13 +46,10 @@
         <textarea type="text" class="form-control"name="address" id="address" rows="2">{{ $apt->address }}</textarea>
 
         <!-- img -->
-
-        <?php $index=1;?>
         @foreach($aptImages as $img)
 
-            <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-            <input type="text" class="form-control" name="image{{$index}}" id="image" value="{{ $img->url }}">
-            <?php $index++;?>
+            <label class="mt-2" for="image">inserisci un'immagine</label>
+            <input required type="file" class="form-control" name="images[]" id="image"  value="{{ $img->url }}" multiple> 
 
         @endforeach
 
@@ -86,10 +83,6 @@
             </div>
         </div> --}}
 
-        {{-- <div class="mt-3 mb-3">
-            <label class="mt-2" for="image">Add image:</label>
-            <input type="file" name="image" id="image">
-        </div> --}}
 
         <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Salva modifiche</button>
 

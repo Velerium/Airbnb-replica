@@ -116,8 +116,9 @@ class UserApartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apt)
+    public function update(Request $request, $id)
     {
+        $apt = Apartment::find($id);
 
         $request->validate(
         [
@@ -133,12 +134,9 @@ class UserApartmentsController extends Controller
             'longitude' => 'required',
             'visible' => 'required',
             'price' => 'required',
-            'image1'=>'url',
-            'image2'=>'url',
-            'image3'=>'url',
-            'image4'=>'url',
-            'image5'=>'url',
+            'images'=>['required',],
         ]);
+
 
         $this->createAndSave($apt, $request);
 
