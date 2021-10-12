@@ -48,7 +48,6 @@
 
         <!-- img -->
 
-
         <!-- img end -->
 
         <label class="mt-2" for="latitude">Latitudine</label>

@@ -67,7 +67,6 @@ class UserApartmentsController extends Controller
         ]);
 
         $this->createAndSave($apt, $request);
-      
         return redirect()->route('userApartments.show', $apt);
       
     }
@@ -83,8 +82,10 @@ class UserApartmentsController extends Controller
         $apt = Apartment::find($id);
         
         // getting visitor's number
+
         $arrayViews = DB::table('apartment_visitor')->where('apartment_id', '=', $apt->id)->get();
         $visitorsNumber = count($arrayViews);
+
         // get IP Address on click
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
@@ -152,7 +153,6 @@ class UserApartmentsController extends Controller
     }
 
     private function createAndSave(Apartment $apt, Request $request) {
-
 
         $data = $request->all();
         $user = Auth::user();
