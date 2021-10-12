@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Apartment;
+use App\Http\Resources\ApartmentResource;
 
-class SearchApartmentsController extends Controller
+class AdvancedSearchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,8 @@ class SearchApartmentsController extends Controller
     public function index()
     {
         $apartments = Apartment::all();
-        return view('app/advancedSearch', compact('apartments'));
+        // return response()->json($apartments);
+        return ApartmentResource::collection($apartments);
     }
 
     /**
@@ -47,8 +50,7 @@ class SearchApartmentsController extends Controller
      */
     public function show($id)
     {
-        $apartment = Apartment::find($id);
-        return view('searchApartments.show', compact('apartment'));
+        //
     }
 
     /**
@@ -85,4 +87,3 @@ class SearchApartmentsController extends Controller
         //
     }
 }
-

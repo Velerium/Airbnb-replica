@@ -64,7 +64,7 @@ class UserApartmentsController extends Controller
             'longitude' => 'required',
             'visible' => 'required',
             'price' => 'required',
-            'images'=>'required',
+            'images'=>['required',],
         ]);
 
         $this->createAndSave($apt, $request);

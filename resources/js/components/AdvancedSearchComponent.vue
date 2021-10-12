@@ -1,7 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-
+<template>
     <div class="indexContainer">
         <div id="indexNav">
             <ul>
@@ -85,13 +82,46 @@
             </div>
         </div>
 
-        <div id="indexContent">
-        @foreach ($apartments as $item)
-            <card></card>
-        @endforeach
+        <div id="indexContent" v-for="apartment in apartments" :key="apartment.id">
+            <div class="card-title">{{ apartment.title }}</div>
         </div>
+        
+        <card/>
 
-        <div class="links">{{ $apartments->links() }}</div>
+        <!-- <div class="links">{{ $apartments->links() }}</div> -->
     </div>
-    
-@endsection
+
+</template>
+
+<script> 
+
+import Card from './Card.vue';
+
+export default {
+    components: {
+        'Card': Card
+    },
+
+    mounted() {
+        this.getApartments();
+    },
+
+    data() {
+        return {
+            apartments: [],
+        }
+    },
+
+    methods: {
+        getApartments() {
+            axios.get(`/api/apartments`).then((response) => {
+                this.apartments = response.data.data
+            });
+        }
+    },
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>
