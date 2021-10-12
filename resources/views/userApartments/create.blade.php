@@ -46,22 +46,8 @@
         <textarea type="text" class="form-control"name="address" id="address" rows="2"></textarea>
 
         <!-- img -->
-        
         <label class="mt-2" for="image">inserisci  un'immagine</label>
         <input required type="file" class="form-control" name="images[]" id="image" multiple>
-
-        <label class="mt-2" for="image">inserisci  un'immagine</label>
-        <input required type="file" class="form-control" name="images[]" id="image" multiple>
-
-        <label class="mt-2" for="image">inserisci  un'immagine</label>
-        <input required type="file" class="form-control" name="images[]" id="image" multiple>
-
-        <label class="mt-2" for="image">inserisci  un'immagine</label>
-        <input required type="file" class="form-control" name="images[]" id="image" multiple>
-
-        <label class="mt-2" for="image">inserisci  un'immagine</label>
-        <input required type="file" class="form-control" name="images[]" id="image" multiple>
-
         <!-- img end -->
 
         <label class="mt-2" for="latitude">Latitudine</label>
@@ -70,47 +56,23 @@
         <label class="mt-2" for="longitude">Longitudine</label>
         <input type="text" class="form-control" name="longitude" id="longitude">
 
-
         {{-- EXTRA SERVICES --}}
-        
-        {{-- Added flex class so I can separate all better--}}
-        {{-- <div class="mt-2">Servizi extra</div>
-
-        <div class="form-check form-check-inline d-flex flex-wrap">
-
+        <h4>Scegli i servizi extra del tuo appartamento</h4>
+        <div class="form-group">
             @foreach($services as $service)
-                <input class="form-check-input" type="checkbox" id="service_id" value="option1">
-                <label class="form-check-label mr-3" for="service_id">
-                    {{ $service->service_name }}
-                </label>
+                <div>
+                    <input name="servicesList[]" type="checkbox" value="{{ $service->id }}">
+                    <label>{{$service->service_name}}</label>
+                </div>
             @endforeach
-
-        </div> --}}
+        </div>
         {{-- END EXTRA SERVICES --}}
 
-        {{-- TO DO: Put a radio input, when checked true/1 --}}
+        <input type="checkbox" class="switch-input" name="visible" id="visible" value="1" {{ old('is_featured') ? 'checked="checked"' : '' }}/>
         <label class="mt-2" for="visible">Rendilo visibile o no</label>
-        <input type="text" class="form-control" name="visible" id="visible">
 
         <label class="mt-2" for="price">Prezzo a notte</label>
         <input type="text" class="form-control" name="price" id="price">
-
-
-        {{-- <div class="mt-2">Servizi extra</div>
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text mt-2" for="service_id">Opzioni</label>
-                </div>
-                <select class="custom-select mt-2" id="service_id" name="service_id">
-                    <option selected>Aggiungi i servizi extra</option>
-                    @foreach($extraServices as $extraService)
-                        <option value="{{$extraServices->id}}">{{ $extraServices->service_name }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div> --}}
-
 
         <div class="text-right">
             <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Aggiungi appartamento</button>             

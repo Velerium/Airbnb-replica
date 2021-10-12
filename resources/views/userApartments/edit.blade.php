@@ -4,20 +4,24 @@
 
 <div class="container">
 
-    <h2 class="mt-4 mb-4">Modifica {{ $apt->title }}</h2>
-
     @if($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <li>
-                    {{$error}}
-                </li>
+            <li>
+                {{$error}}
+            </li>
             @endforeach
         </ul>
     </div>
     @endif
+
     <form class="form-horizontal" action="{{ route('userApartments.update', $apt->id) }}" method="POST">
+
+    
+    <h2 class="mt-4 mb-4">Modifica {{ $apt->title }}</h2>
+
+
         @csrf
         @method('PUT')
 
@@ -46,12 +50,14 @@
         <textarea type="text" class="form-control"name="address" id="address" rows="2">{{ $apt->address }}</textarea>
 
         <!-- img -->
+
         @foreach($aptImages as $img)
 
             <label class="mt-2" for="image">inserisci un'immagine</label>
             <input required type="file" class="form-control" name="images[]" id="image"  value="{{ $img->url }}" multiple> 
 
         @endforeach
+
 
         <!-- img end -->
 
@@ -61,27 +67,30 @@
         <label class="mt-2" for="longitude">Longitudine</label>
         <input type="text" class="form-control" name="longitude" id="longitude" value="{{ $apt->longitude }}">
 
-        {{-- TODO_ Check box --}}
-        <label class="mt-2" for="visible">Rendilo visibiole o no</label>
-        <input type="text" class="form-control" name="visible" id="visible" value="{{ $apt->visible }}">
+        <input type="checkbox" class="switch-input" name="visible" id="visible" value="{{ $apt->visible }}"}}/>
+        <label class="mt-2" for="visible">Rendi pubblico il tuo appartamento</label>
 
-        <label class="mt-2" for="price">Prezzo a notte</label>
+        <label class="mt-2 d-block" for="price">Prezzo a notte</label>
         <input type="text" class="form-control" name="price" id="price" value="{{ $apt->price }}">
 
-        {{-- <div class="mt-2">Servizi extra</div>
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text mt-2" for="service_id">Opzioni</label>
-                </div>
-                <select class="custom-select mt-2" id="service_id" name="service_id">
-                    <option selected>Aggiungi i servizi extra</option>
-                    @foreach($extraServices as $extraService)
-                        <option value="{{$extraServices->id}}">{{ $extraServices->service_name }}</option>
-                    @endforeach
-                </select>
+        {{-- SERVICES --}}
+        <h4>Modifica i servizi extra del tuo appartamento</h4>
+
+        <div class="form-check">
+
+            {{--TODO: checked input when the apartment get those services  --}}
+            <div class="form-group">
+                @foreach($services as $service)
+                    <div>
+                        <input class="form-check-input" name="servicesList[]" type="checkbox" value="1" {{ $apt->service_id ? 'checked="checked"' : '' }}>
+                        <label class="form-check-label d-flex" for="flexCheckChecked">{{$service->service_name}}</label>
+                    </div>
+                @endforeach
             </div>
-        </div> --}}
+
+
+        </div>
+        {{-- END SERVICES --}}
 
         <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Salva modifiche</button>
 

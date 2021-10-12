@@ -7,21 +7,27 @@
     </button>
 
     {{-- TODO: Modal pop up 'Are you sure you want to delete this apartment?' --}}
-    <form action="{{ route('userApartments.destroy', $apt) }}" method="POST">
+    <form action="{{ route('userApartments.destroy', $apt->id) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-outline-danger">Elimina appartamento</button>
     </form>
 
-    {{ $apt->title }}
+    <h2>
+        {{ $apt->title }}
+
+    </h2>
     {{ $apt->summary }}
     <div>
         Il numero di visitatori è: {{ $visitorsNumber }}
     </div>
 
+    @foreach ($apt->service as $service)
+        <span>{{ $service->service_name }} </span>
+    @endforeach 
+
     {{-- <!--
         to get image you need to do 
          <img src"{{asset('storage/') . other code  }} -->  --}} 
-
 
 @endsection
