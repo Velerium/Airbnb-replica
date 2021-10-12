@@ -74,6 +74,19 @@
         <label class="mt-2" for="price">Prezzo a notte</label>
         <input type="text" class="form-control" name="price" id="price">
 
+        {{-- SPONSORSHIPS --}}
+        <div class="form-check">
+            @foreach ($sponsorships as $sponsorship)
+                <input class="form-check-input" type="radio" name="sponsorshipsList[]" value="{{ $sponsorship->id }}">
+                <label class="form-check-label d-flex" for="">
+                    {{ $sponsorship->type }}
+                    {{ $sponsorship->duration }}h - 
+                    {{ $sponsorship->cost_sponsorship }}€
+                </label>  
+            @endforeach
+        </div>
+        {{-- END SPONSORSHIPS --}}
+
         <div class="text-right">
             <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Aggiungi appartamento</button>             
         </div>

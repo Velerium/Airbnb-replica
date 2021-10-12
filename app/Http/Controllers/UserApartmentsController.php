@@ -9,7 +9,7 @@ use App\Apartment;
 use App\Service;
 use App\Visitor;
 use App\Image;
-
+use App\Sponsorship;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -38,7 +38,8 @@ class UserApartmentsController extends Controller
     public function create()
     {
         $services = Service::all();
-        return view('userApartments.create', compact('services'));
+        $sponsorships = Sponsorship::all();
+        return view('userApartments.create', compact('services', 'sponsorships'));
     }
 
     /**
@@ -114,8 +115,9 @@ class UserApartmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apartment $apt)
+    public function update(Request $request, $id)
     {
+        $apt = Apartment::find($id);
         $this->createAndSave($apt, $request);
         return redirect()->route('userApartments.show', 'apt');
     }
@@ -131,6 +133,7 @@ class UserApartmentsController extends Controller
         $apt = Apartment::find($id);
 
         $apt->service()->detach();
+        $apt->sponsorship()->detach();
         $apt->visitor()->detach();
         $apt->delete();
 
@@ -174,6 +177,10 @@ class UserApartmentsController extends Controller
 
         foreach($data['servicesList'] as $serviceId) {
             $apt->service()->attach($serviceId);
+        }
+
+        foreach($data['sponsorshipsList'] as $sponsorshipId) {
+            $apt->sponsorship()->attach($sponsorshipId);
         }
         
         foreach($data['images'] as $image){
