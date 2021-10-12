@@ -46,7 +46,7 @@
         <textarea type="text" class="form-control"name="address" id="address" rows="2"></textarea>
 
         <!-- img -->
-        <label class="mt-2" for="image">inserisci il link di un'immagine</label>
+        {{-- <label class="mt-2" for="image">inserisci il link di un'immagine</label>
         <input type="text" class="form-control" name="image1" id="image">
 
         <label class="mt-2" for="image">inserisci il link di un'immagine</label>
@@ -59,7 +59,7 @@
         <input type="text" class="form-control" name="image4" id="image">
 
         <label class="mt-2" for="image">inserisci il link di un'immagine</label>
-        <input type="text" class="form-control" name="image5" id="image">
+        <input type="text" class="form-control" name="image5" id="image"> --}}
 
         <!-- img end -->
 
@@ -70,26 +70,20 @@
         <input type="text" class="form-control" name="longitude" id="longitude">
 
 
-        {{-- EXTRA SERVICES --}}
-        
-        {{-- Added flex class so I can separate all better--}}
-        {{-- <div class="mt-2">Servizi extra</div>
-
-        <div class="form-check form-check-inline d-flex flex-wrap">
-
+        <h4>Scegli i servizi extra del tuo appartamento</h4>
+        <div class="form-group">
             @foreach($services as $service)
-                <input class="form-check-input" type="checkbox" id="service_id" value="option1">
-                <label class="form-check-label mr-3" for="service_id">
-                    {{ $service->service_name }}
-                </label>
+                <div>
+                    <input name="servicesList[]" type="checkbox" value="{{ $service->id }}">
+                    <label>{{$service->service_name}}</label>
+                </div>
             @endforeach
+        </div>
 
-        </div> --}}
         {{-- END EXTRA SERVICES --}}
 
-        {{-- TO DO: Put a radio input, when checked true/1 --}}
+        <input type="checkbox" class="switch-input" name="visible" id="visible" value="1" {{ old('is_featured') ? 'checked="checked"' : '' }}/>
         <label class="mt-2" for="visible">Rendilo visibile o no</label>
-        <input type="text" class="form-control" name="visible" id="visible">
 
         <label class="mt-2" for="price">Prezzo a notte</label>
         <input type="text" class="form-control" name="price" id="price">

@@ -62,11 +62,6 @@ class UserApartmentsController extends Controller
             'longitude' => 'required',
             'visible' => 'required',
             'price' => 'required',
-            'image1'=>'url',
-            'image2'=>'url',
-            'image3'=>'url',
-            'image4'=>'url',
-            'image5'=>'url',
         ]);
 
         $this->createAndSave($newApt, $request);
@@ -82,16 +77,14 @@ class UserApartmentsController extends Controller
     public function show($id)
     {
         $apt = Apartment::find($id);
+        
         // getting visitor's number
-
         $arrayViews = DB::table('apartment_visitor')->where('apartment_id', '=', $apt->id)->get();
         $visitorsNumber = count($arrayViews);
-
         // get IP Address on click
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
-        // TO DO
-        $this->addVisitors($hostname,$apt);
+        $this->addVisitors($hostname, $apt);
 
         return view('userApartments.show', compact('apt', 'visitorsNumber'));
     }
@@ -104,10 +97,9 @@ class UserApartmentsController extends Controller
      */
     public function edit($id)
     {
-        $aptImages = DB::table('Images')->where('apartment_id', '=', $id)->get();
         $apt = Apartment::find($id);
-        $extraServices = Service::all();
-        return view('userApartments.edit', compact('extraServices', 'apt','aptImages'));
+        $services = Service::all();
+        return view('userApartments.edit', compact('services', 'apt'));
     }
 
     /**
@@ -119,31 +111,8 @@ class UserApartmentsController extends Controller
      */
     public function update(Request $request, Apartment $apt)
     {
-
-        $request->validate(
-        [
-            'title' => 'required',
-            'summary' => 'required',
-            'rooms_n' => 'required',
-            'beds_n' => 'required',
-            'bathrooms_n' => 'required',
-            'guests_n' => 'required',
-            'square_meters' => 'required',
-            'address' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'visible' => 'required',
-            'price' => 'required',
-            'image1'=>'url',
-            'image2'=>'url',
-            'image3'=>'url',
-            'image4'=>'url',
-            'image5'=>'url',
-        ]);
-
         $this->createAndSave($apt, $request);
-
-        return redirect()->route('userApartments.show', $apt);
+        return redirect()->route('userApartments.show', 'apt');
     }
 
     /**
@@ -155,11 +124,17 @@ class UserApartmentsController extends Controller
     public function destroy($id)
     {
         $apt = Apartment::find($id);
+
+        $apt->service()->detach();
+        $apt->visitor()->detach();
         $apt->delete();
+
         return redirect()->route('userApartments.index');
     }
 
-    public function addVisitors($hostname,$apt) { 
+    
+
+    public function addVisitors($hostname, $apt) { 
         
         $allVisitors = Visitor::all();
 
@@ -168,17 +143,16 @@ class UserApartmentsController extends Controller
             $visitor->IP_address = $hostname;
             $visitor->save();
 
-
             $apt->visitor()->attach($visitor->id);
-
         }
     }
+
+
 
     private function createAndSave(Apartment $apt, Request $request) {
 
         $data = $request->all();
         $user = Auth::user();
-        // $serviceID = Service::all();
 
         $apt->title = $data['title'];
         $apt->summary = $data['summary'];
@@ -193,32 +167,10 @@ class UserApartmentsController extends Controller
         $apt->visible = $data['visible'];
         $apt->price = $data['price'];
         $apt->user_id = $user->id;
-        // $apt->service_id = $serviceID->id;
         $apt->save();
 
-        // add images
-
-        $arrayOfImg=[];
-        $arrayOfImg[]=$data['image1'];
-        $arrayOfImg[]=$data['image2'];
-        $arrayOfImg[]=$data['image3'];
-        $arrayOfImg[]=$data['image4'];
-        $arrayOfImg[]=$data['image5'];
-
-        foreach($arrayOfImg as $img){
-            $newImg= new Image();
-            $newImg->url = $img;
-            $newImg->apartment_id = $apt->id;
-            $newImg->save();
+        foreach($data['servicesList'] as $serviceId) {
+            $apt->service()->attach($serviceId);
         }
-
-
-
-
-
-
-
-
-
     }
 }

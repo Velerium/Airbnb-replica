@@ -50,9 +50,5 @@ class Apartment extends Model
     // one to many relations between Apartment and User
     public function user() {
         return $this->belongsTo(User::class);
-    }
-
-
-
-    
+    }    
 }
