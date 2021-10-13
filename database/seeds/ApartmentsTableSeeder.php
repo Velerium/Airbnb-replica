@@ -156,7 +156,7 @@ class ApartmentsTableSeeder extends Seeder
             foreach($functions->imageData[$i] as $imageElement) {
                 $img = new Image();
                 $img->url = $imageElement;
-                $img->apartment_id = rand(1, 41); // 41 apartments
+                $img->apartment_id = $i+1;
                 $img->save();
             }
         }
