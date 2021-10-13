@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Apartment;
-use App\Http\Resources\ApartmentResource;
+use App\Service;
 
-class AdvancedSearchController extends Controller
+class ServicesFilterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class AdvancedSearchController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::paginate(15);
-        return ApartmentResource::collection($apartments);
+        $services = Service::all();
+        return response()->json($services);
     }
 
     /**

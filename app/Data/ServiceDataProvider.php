@@ -22,11 +22,6 @@ class ServiceDataProvider
             'alarm',
             'washing_machine',
         ],
-
-        // 'service_status' => [
-        //     'false',
-        //     'true',
-        // ]
-
+        
     ];
 }
