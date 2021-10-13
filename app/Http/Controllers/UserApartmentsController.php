@@ -64,7 +64,7 @@ class UserApartmentsController extends Controller
             'longitude' => 'required',
             'visible' => 'required',
             'price' => 'required',
-            'images'=>['required',],
+            'images'=>['required'],
         ]);
 
         $this->createAndSave($apt, $request);
@@ -104,10 +104,9 @@ class UserApartmentsController extends Controller
     public function edit($id)
     {
         $apt = Apartment::find($id);
-
         $aptImage = DB::table('images')->where('apartment_id', '=', $apt->id)->get();
-
         $services = Service::all();
+
         return view('userApartments.edit', compact('services', 'apt', 'aptImage'));
     }
 
@@ -182,9 +181,9 @@ class UserApartmentsController extends Controller
             $apt->service()->attach($serviceId);
         }
 
-        foreach($data['sponsorshipsList'] as $sponsorshipId) {
-            $apt->sponsorship()->attach($sponsorshipId);
-        }
+        // foreach($data['sponsorshipsList'] as $sponsorshipId) {
+        //     $apt->sponsorship()->attach($sponsorshipId);
+        // }
         
         foreach($data['images'] as $image){
             $newImg= new Image();
