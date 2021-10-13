@@ -87,10 +87,16 @@
             </div>
         </div>
 
+        <!-- trying to see if it works -->
+        <div v-for="service in services" :key="service.id">
+            {{ service.service_name }}
+        </div>
+
         <div id="indexContent">
             <card v-for="apartment in apartments" :key="apartment.id"
                 :title="apartment.title"
                 :price="apartment.price"
+
             />
                 
         </div>
@@ -115,12 +121,14 @@ export default {
 
     mounted() {
         this.getAllApartments();
+        this.getAllServices();
     },
 
     data() {
         return {
             allApartments: [],
             apartments: [],
+            services: [],
             currentPage: 1,
             totalPage: 0,
             guestNumber: 0,
@@ -129,6 +137,7 @@ export default {
     },
 
     methods: {
+        // complete array of all apartments
         getAllApartments() {
             axios.get(`/api/apartments`).then((response) => {
                 this.allApartments = response.data.data;
@@ -137,9 +146,18 @@ export default {
             });
         },
         
+        // array apartments paginated
         getApartments() {
             axios.get(`/api/apartments?page=${this.currentPage}`).then((response) => {
                 this.apartments = response.data.data;
+
+            });
+        },
+
+        // complete array of all services
+        getAllServices() {
+            axios.get(`/api/services`).then((response) => {
+                this.services = response.data;
             });
         },
 
