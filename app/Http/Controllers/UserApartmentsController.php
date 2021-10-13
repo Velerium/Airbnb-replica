@@ -104,8 +104,11 @@ class UserApartmentsController extends Controller
     public function edit($id)
     {
         $apt = Apartment::find($id);
+
+        $aptImage = DB::table('images')->where('apartment_id', '=', $apt->id)->get();
+
         $services = Service::all();
-        return view('userApartments.edit', compact('services', 'apt'));
+        return view('userApartments.edit', compact('services', 'apt', 'aptImage'));
     }
 
     /**
