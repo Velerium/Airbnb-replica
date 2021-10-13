@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Apartment;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Service;
 
-class SearchApartmentsController extends Controller
+class ServicesFilterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class SearchApartmentsController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
         $services = Service::all();
-        return view('app/advancedSearch', compact('apartments', 'services'));
+        return response()->json($services);
     }
 
     /**

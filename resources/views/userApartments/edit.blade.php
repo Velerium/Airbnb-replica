@@ -15,10 +15,13 @@
         </ul>
     </div>
     @endif
+
+    <form class="form-horizontal" action="{{ route('userApartments.update', $apt->id) }}" method="POST">
+
     
     <h2 class="mt-4 mb-4">Modifica {{ $apt->title }}</h2>
 
-    <form action="{{ route('userApartments.update', $apt->id) }}" method="POST">
+
         @csrf
         @method('PUT')
 
@@ -47,6 +50,11 @@
         <textarea type="text" class="form-control"name="address" id="address" rows="2">{{ $apt->address }}</textarea>
 
         <!-- img -->
+        
+
+            <label class="mt-2" for="image">inserisci un'immagine</label>
+            <input required type="file" class="form-control" name="images[]" id="image"  value="" multiple> 
+
 
         <!-- img end -->
 
@@ -77,8 +85,10 @@
                 @endforeach
             </div>
 
+
         </div>
         {{-- END SERVICES --}}
+        
 
         <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Salva modifiche</button>
 

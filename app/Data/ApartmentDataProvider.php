@@ -172,7 +172,7 @@ class ApartmentDataProvider
             'Via Arturo Danuss Romao (RM)',
             'Via Comunale Margherita Napoli (NA)',
             'Via Chiaiano Napoli (NA)',
-            'Vn viale San Ignazio Napoli (NA)' ,
+            'Viale San Ignazio Napoli (NA)' ,
             'Via Foro Buonparte Milano (MI)',
             'Via Broletto  Milano (MI)',
             'Via CUSANI Milano (MI)',

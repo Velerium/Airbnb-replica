@@ -5,13 +5,28 @@
         </div>
         <div class="itemDetails">
             <div class="titleDistance">
-                <h4>Ellipsis with a loooooooong title</h4>
+                <h5>{{ title }}</h5>
                 <span>distance</span>
             </div>
-            <div class="price">price</div>
+            <div class="price">{{ price }}€ /notte</div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    name: 'Card',
+    data() {
+        return {
+
+        }
+    },
+    props: {
+        title: String,
+        price: String,
+    }
+}
+</script>
 
 <style lang="scss" scoped>
 
@@ -46,7 +61,7 @@
             .titleDistance {
                 max-width: 60%;
 
-                h4 {
+                h5 {
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -55,6 +70,10 @@
                 span {
                     color: #666;
                 }
+            }
+
+            .price {
+                font-size: 16px;
             }
         }
     }
