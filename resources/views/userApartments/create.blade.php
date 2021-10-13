@@ -49,17 +49,6 @@
         <label class="mt-2" for="image">inserisci  un'immagine</label>
         <input required type="file" class="form-control" name="images[]" id="image" multiple>
 
-        <label class="mt-2" for="image">inserisci  un'immagine</label>
-        <input required type="file" class="form-control" name="images[]" id="image" multiple>
-
-        <label class="mt-2" for="image">inserisci  un'immagine</label>
-        <input required type="file" class="form-control" name="images[]" id="image" multiple>
-
-        <label class="mt-2" for="image">inserisci  un'immagine</label>
-        <input required type="file" class="form-control" name="images[]" id="image" multiple>
-
-        <label class="mt-2" for="image">inserisci  un'immagine</label>
-        <input required type="file" class="form-control" name="images[]" id="image" multiple>
         <!-- img end -->
 
         <label class="mt-2" for="latitude">Latitudine</label>
@@ -83,11 +72,15 @@
         <input type="checkbox" class="switch-input" name="visible" id="visible" value="1" {{ old('is_featured') ? 'checked="checked"' : '' }}/>
         <label class="mt-2" for="visible">Rendilo visibile o no</label>
 
+        <br>
         <label class="mt-2" for="price">Prezzo a notte</label>
         <input type="text" class="form-control" name="price" id="price">
 
         {{-- SPONSORSHIPS --}}
-        <div class="form-check">
+
+        {{-- TODO: Decide where to insert the sponsorships --}}
+
+        {{-- <div class="form-check">
             @foreach ($sponsorships as $sponsorship)
                 <input class="form-check-input" type="radio" name="sponsorshipsList[]" value="{{ $sponsorship->id }}">
                 <label class="form-check-label d-flex" for="">
@@ -96,7 +89,7 @@
                     {{ $sponsorship->cost_sponsorship }}€
                 </label>  
             @endforeach
-        </div>
+        </div> --}}
         {{-- END SPONSORSHIPS --}}
 
         <div class="text-right">
