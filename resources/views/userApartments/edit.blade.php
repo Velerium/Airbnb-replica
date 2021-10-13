@@ -50,12 +50,10 @@
         <textarea type="text" class="form-control"name="address" id="address" rows="2">{{ $apt->address }}</textarea>
 
         <!-- img -->
-        @foreach($aptImage as $img)
+        
 
             <label class="mt-2" for="image">inserisci un'immagine</label>
-            <input required type="file" class="form-control" name="images[]" id="image"  value="{{ $img->url }}" multiple> 
-
-        @endforeach
+            <input required type="file" class="form-control" name="images[]" id="image"  value="" multiple> 
 
 
         <!-- img end -->
@@ -90,6 +88,7 @@
 
         </div>
         {{-- END SERVICES --}}
+        
 
         <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Salva modifiche</button>
 
