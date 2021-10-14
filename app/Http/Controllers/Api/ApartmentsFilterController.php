@@ -38,7 +38,8 @@ class ApartmentsFilterController extends Controller
      */
     public function show($id)
     {
-        //
+        // $apartment = Apartment::where('id', $id)->with(['services'])->first();
+
     }
 
     /**

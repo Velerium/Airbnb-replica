@@ -48,10 +48,6 @@
         <!-- img -->
         <label class="mt-2" for="image">inserisci  un'immagine</label>
         <input required type="file" class="form-control" name="images[]" id="image" multiple>
-<<<<<<< HEAD
-=======
-
->>>>>>> 34f137411ac0b56686b8e5d6f5e12b1184d0d0df
         <!-- img end -->
 
         <label class="mt-2" for="latitude">Latitudine</label>

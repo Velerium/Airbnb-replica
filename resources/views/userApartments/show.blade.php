@@ -24,16 +24,14 @@
             <li>{{ $service->service_name }}</li>
         @endforeach 
     
-        @foreach ($apt->sponsorship as $sponsorship)
-            {{-- @dd($apt->sponsorship) --}}
+        {{-- @foreach ($apt->sponsorship as $sponsorship)
             <h4>Questo appartamento ha la sponsorizzazione: {{ strtoupper($sponsorship->type) }} - {{ $sponsorship->duration }}h</h4>
             {{ $apt->created_at }}
-        @endforeach     
+        @endforeach      --}}
     
-        {{-- <!--
-            to get image you need to do 
-             <img src"{{asset('storage/') . other code  }} -->  --}} 
-
+        @foreach ($images as $image)
+            <img src="{{ asset('storage/'. $image->url) }}" alt="{{ $apt->title }}' image"> 
+        @endforeach
     </div>
 
 
