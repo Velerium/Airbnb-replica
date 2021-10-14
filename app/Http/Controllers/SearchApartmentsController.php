@@ -18,6 +18,7 @@ class SearchApartmentsController extends Controller
         // $apartments = Apartment::all();
         // $services = Service::all();
         return view('app/advancedSearch');
+
     }
 
     /**
