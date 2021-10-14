@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.4",
-        "@vueform/slider": "^2.0.5"
+        "@vueform/slider": "^2.0.5",
+        "chart.js": "^3.5.1"
     }
 }
