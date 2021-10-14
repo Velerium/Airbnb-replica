@@ -15,7 +15,7 @@ class SearchApartmentsController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $apartments = Apartment::paginate(15);
         $services = Service::all();
         return view('app/advancedSearch', compact('apartments', 'services'));
     }

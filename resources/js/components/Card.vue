@@ -1,7 +1,12 @@
 <template>
     <div class="item">
-        <div class="img">
+        <div style="position: relative" class="img">
             <div class="favorite">&#9825;</div>
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+                Guests: {{ guests_n }}
+                <br>
+                Beds: {{ beds_n }}
+            </div>
         </div>
         <div class="itemDetails">
             <div class="titleDistance">
@@ -24,6 +29,9 @@ export default {
     props: {
         title: String,
         price: String,
+        service: String,
+        guests_n: Number,
+        beds_n: Number,
     }
 }
 </script>
@@ -36,6 +44,11 @@ export default {
         padding-bottom: calc(18% + 50px);
         margin-bottom: 40px;
         border-radius: 20px;
+        margin-right: 1.6%;
+
+        &:nth-child(5n+1) {
+            margin-left: 1.6%;
+        }
 
         .img {
             position: relative;

@@ -41,44 +41,65 @@
                     <div class="modal-dialog guest" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Pick your favourite setting!</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Selezione ospiti</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <span>Quante persone alloggeranno?</span>
-                            <div>
+                            <div class="guestsFilter">
                                 <button v-on:click="guestDecrease"><span>-</span></button>
-                                <span v-on:change="filter">{{ this.guestNumber }}</span>
+                                <span>{{ this.guestNumber }}</span>
                                 <button v-on:click="guestIncrease"><span>+</span></button>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" v-on:click="guestsReset">Reset</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Salva</button>
                         </div>
                         </div>
                     </div>
                 </div>
 
-                <button type="button" class="other" data-toggle="modal" data-target="#filterModal">Filters</button>
+                <button type="button" class="other" data-toggle="modal" data-target="#filterModal">Filtri</button>
 
                 <div class="modal" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="modal-dialog filter dark" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Filters</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Filtri</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            Coming soon™
+                            <h5>Price range</h5>
+                            <div class="priceFilter">
+                                <Slider v-model="value" v-on:change="getApartments"
+                                    :min="this.priceMin"
+                                    :max="this.priceMax"
+                                    />
+                            </div>
+                            <div class="minorFilters">
+                                <div class="minorLeft">
+                                    <div class="beds">
+                                        <h5>Beds:</h5>
+                                        <div class="bedButtons">
+                                            <button v-on:click="bedDecrease"><span>-</span></button>
+                                            <span>{{ this.bedsNumber }}</span>
+                                            <button v-on:click="bedIncrease"><span>+</span></button>
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <div class="minorRight"></div>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-secondary" v-on:click="filterReset">Reset</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Salva</button>
                         </div>
                         </div>
                     </div>
@@ -87,25 +108,25 @@
             </div>
         </div>
 
-        <!-- trying to see if it works -->
-        <div v-for="service in services" :key="service.id">
+        <!-- <div v-for="service in services" :key="service.id">
             {{ service.service_name }}
-        </div>
+        </div> -->
 
         <div id="indexContent">
             <card v-for="apartment in apartments" :key="apartment.id"
                 :title="apartment.title"
                 :price="apartment.price"
-
+                :guests_n="apartment.guests_n"
+                :beds_n="apartment.beds_n"
             />
                 
         </div>
 
-        <ul class="pagination">
+        <!-- <ul class="pagination">
             <li v-for="n in totalPage" :key="n" v-on:click="changePage(n)" class="page-item">
                 <a class="page-link" href="#">{{ n }}</a>
             </li>
-        </ul>
+        </ul> -->
     </div>
 
 </template>
@@ -113,48 +134,46 @@
 <script> 
 
 import Card from './Card.vue';
+import Vue from 'vue';
+import VueCompositionAPI from '@vue/composition-api'
+import Slider from '@vueform/slider/dist/slider.vue2.js'
+
+Vue.use(VueCompositionAPI)
 
 export default {
     components: {
-        'Card': Card
+        'Card': Card,
+        Slider,
     },
 
     mounted() {
-        this.getAllApartments();
+        this.getApartments();
         this.getAllServices();
     },
 
     data() {
         return {
-            allApartments: [],
             apartments: [],
             services: [],
             currentPage: 1,
             totalPage: 0,
             guestNumber: 0,
-            guestWord: 'Guests',
+            guestWord: 'Ospiti',
+            bedsNumber: 0,
+            value: [50, 1000],
+            priceMin: 50,
+            priceMax: 1000,
         }
     },
 
     methods: {
-        // complete array of all apartments
-        getAllApartments() {
-            axios.get(`/api/apartments`).then((response) => {
-                this.allApartments = response.data.data;
-                this.apartments = response.data.data;
-                this.totalPage = response.data.meta.last_page;
-            });
-        },
-        
-        // array apartments paginated
+
         getApartments() {
-            axios.get(`/api/apartments?page=${this.currentPage}`).then((response) => {
-                this.apartments = response.data.data;
-
+            axios.get(`/api/apartments/?guests=${this.guestNumber}&priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}`).then((response) => {
+                this.apartments = response.data;
             });
         },
 
-        // complete array of all services
         getAllServices() {
             axios.get(`/api/services`).then((response) => {
                 this.services = response.data;
@@ -166,17 +185,15 @@ export default {
             this.getApartments();
         },
 
-        filter() {
-            
-        },
-
         guestIncrease() {
             this.guestNumber++;
             if (this.guestNumber === 1) {
-                this.guestWord = 'Guest';
+                this.guestWord = 'Ospite';
             } else {
-                this.guestWord = 'Guests'
+                this.guestWord = 'Ospiti'
             }
+
+            this.getApartments();
         },
 
         guestDecrease() {
@@ -185,17 +202,45 @@ export default {
             }
             this.guestNumber--;
             if (this.guestNumber === 1) {
-                this.guestWord = 'Guest';
+                this.guestWord = 'Ospite';
             } else {
-                this.guestWord = 'Guests'
+                this.guestWord = 'Ospiti';
             }
+
+            this.getApartments();
         },
 
-        
+        bedIncrease() {
+            this.bedsNumber++;
+            this.getApartments();
+        },
+
+        bedDecrease() {
+            if (this.bedsNumber === 0) {
+                return;
+            }
+            this.bedsNumber--;
+            this.getApartments();
+        },
+
+        guestsReset() {
+            this.guestNumber = 0;
+
+            this.getApartments();
+        },
+
+        filterReset() {
+            Vue.set(this.value, 0, 50);
+            Vue.set(this.value, 1, 1000);
+            this.bedsNumber = 0;
+
+            this.getApartments();
+        }
     },
 }
 </script>
 
+<style src="@vueform/slider/themes/default.css"></style>
 <style lang="scss" scoped>
 
 .indexContainer {
@@ -254,13 +299,50 @@ margin: 0 80px;
                 }
 
                 .modal-body {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     text-align: center;
 
-                    & > div {
+                    .guestsFilter {
                         margin-top: 20px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                    }
+
+                    .priceFilter {
+                        width: 80%;
+                    }
+
+                    .minorFilters {
+                        display: flex;
+                        width: 100%;
+                        margin-top: 30px;
+
+                        & > div {
+                            width: 50%;
+                        }
+
+                        .minorLeft {
+                            display: flex;
+                            flex-direction: column;
+
+                            .beds {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+
+                                h5 {
+                                    margin-bottom: 15px;
+                                }
+
+                                .bedButtons {
+                                    display: flex;
+                                    align-items: center;
+                                }
+                            }
+                        }
                     }
 
                     button {
@@ -273,6 +355,15 @@ margin: 0 80px;
                         border-radius: 50%;
                         font-size: 20px;
                     }
+
+                    & > h5 {
+                        margin-bottom: 50px;
+                    }
+                }
+
+                .modal-footer {
+                    display: flex;
+                    justify-content: space-between;
                 }
 
                 &.duration {
@@ -297,7 +388,6 @@ margin: 0 80px;
 
 #indexContent {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
