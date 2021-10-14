@@ -17,6 +17,9 @@ class ApartmentsFilterController extends Controller
     public function index()
     {   
         
+        $apartments = Apartment::all();
+        // $prova = Apartment::with(['service'])->get();
+
         try {
             $guestsNumber = $_GET['guests'];
         } catch (Exception $guestsNumber) {
@@ -27,7 +30,6 @@ class ApartmentsFilterController extends Controller
         $priceMax = $_GET['priceMax'];
         $bedNumber = $_GET['beds'];
 
-        $apartments = Apartment::all();
         $filtered = $apartments->where('guests_n', '>=', $guestsNumber);
         $filtered1 = $filtered->where('price', '>=', $priceMin);
         $filtered2 = $filtered1->where('price', '<=', $priceMax);

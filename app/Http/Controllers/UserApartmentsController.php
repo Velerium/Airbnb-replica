@@ -92,7 +92,11 @@ class UserApartmentsController extends Controller
 
         $images = DB::table('images')->where('apartment_id', '=', $apt->id)->get();
 
-        return view('userApartments.show', compact('apt', 'visitorsNumber', 'images'));
+        $sponsorships = Sponsorship::all();
+        $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->get();
+        // dd($sponsored);
+        
+        return view('userApartments.show', compact('apt', 'visitorsNumber', 'images', 'sponsorships', 'sponsored'));
     }
 
     /**
@@ -181,9 +185,9 @@ class UserApartmentsController extends Controller
             $apt->service()->attach($serviceId);
         }
 
-        // foreach($data['sponsorshipsList'] as $sponsorshipId) {
-        //     $apt->sponsorship()->attach($sponsorshipId);
-        // }
+        foreach($data['sponsorshipsList'] as $sponsorshipId) {
+            $apt->sponsorship()->attach($sponsorshipId);
+        }
 
         foreach($data['images'] as $image){
             $newImg= new Image();
