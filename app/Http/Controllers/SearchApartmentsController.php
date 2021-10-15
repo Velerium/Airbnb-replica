@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Apartment;
 use Illuminate\Http\Request;
-use App\Service;
 
 class SearchApartmentsController extends Controller
 {
@@ -15,9 +14,9 @@ class SearchApartmentsController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
-        $services = Service::all();
-        return view('app/advancedSearch', compact('apartments', 'services'));
+        // $apartments = Apartment::all();
+        // $services = Service::all();
+        return view('app/advancedSearch');
     }
 
     /**
@@ -49,7 +48,9 @@ class SearchApartmentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $apt = Apartment::find($id);
+        // dd($apt->address);
+        return view('searchApartments.show', compact('apt'));
     }
 
     /**

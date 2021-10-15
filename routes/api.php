@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('apartments', Api\ApartmentsFilterController::class);
-
-Route::resource('services', Api\ServicesFilterController::class);
+Route::namespace('Api')->group(function(){
+    Route::resource('apartments', ApartmentsFilterController::class);
+    Route::resource('services', ServicesFilterController::class);
+});

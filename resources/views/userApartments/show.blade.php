@@ -15,7 +15,7 @@
             <button type="submit" class="btn btn-outline-danger">Elimina appartamento</button>
         </form>
     
-        <h2>Titolo: {{ $apt->title }}</h2>
+        <h1>Titolo: {{ $apt->title }}</h1>
         <div>Descrizione: {{ $apt->summary }}</div>
         <div>Il numero di visitatori è: {{ $visitorsNumber }}</div>
 
@@ -23,17 +23,44 @@
         @foreach ($apt->service as $service)
             <li>{{ $service->service_name }}</li>
         @endforeach 
-    
-        @foreach ($apt->sponsorship as $sponsorship)
-            {{-- @dd($apt->sponsorship) --}}
-            <h4>Questo appartamento ha la sponsorizzazione: {{ strtoupper($sponsorship->type) }} - {{ $sponsorship->duration }}h</h4>
-            {{ $apt->created_at }}
-        @endforeach     
-    
-        {{-- <!--
-            to get image you need to do 
-             <img src"{{asset('storage/') . other code  }} -->  --}} 
+        
+        {{-- SPONSORSHIPS --}}
+            
+        {{-- @dd($sponsored); --}}
+        @if ($sponsored == null)
+            <h2>Non hai nessuna sponsorizzazione su questo appartamento! Sponsorizzalo ora per metterlo in evidenza!</h2>
+        @else
+            <div>
+            {{-- Metter appartamento sponsorizzato fino al... --}}
+                @foreach ($apt->sponsorship as $thisAptSponsorship)
+                {{-- @dd($thisAptSponsorship) --}}
+                    <h2>L'appartamento ha la sponsorizzazione {{ $thisAptSponsorship->type }}</h2>
+                @endforeach
+            </div>
+        @endif
 
+        <div>
+            @foreach ($sponsorships as $sponsorship)
+                <form action="{{route('sponsorship')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <h3>{{$sponsorship->type}}</h3>
+                    <h3>€ {{$sponsorship->cost_sponsorship}}</h3>
+                    <h5>Sponsorizza il tuo appartamento per {{$sponsorship->duration}} ore</h5>
+                    <input type="hidden" name="apartment_id" value="{{$apt->id}}">
+                    <input type="hidden" name="cost_sponsorship" value="{{$sponsorship->cost_sponsorship}}">
+                    <input type="hidden" name="sponsorship_id" value="{{$sponsorship->id}}">
+                    @csrf
+                    @method('GET')
+                    <input type="submit" class="btn btn-primary" value="Acquista">
+                </form>
+            @endforeach
+        </div>
+                    
+        {{-- END SPONSORSHIPS --}}
+    
+        @foreach ($images as $image)
+            <img src="{{ asset('storage/'. $image->url) }}" alt="Immagine di {{ $apt->title }}"> 
+        @endforeach
     </div>
 
 

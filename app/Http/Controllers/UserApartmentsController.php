@@ -64,7 +64,7 @@ class UserApartmentsController extends Controller
             'longitude' => 'required',
             'visible' => 'required',
             'price' => 'required',
-            'images'=>['required'],
+            // 'images'=>['required'],
         ]);
 
         $this->createAndSave($apt, $request);
@@ -83,16 +83,21 @@ class UserApartmentsController extends Controller
         $apt = Apartment::find($id);
         
         // getting visitor's number
-
         $arrayViews = DB::table('apartment_visitor')->where('apartment_id', '=', $apt->id)->get();
         $visitorsNumber = count($arrayViews);
 
         // get IP Address on click
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-
         $this->addVisitors($hostname, $apt);
 
-        return view('userApartments.show', compact('apt', 'visitorsNumber'));
+        $images = DB::table('images')->where('apartment_id', '=', $apt->id)->get();
+
+        $sponsorships = Sponsorship::all();
+        // dd($sponsorships);
+        $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->first();
+        // dd($sponsored);
+        
+        return view('userApartments.show', compact('apt', 'visitorsNumber', 'images', 'sponsorships', 'sponsored'));
     }
 
     /**
@@ -181,13 +186,13 @@ class UserApartmentsController extends Controller
             $apt->service()->attach($serviceId);
         }
 
-        // foreach($data['sponsorshipsList'] as $sponsorshipId) {
-        //     $apt->sponsorship()->attach($sponsorshipId);
+        // foreach($data['servicesList'] as $serviceId) {
+        //     $apt->service()->attach($serviceId);
         // }
-        
+
         foreach($data['images'] as $image){
             $newImg= new Image();
-            $img = Storage::put('images',$image);
+            $img = Storage::put('images', $image);
             $newImg->url = $img;
             $newImg->apartment_id = $apt->id;
             $newImg->save();

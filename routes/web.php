@@ -24,4 +24,8 @@ Route::resource('userApartments', 'UserApartmentsController');
 
 Route::resource('searchApartments', 'SearchApartmentsController');
 
+// BRAINTREE ROUTES
+Route::get('/sponsorship', 'BraintreeController@index')->name('sponsorship'); // get the request
+Route::post('/sponsorship/payment', 'BraintreeController@payment')->name('payment'); // post the 'answer'
+
 

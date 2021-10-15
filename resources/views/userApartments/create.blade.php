@@ -18,7 +18,7 @@
     </div>
     @endif
 
-    <form   class="form-horizontal" action="{{ route('userApartments.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{{ route('userApartments.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label class="mt-2" for="title">Titolo</label>
@@ -48,10 +48,6 @@
         <!-- img -->
         <label class="mt-2" for="image">inserisci  un'immagine</label>
         <input required type="file" class="form-control" name="images[]" id="image" multiple>
-<<<<<<< HEAD
-=======
-
->>>>>>> 34f137411ac0b56686b8e5d6f5e12b1184d0d0df
         <!-- img end -->
 
         <label class="mt-2" for="latitude">Latitudine</label>
@@ -78,22 +74,6 @@
         <br>
         <label class="mt-2" for="price">Prezzo a notte</label>
         <input type="text" class="form-control" name="price" id="price">
-
-        {{-- SPONSORSHIPS --}}
-
-        {{-- TODO: Decide where to insert the sponsorships --}}
-
-        {{-- <div class="form-check">
-            @foreach ($sponsorships as $sponsorship)
-                <input class="form-check-input" type="radio" name="sponsorshipsList[]" value="{{ $sponsorship->id }}">
-                <label class="form-check-label d-flex" for="">
-                    {{ $sponsorship->type }}
-                    {{ $sponsorship->duration }}h - 
-                    {{ $sponsorship->cost_sponsorship }}€
-                </label>  
-            @endforeach
-        </div> --}}
-        {{-- END SPONSORSHIPS --}}
 
         <div class="text-right">
             <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Aggiungi appartamento</button>             
