@@ -18,8 +18,7 @@
 
     <form class="form-horizontal" action="{{ route('userApartments.update', $apt->id) }}" method="POST">
 
-    
-    <h2 class="mt-4 mb-4">Modifica {{ $apt->title }}</h2>
+        <h2 class="mt-4 mb-4">Modifica {{ $apt->title }}</h2>
 
 
         @csrf
@@ -49,14 +48,22 @@
         <label class="mt-2" for="address">Indirizzo appartamento</label>
         <textarea type="text" class="form-control"name="address" id="address" rows="2">{{ $apt->address }}</textarea>
 
-        <!-- img -->
+        <!-- IMAGES -->
         
+        <h4>Le immagini del tuo appartamento</h4>
+        <div class="row">
+            @foreach ($images as $image)
+                <div class="col-2">
+                    <img src="{{ asset('storage/'.$image->url) }}" alt="{{ $apt->title }}">
+                    {{-- TODO: A form post method delete button on each image to a route so the owner can also decide to delete the image he wants --}}
+                </div>
+            @endforeach
+        </div>
 
-            <label class="mt-2" for="image">inserisci un'immagine</label>
-            <input required type="file" class="form-control" name="images[]" id="image"  value="" multiple> 
+        <label for="imgFiles">Inserisci nuove immagini del tuo appartamento</label><br>
+        <input type="file" name="imgFiles" multiple><br>
 
-
-        <!-- img end -->
+        <!-- IMAGES END -->
 
         <label class="mt-2" for="latitude">Latitudine</label>
         <input type="text" class="form-control" name="latitude" id="latitude" value="{{ $apt->latitude }}">
@@ -74,7 +81,6 @@
         <h4>Modifica i servizi extra del tuo appartamento</h4>
 
         <div class="form-check">
-
             {{--TODO: checked input when the apartment get those services  --}}
             <div class="form-group">
                 @foreach($services as $service)
@@ -84,8 +90,6 @@
                     </div>
                 @endforeach
             </div>
-
-
         </div>
         {{-- END SERVICES --}}
         

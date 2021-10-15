@@ -43,11 +43,11 @@
         <input type="text" class="form-control" name="square_meters" id="square_meters">
 
         <label class="mt-2" for="address">Indirizzo appartamento</label>
-        <textarea type="text" class="form-control"name="address" id="address" rows="2"></textarea>
+        <textarea type="text" class="form-control" name="address" id="address" rows="2"></textarea>
 
         <!-- img -->
-        <label class="mt-2" for="image">inserisci  un'immagine</label>
-        <input required type="file" class="form-control" name="images[]" id="image" multiple>
+        <label class="mt-2" for="imgFiles[]">Inserisci le immagini del tuo appartamento</label>
+        <input type="file" class="form-control" name="imgFiles[]" id="imgFiles[]" multiple>
         <!-- img end -->
 
         <label class="mt-2" for="latitude">Latitudine</label>

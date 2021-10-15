@@ -52,23 +52,22 @@ class UserApartmentsController extends Controller
     {
 
         $request->validate([
-            'title' => 'required',
-            'summary' => 'required',
-            'rooms_n' => 'required',
-            'beds_n' => 'required',
-            'bathrooms_n' => 'required',
-            'guests_n' => 'required',
-            'square_meters' => 'required',
-            'address' => 'required',
+            'title' => 'required|min:5|max:100',
+            'summary' => 'required|min:10|max:500',
+            'rooms_n' => 'required|integer|min:1|max:25',
+            'beds_n' => 'required|integer|min:1|max:50',
+            'bathrooms_n' => 'required|integer|min:1|max:15',
+            'guests_n' => 'required|integer|min:1|max:50',
+            'square_meters' => 'nullable|integer|min:15|max:1000',
+            'address' => 'required|min:5|max:255',
             'latitude' => 'required',
             'longitude' => 'required',
             'visible' => 'required',
             'price' => 'required',
-            // 'images'=>['required'],
         ]);
 
         $this->createAndSave($apt, $request);
-        return redirect()->route('userApartments.show', $apt);
+        return redirect()->route('userApartments.show', $apt->id);
       
     }
 
@@ -80,20 +79,17 @@ class UserApartmentsController extends Controller
      */
     public function show($id)
     {
-        $apt = Apartment::find($id);
+        $apt = Apartment::findOrFail($id);
         
         // getting visitor's number
-        $arrayViews = DB::table('apartment_visitor')->where('apartment_id', '=', $apt->id)->get();
+        $arrayViews = DB::table('apartment_visitor')->where('apartment_id', $apt->id)->get();
         $visitorsNumber = count($arrayViews);
-
         // get IP Address on click
         $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
         $this->addVisitors($hostname, $apt);
 
-        $images = DB::table('images')->where('apartment_id', '=', $apt->id)->get();
-
+        $images= Image::where('apartment_id', $apt->id)->get();
         $sponsorships = Sponsorship::all();
-        // dd($sponsorships);
         $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->first();
         // dd($sponsored);
         
@@ -109,10 +105,10 @@ class UserApartmentsController extends Controller
     public function edit($id)
     {
         $apt = Apartment::find($id);
-        $aptImage = DB::table('images')->where('apartment_id', '=', $apt->id)->get();
+        $images= Image::where('apartment_id', $apt->id)->get();
         $services = Service::all();
 
-        return view('userApartments.edit', compact('services', 'apt', 'aptImage'));
+        return view('userApartments.edit', compact('apt', 'images', 'services'));
     }
 
     /**
@@ -182,20 +178,17 @@ class UserApartmentsController extends Controller
         $apt->user_id = $user->id;
         $apt->save();
 
+        // dd($data['servicesList']);
         foreach($data['servicesList'] as $serviceId) {
             $apt->service()->attach($serviceId);
         }
 
-        // foreach($data['servicesList'] as $serviceId) {
-        //     $apt->service()->attach($serviceId);
-        // }
-
-        foreach($data['images'] as $image){
-            $newImg= new Image();
-            $img = Storage::put('images', $image);
-            $newImg->url = $img;
-            $newImg->apartment_id = $apt->id;
-            $newImg->save();
-        }  
+        $newImg= new Image();
+        $imgFile = Storage::disk('public')->get('images', $data['imgFiles']);
+        // dd($data['imgFiles']);
+        $newImg->url = $imgFile;
+        $newImg->apartment_id = $apt->id;
+        // dd($newImg);
+        $newImg->save();
     }
 }
