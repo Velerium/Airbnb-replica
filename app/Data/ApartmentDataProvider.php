@@ -58,7 +58,7 @@ class ApartmentDataProvider
 
         'description' => [
             // Bond
-            'Chalet in the green heart of Tuscany, UNIQUE because of its location, surrounded by a dense forest and a creek.',
+            'You, wild nature, total silence, 400ft above sea level, stunning private views, beautiful surroundings, absolute privacy in your own paradise... If you love nature, adventure and want to live a real wild experience in our hand built stone hut then look no further. For a once in a lifetime experience you will have your own private land. Eat gourmet organic food under the stars at candlelight and wake with the stunning sunrise here in our beautiful paradise. What are you waiting for...',
             'Chalet del Frassino is a typical mountain dwelling, the ground floor is made of masonry and stone while the two upper floors are entirely made of wood. Its location affords an unobstructed view of the Monte Rosa massif and enchanting views of the valley. Surrounded by a large fenced garden, it offers the opportunity to stay outdoors on pleasant sunny days.',
             'Historical manor house "Villa Sarezzano", built in 1930. 400 m from the centre of Sarezzano, 8 km from the centre of Tortona, 21 km from the centre of Alessandria, 75 km from the sea.',
             'Surrounded by greenery, in a small agricultural setting you can enjoy privacy and relaxation.',
@@ -107,12 +107,12 @@ class ApartmentDataProvider
         ],
 
         'rooms_n' => [
-            4, 11, 7, 5, 3, 1, 3, 3, 5, 3, 4, 5, 7, 4, 10, 5, 9, 4, 2, 1, 3, 2, 3, 4, 
+            3, 11, 7, 5, 3, 1, 3, 3, 5, 3, 4, 5, 7, 4, 10, 5, 9, 4, 2, 1, 3, 2, 3, 4, 
             2, 2, 6, 6, 3, 3, 2, 2, 4, 4, 8, 4, 3, 4, 5, 7, 6,
         ],
 
         'beds_n' => [
-            3, 9, 6, 4, 1, 2, 2, 3, 3, 2, 2, 2, 6, 2, 8, 3, 4, 4, 1, 1, 4, 2, 6, 2,
+            0, 9, 6, 4, 1, 2, 2, 3, 3, 2, 2, 2, 6, 2, 8, 3, 4, 4, 1, 1, 4, 2, 6, 2,
             2, 3, 4, 4, 2, 1, 1, 1, 2, 2, 4 ,1 ,1, 2, 3, 3, 3,
         ],
 
@@ -122,22 +122,22 @@ class ApartmentDataProvider
         ],
 
         'guests_n' =>[
-            2, 9, 10, 4, 4, 2, 2, 3, 5, 2, 3, 6, 8, 3, 8, 6, 8, 6, 2, 2, 6, 4, 6, 2, 
+            4, 9, 10, 4, 4, 2, 2, 3, 5, 2, 3, 6, 8, 3, 8, 6, 8, 6, 2, 2, 6, 4, 6, 2, 
             2, 3, 4, 3, 2, 1, 1, 1, 2, 2, 4, 1, 1, 2, 3, 3, 3, 
         ],
 
         'square_meters' => [
-            50, 410, 290, 32, 70, 50, 120, 100, 80, 230, 110, 50, 175, 125, 250, 96, 
+            60, 410, 290, 32, 70, 50, 120, 100, 80, 230, 110, 50, 175, 125, 250, 96, 
             196, 75, 55, 35, 95, 60, 75, 60, 50, 60, 320, 120, 60, 80, 55, 50, 160, 110, 248, 165, 109 ,  160, 135 , 300, 190,
         ],
 
         'address' => [
             // Bond
-            'Florence, Tuscany, Italy',
-            'Staffa, Piemonte, Italy',
-            'Sarezzano, Italy',
-            'Lazise, Veneto, Italy',
-            'Finale Ligure, Liguria, Italy',
+            'Via Orsi 12, Vallemaio (FR)',
+            'Borgo Pecetto 133, Macugnaga (VB)',
+            'Via Rocca Grue 8, Sarezzano (AL)',
+            'Via Paolonga, Lazise (VR)',
+            'Via Torino 137, Finale Ligure (SV)',
             // Michele
             'Via Volterrana 89, Firenze (FI)',
             'Corso Europa 18, Milano (MI)',
@@ -182,14 +182,14 @@ class ApartmentDataProvider
         ],
 
         'latitude' => [
-            43.7318, 45.9719, 44.8652, 45.4704, 44.1707, 43.7323, 45.4698, 41.9089, 41.1255, 45.0663, 43.7774, 46.6513,
+            41.3828, 45.9719, 44.8652, 45.4704, 44.1707, 43.7323, 45.4698, 41.9089, 41.1255, 45.0663, 43.7774, 46.6513,
             46.7377, 46.5206, 45.1721, 46.8759, 39.1964, 41.8971, 45.4538, 45.4983, 46.8130, 40.6363,  45.5263, 
             43.8788, 43.8853, 43.6692, 43.6395, 44.0761, 44.6420, 41.9100, 41.9048, 41.9041, 40.8822, 40.8909, 40.8630, 
             45.4704, 45.4672, 45.4687, 41.1102, 41.1153, 41.1034,
         ],
 
         'longitude' => [
-            11.2104, 7.9572, 8.9189, 10.7741, 8.3505, 11.2165, 9.1968, 12.4792, 16.8706, 7.6935, 11.2447, 11.1649,
+            13.8012, 7.9572, 8.9189, 10.7741, 8.3505, 11.2165, 9.1968, 12.4792, 16.8706, 7.6935, 11.2447, 11.1649,
             10.8485, 11.3553, 7.9060, 11.4858, 9.1521, 12.4525, 11.0021, 9.1941, 11.9332, 14.5945, 10.7417, 
             10.2384, 10.2471, 10.2770, 10.2913, 10.4797, 10.8965, 12.6484, 12.6565, 12.6611, 14.2119, 14.2173,
             14.2047, 9.1832, 9.1857, 9.1840,  16.8536, 16.8663, 16.8583,
@@ -198,11 +198,10 @@ class ApartmentDataProvider
         'visible' => true,
 
         'price' => [
-            390.00, 190.00, 199.00, 135.00, 158.00, 240.00, 350.00, 410.00, 550.00, 220.00, 210.00, 193.00,
+            30.00, 190.00, 199.00, 135.00, 158.00, 240.00, 350.00, 410.00, 550.00, 220.00, 210.00, 193.00,
             112.00, 191.00, 287.00, 140.00, 236.00, 99.00, 120.00, 60.00, 140.00, 100.00, 109.00,
             250.00, 150.00, 200.00, 490.00, 290.00, 130.00 , 69.00, 49.00, 39.00, 95.00, 49.00, 50.00,
             50.00 , 300.00, 650.00, 90.00, 50.00, 95.00,
-            
         ],
     ];
 
