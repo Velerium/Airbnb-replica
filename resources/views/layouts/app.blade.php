@@ -12,8 +12,12 @@
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    {{-- Braintree --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://js.braintreegateway.com/web/dropin/1.32.0/js/dropin.js"></script>
+    
+    {{-- TomTom --}}
     <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/maps/maps-web.min.js'></script>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
     

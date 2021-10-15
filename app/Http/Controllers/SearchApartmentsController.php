@@ -49,6 +49,7 @@ class SearchApartmentsController extends Controller
     public function show($id)
     {
         $apt = Apartment::find($id);
+        // dd($apt->address);
         return view('searchApartments.show', compact('apt'));
     }
 

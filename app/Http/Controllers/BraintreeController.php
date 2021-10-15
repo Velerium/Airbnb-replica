@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Apartment;
 use App\Sponsorship;
+use Illuminate\Support\Facades\DB;
 use Braintree\Gateway;
-use Braintree_Transaction;
 
 class BraintreeController extends Controller
 {
@@ -26,7 +27,9 @@ class BraintreeController extends Controller
         return view('userApartments/sponsorship', compact('data'), ['token' => $token]);
     }    
 
-    public function pay(Request $request) {
+    public function payment(Request $request) {
+        
+        $data = $request->all();
 
         $gateway = new Gateway([
             'environment' => env('BRAINTREE_ENV'),
@@ -34,35 +37,29 @@ class BraintreeController extends Controller
             'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
             'privateKey' => env('BRAINTREE_PRIVATE_KEY')
         ]);
+        
+        $amount = Sponsorship::where('id', $data['sponsorship_id'])->pluck('cost_sponsorship')->first();
 
-        $data = $request->all();
-
-        // $amount = Sponsorship::where('id', $data['sponsor_id'])->pluck('sponsorship_cost')->first();
-        // dd($amount);
-
-        // $payload = $request->input('payload', false);
-        // $nonce = $request->payment_method_nonce;
-        // $nonceFromTheClient = $request->payment_method_nonce;
-        // dd($nonce);
-
-        // The sale call returns a Transaction Result Object which contains the transaction and information about the request
+        /* The sale call returns a Transaction Result Object which contains 
+        the transaction and information about the request */
         $status = $gateway->transaction()->sale([
-            'amount' => '10.00',
+            'amount' => $amount,
             'paymentMethodNonce' => 'fake-valid-nonce',
             'options' => [
                 'submitForSettlement' => True
             ]
         ]);
-        // dd($status);
 
+        
         if($status->success) {
-            $transaction = $status->transaction;
-            // TODO: Return to userApartments.show with data['apartment_id] to show a success message
-            echo "Pagamento effettuato";
-        }
+            // save the data
+            $apt = Apartment::find($data['apartment_id']);
+            $apt->sponsorship()->attach($data['sponsorship_id']);
+            // $transaction = $status->transaction;
 
-        // return view('userApartments/sponsorship', compact('status'));
-
-        // return response()->json($status);
-}
+            return redirect()->route('userApartments.show', $data['apartment_id']);
+        } else {
+            print_r($status->errors);
+        }   
+    }
 }

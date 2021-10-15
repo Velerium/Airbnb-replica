@@ -26,37 +26,35 @@
         
         {{-- SPONSORSHIPS --}}
             
-        {{-- Not working arghhhh --}}
-        {{-- @if ($sponsored == null) --}}
-        
+        {{-- @dd($sponsored); --}}
+        @if ($sponsored == null)
             <h2>Non hai nessuna sponsorizzazione su questo appartamento! Sponsorizzalo ora per metterlo in evidenza!</h2>
-
-            <div>
-                @foreach ($sponsorships as $sponsorship)
-                    <form action="{{route('sponsorship')}}" method="POST" enctype="multipart/form-data">
-                        <h3>{{$sponsorship->type}}</h3>
-                        <h3>€ {{$sponsorship->cost_sponsorship}}</h3>
-                        <h5>Sponsorizza il tuo appartamento per {{$sponsorship->duration}} ore</h5>
-                        <input type="hidden" name="apartment_id" value="{{$apt->id}}">
-                        <input type="hidden" name="cost_sponsorship" value="{{$sponsorship->cost_sponsorship}}">
-                        <input type="hidden" name="sponsorship_id" value="{{$sponsorship->id}}">
-                        @csrf
-                        @method('GET')
-                        <input type="submit" class="btn btn-primary" value="Acquista">
-                    </form>
-                @endforeach
-            </div>
-
-        {{-- @else --}}
-
+        @else
             <div>
             {{-- Metter appartamento sponsorizzato fino al... --}}
                 @foreach ($apt->sponsorship as $thisAptSponsorship)
-                    <div>L'appartamento ha la sponsorizzazione {{ $thisAptSponsorship->type }}</div>
+                {{-- @dd($thisAptSponsorship) --}}
+                    <h2>L'appartamento ha la sponsorizzazione {{ $thisAptSponsorship->type }}</h2>
                 @endforeach
             </div>
+        @endif
 
-        {{-- @endif --}}
+        <div>
+            @foreach ($sponsorships as $sponsorship)
+                <form action="{{route('sponsorship')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <h3>{{$sponsorship->type}}</h3>
+                    <h3>€ {{$sponsorship->cost_sponsorship}}</h3>
+                    <h5>Sponsorizza il tuo appartamento per {{$sponsorship->duration}} ore</h5>
+                    <input type="hidden" name="apartment_id" value="{{$apt->id}}">
+                    <input type="hidden" name="cost_sponsorship" value="{{$sponsorship->cost_sponsorship}}">
+                    <input type="hidden" name="sponsorship_id" value="{{$sponsorship->id}}">
+                    @csrf
+                    @method('GET')
+                    <input type="submit" class="btn btn-primary" value="Acquista">
+                </form>
+            @endforeach
+        </div>
                     
         {{-- END SPONSORSHIPS --}}
     

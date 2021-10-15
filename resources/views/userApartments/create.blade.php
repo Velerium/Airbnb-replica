@@ -18,7 +18,7 @@
     </div>
     @endif
 
-    <form   class="form-horizontal" action="{{ route('userApartments.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{{ route('userApartments.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <label class="mt-2" for="title">Titolo</label>
