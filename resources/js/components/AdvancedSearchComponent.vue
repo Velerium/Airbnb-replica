@@ -84,15 +84,23 @@
                             <div class="minorFilters">
                                 <div class="minorLeft">
                                     <div class="beds">
-                                        <h5>Beds:</h5>
+                                        <h5>Letti:</h5>
                                         <div class="bedButtons">
                                             <button v-on:click="bedDecrease"><span>-</span></button>
                                             <span>{{ this.bedsNumber }}</span>
                                             <button v-on:click="bedIncrease"><span>+</span></button>
                                         </div>
                                     </div>
-                                    <div></div>
-                                    <div></div>
+                                    <div class="rooms">
+                                        <h5>Camere:</h5>
+                                        <div class="roomButtons">
+                                            <button v-on:click="roomDecrease"><span>-</span></button>
+                                            <span>{{ this.roomsNumber }}</span>
+                                            <button v-on:click="roomIncrease"><span>+</span></button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                    </div>
                                 </div>
                                 <div class="minorRight"></div>
                             </div>
@@ -163,13 +171,14 @@ export default {
             value: [50, 1000],
             priceMin: 50,
             priceMax: 1000,
+            roomsNumber: 0,
         }
     },
 
     methods: {
 
         getApartments() {
-            axios.get(`/api/apartments/?guests=${this.guestNumber}&priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}`).then((response) => {
+            axios.get(`/api/apartments/?guests=${this.guestNumber}&priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}&rooms=${this.roomsNumber}`).then((response) => {
                 this.apartments = response.data;
             });
         },
@@ -223,9 +232,21 @@ export default {
             this.getApartments();
         },
 
+        roomIncrease() {
+            this.roomsNumber++;
+            this.getApartments();
+        },
+
+        roomDecrease() {
+            if (this.roomsNumber === 0) {
+                return;
+            }
+            this.roomsNumber--;
+            this.getApartments();
+        },
+
         guestsReset() {
             this.guestNumber = 0;
-
             this.getApartments();
         },
 
@@ -233,6 +254,7 @@ export default {
             Vue.set(this.value, 0, 50);
             Vue.set(this.value, 1, 1000);
             this.bedsNumber = 0;
+            this.roomsNumber = 0;
 
             this.getApartments();
         }
@@ -328,7 +350,7 @@ margin: 0 80px;
                             display: flex;
                             flex-direction: column;
 
-                            .beds {
+                            .beds, .rooms {
                                 display: flex;
                                 flex-direction: column;
                                 align-items: center;
@@ -337,7 +359,7 @@ margin: 0 80px;
                                     margin-bottom: 15px;
                                 }
 
-                                .bedButtons {
+                                .bedButtons, .roomButtons {
                                     display: flex;
                                     align-items: center;
                                 }

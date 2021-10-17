@@ -4322,6 +4322,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4347,14 +4355,15 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       bedsNumber: 0,
       value: [50, 1000],
       priceMin: 50,
-      priceMax: 1000
+      priceMax: 1000,
+      roomsNumber: 0
     };
   },
   methods: {
     getApartments: function getApartments() {
       var _this = this;
 
-      axios.get("/api/apartments/?guests=".concat(this.guestNumber, "&priceMin=").concat(this.value[0], "&priceMax=").concat(this.value[1], "&beds=").concat(this.bedsNumber)).then(function (response) {
+      axios.get("/api/apartments/?guests=".concat(this.guestNumber, "&priceMin=").concat(this.value[0], "&priceMax=").concat(this.value[1], "&beds=").concat(this.bedsNumber, "&rooms=").concat(this.roomsNumber)).then(function (response) {
         _this.apartments = response.data;
       });
     },
@@ -4407,6 +4416,18 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       this.bedsNumber--;
       this.getApartments();
     },
+    roomIncrease: function roomIncrease() {
+      this.roomsNumber++;
+      this.getApartments();
+    },
+    roomDecrease: function roomDecrease() {
+      if (this.roomsNumber === 0) {
+        return;
+      }
+
+      this.roomsNumber--;
+      this.getApartments();
+    },
     guestsReset: function guestsReset() {
       this.guestNumber = 0;
       this.getApartments();
@@ -4415,6 +4436,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(this.value, 0, 50);
       vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(this.value, 1, 1000);
       this.bedsNumber = 0;
+      this.roomsNumber = 0;
       this.getApartments();
     }
   }
@@ -8921,7 +8943,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".indexContainer[data-v-6c4d5998] {\n  margin: 0 80px;\n}\n#indexNav[data-v-6c4d5998] {\n  height: 110px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 30px;\n}\n#indexNav ul[data-v-6c4d5998] {\n  list-style-type: none;\n  display: flex;\n  margin-bottom: 0;\n  padding-left: 0;\n}\n#indexNav ul li[data-v-6c4d5998] {\n  margin-right: 25px;\n}\n#indexNav .filters[data-v-6c4d5998] {\n  display: flex;\n  position: relative;\n}\n#indexNav .filters .time[data-v-6c4d5998], #indexNav .filters .guests[data-v-6c4d5998], #indexNav .filters .other[data-v-6c4d5998] {\n  padding: 10px 15px;\n  margin-left: 10px;\n  border: 1px solid #ccc;\n  border-radius: 30px;\n  cursor: pointer;\n}\n#indexNav .filters .modal.show[data-v-6c4d5998] {\n  inset: 0px !important;\n}\n#indexNav .filters .modal.show .modal-dialog[data-v-6c4d5998] {\n  position: absolute;\n  padding: 5px;\n  width: 45vw;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-header[data-v-6c4d5998] {\n  position: relative;\n  justify-content: center;\n  border-bottom: none;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-header .close[data-v-6c4d5998] {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .guestsFilter[data-v-6c4d5998] {\n  margin-top: 20px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .priceFilter[data-v-6c4d5998] {\n  width: 80%;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters[data-v-6c4d5998] {\n  display: flex;\n  width: 100%;\n  margin-top: 30px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters > div[data-v-6c4d5998] {\n  width: 50%;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds h5[data-v-6c4d5998] {\n  margin-bottom: 15px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds .bedButtons[data-v-6c4d5998] {\n  display: flex;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body button[data-v-6c4d5998] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 0 15px;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  font-size: 20px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body > h5[data-v-6c4d5998] {\n  margin-bottom: 50px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-footer[data-v-6c4d5998] {\n  display: flex;\n  justify-content: space-between;\n}\n#indexNav .filters .modal.show .modal-dialog.duration[data-v-6c4d5998] {\n  top: 120px;\n  right: 300px;\n}\n#indexNav .filters .modal.show .modal-dialog.guest[data-v-6c4d5998] {\n  top: 120px;\n  right: 200px;\n}\n#indexNav .filters .modal.show .modal-dialog.filter.dark[data-v-6c4d5998] {\n  position: static;\n  width: 50%;\n  max-width: unset;\n}\n#indexContent[data-v-6c4d5998] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.pagination[data-v-6c4d5998] {\n  justify-content: center;\n}\n.modal-backdrop[data-v-6c4d5998] {\n  background-color: #fff !important;\n}\n.modal-backdrop.show[data-v-6c4d5998] {\n  opacity: 0 !important;\n}", ""]);
+exports.push([module.i, ".indexContainer[data-v-6c4d5998] {\n  margin: 0 80px;\n}\n#indexNav[data-v-6c4d5998] {\n  height: 110px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 30px;\n}\n#indexNav ul[data-v-6c4d5998] {\n  list-style-type: none;\n  display: flex;\n  margin-bottom: 0;\n  padding-left: 0;\n}\n#indexNav ul li[data-v-6c4d5998] {\n  margin-right: 25px;\n}\n#indexNav .filters[data-v-6c4d5998] {\n  display: flex;\n  position: relative;\n}\n#indexNav .filters .time[data-v-6c4d5998], #indexNav .filters .guests[data-v-6c4d5998], #indexNav .filters .other[data-v-6c4d5998] {\n  padding: 10px 15px;\n  margin-left: 10px;\n  border: 1px solid #ccc;\n  border-radius: 30px;\n  cursor: pointer;\n}\n#indexNav .filters .modal.show[data-v-6c4d5998] {\n  inset: 0px !important;\n}\n#indexNav .filters .modal.show .modal-dialog[data-v-6c4d5998] {\n  position: absolute;\n  padding: 5px;\n  width: 45vw;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-header[data-v-6c4d5998] {\n  position: relative;\n  justify-content: center;\n  border-bottom: none;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-header .close[data-v-6c4d5998] {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .guestsFilter[data-v-6c4d5998] {\n  margin-top: 20px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .priceFilter[data-v-6c4d5998] {\n  width: 80%;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters[data-v-6c4d5998] {\n  display: flex;\n  width: 100%;\n  margin-top: 30px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters > div[data-v-6c4d5998] {\n  width: 50%;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds h5[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms h5[data-v-6c4d5998] {\n  margin-bottom: 15px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds .bedButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds .roomButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms .bedButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms .roomButtons[data-v-6c4d5998] {\n  display: flex;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body button[data-v-6c4d5998] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 0 15px;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  font-size: 20px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body > h5[data-v-6c4d5998] {\n  margin-bottom: 50px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-footer[data-v-6c4d5998] {\n  display: flex;\n  justify-content: space-between;\n}\n#indexNav .filters .modal.show .modal-dialog.duration[data-v-6c4d5998] {\n  top: 120px;\n  right: 300px;\n}\n#indexNav .filters .modal.show .modal-dialog.guest[data-v-6c4d5998] {\n  top: 120px;\n  right: 200px;\n}\n#indexNav .filters .modal.show .modal-dialog.filter.dark[data-v-6c4d5998] {\n  position: static;\n  width: 50%;\n  max-width: unset;\n}\n#indexContent[data-v-6c4d5998] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.pagination[data-v-6c4d5998] {\n  justify-content: center;\n}\n.modal-backdrop[data-v-6c4d5998] {\n  background-color: #fff !important;\n}\n.modal-backdrop.show[data-v-6c4d5998] {\n  opacity: 0 !important;\n}", ""]);
 
 // exports
 
@@ -41035,7 +41057,7 @@ var render = function() {
                     _c("div", { staticClass: "minorFilters" }, [
                       _c("div", { staticClass: "minorLeft" }, [
                         _c("div", { staticClass: "beds" }, [
-                          _c("h5", [_vm._v("Beds:")]),
+                          _c("h5", [_vm._v("Letti:")]),
                           _vm._v(" "),
                           _c("div", { staticClass: "bedButtons" }, [
                             _c("button", { on: { click: _vm.bedDecrease } }, [
@@ -41050,7 +41072,21 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div"),
+                        _c("div", { staticClass: "rooms" }, [
+                          _c("h5", [_vm._v("Camere:")]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "roomButtons" }, [
+                            _c("button", { on: { click: _vm.roomDecrease } }, [
+                              _c("span", [_vm._v("-")])
+                            ]),
+                            _vm._v(" "),
+                            _c("span", [_vm._v(_vm._s(this.roomsNumber))]),
+                            _vm._v(" "),
+                            _c("button", { on: { click: _vm.roomIncrease } }, [
+                              _c("span", [_vm._v("+")])
+                            ])
+                          ])
+                        ]),
                         _vm._v(" "),
                         _c("div")
                       ]),

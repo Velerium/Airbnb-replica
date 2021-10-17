@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
+use App\Service;
 use Illuminate\Http\Request;
 
 class SearchApartmentsController extends Controller
@@ -14,9 +15,9 @@ class SearchApartmentsController extends Controller
      */
     public function index()
     {
-        // $apartments = Apartment::all();
-        // $services = Service::all();
-        return view('app/advancedSearch');
+        $apartments = Apartment::with('service')->get();
+        $services = Service::all();
+        return view('app/advancedSearch', compact('apartments', 'services'));
     }
 
     /**

@@ -17,25 +17,27 @@ class ApartmentsFilterController extends Controller
     public function index()
     {   
         
-        $apartments = Apartment::all();
-        // $prova = Apartment::with(['service'])->get();
+        $apartments = Apartment::with('service')->get();
+        // dd($apartments);
 
         try {
             $guestsNumber = $_GET['guests'];
         } catch (Exception $guestsNumber) {
             $guestsNumber = 0;
         }
-
+        
         $priceMin = $_GET['priceMin'];
         $priceMax = $_GET['priceMax'];
         $bedNumber = $_GET['beds'];
+        $roomsNumber = $_GET['rooms'];
 
         $filtered = $apartments->where('guests_n', '>=', $guestsNumber);
         $filtered1 = $filtered->where('price', '>=', $priceMin);
         $filtered2 = $filtered1->where('price', '<=', $priceMax);
         $filtered3 = $filtered2->where('beds_n', '>=', $bedNumber);
+        $filtered4 = $filtered3->where('rooms_n', '>=', $roomsNumber);
 
-        return response()->json($filtered3);
+        return response()->json($filtered4);
     }
 
     /**
