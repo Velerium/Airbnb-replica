@@ -15641,6 +15641,133 @@ a.text-dark:focus {
   font-weight: bold;
 }
 
+nav {
+  background-color: white;
+  padding: 12px 24px;
+}
+
+nav .navbar-collapse {
+  justify-content: space-between;
+}
+
+nav .navbar-collapse .img-container {
+  width: 170px;
+  padding-right: 6px;
+  padding-top: 6px;
+}
+
+nav .navbar-collapse .img-container img {
+  width: 100%;
+}
+
+nav .navbar-collapse .nav-item {
+  color: black;
+  font-size: 18px;
+  padding: 0 6px;
+}
+
+.video-host-container {
+  padding-left: 0;
+}
+
+.video-host-container .row {
+  margin: 0;
+}
+
+.video-host-container .row video {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.video-host-container .row .host-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+}
+
+.video-host-container .row .host-box h1 {
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 72px;
+  font-size: 50px;
+  color: #ff385c;
+}
+
+.video-host-container .row .host-box div {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.video-host-container .row .host-box :last-child {
+  color: #ff385c;
+}
+
+.create-container {
+  background-color: black;
+  color: #ff385c;
+  padding-bottom: 60px;
+}
+
+.create-container input,
+.create-container textarea {
+  background-color: blanchedalmond;
+}
+
+.create-container .create-content {
+  padding-top: 60px;
+}
+
+.create-container .create-content .form-horizontal .label-text {
+  font-size: 30px;
+}
+
+.create-container .create-content .form-horizontal .input-text {
+  margin-bottom: 60px;
+  border-radius: 40px;
+}
+
+.create-container .create-content .form-horizontal .nrs-inp-lab {
+  margin-bottom: 36px;
+}
+
+.create-container .create-content .form-horizontal .nrs-inp-lab label {
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 24px;
+}
+
+.create-container .create-content .form-horizontal .nrs-inp-lab input {
+  border-radius: 40px;
+  margin-bottom: 24px;
+}
+
+.create-container .create-content .form-horizontal h4 {
+  font-size: 30px;
+}
+
+.create-container .create-content .form-horizontal .services-row {
+  margin-bottom: 60px;
+}
+
+.create-container .create-content .form-horizontal .services-row .services-label {
+  font-size: 16px;
+}
+
+.create-container .create-content .form-horizontal .button-box {
+  text-align: right;
+}
+
+.create-container .create-content .form-horizontal .button-box button {
+  border: none;
+  background-color: #ff385c;
+  border-radius: 100px;
+  padding: 6px 24px;
+  font-size: 30px;
+}
+
 footer {
   background: #F0F0F0;
 }
@@ -15705,31 +15832,6 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   width: 18px;
   height: 18px;
   background: #000;
-}
-
-nav {
-  background-color: white;
-  padding: 12px 24px;
-}
-
-nav .navbar-collapse {
-  justify-content: space-between;
-}
-
-nav .navbar-collapse .img-container {
-  width: 170px;
-  padding-right: 6px;
-  padding-top: 6px;
-}
-
-nav .navbar-collapse .img-container img {
-  width: 100%;
-}
-
-nav .navbar-collapse .nav-item {
-  color: black;
-  font-size: 18px;
-  padding: 0 6px;
 }
 
 a {
