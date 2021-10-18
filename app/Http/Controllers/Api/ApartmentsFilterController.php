@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Apartment;
+use App\Service;
 use Exception;
 
 class ApartmentsFilterController extends Controller
@@ -18,7 +19,6 @@ class ApartmentsFilterController extends Controller
     {   
         
         $apartments = Apartment::with('service')->get();
-        // dd($apartments);
 
         try {
             $guestsNumber = $_GET['guests'];
@@ -28,13 +28,27 @@ class ApartmentsFilterController extends Controller
         
         $priceMin = $_GET['priceMin'];
         $priceMax = $_GET['priceMax'];
-        $bedNumber = $_GET['beds'];
+        $bedsNumber = $_GET['beds'];
         $roomsNumber = $_GET['rooms'];
+        $serviceID = $_GET['service'];
 
-        $filtered = $apartments->where('guests_n', '>=', $guestsNumber);
+        $filteredServices = [];
+        $filteredServices[] = $serviceID;
+
+        $servicedApt = collect(new Apartment);
+        
+        foreach ($apartments as $apartment) {
+            foreach ($apartment->service as $service) {
+                if(in_array($service->id, $filteredServices)) {
+                    $servicedApt[] = $apartment;
+                };
+            };
+        }
+
+        $filtered = $servicedApt->where('guests_n', '>=', $guestsNumber);
         $filtered1 = $filtered->where('price', '>=', $priceMin);
         $filtered2 = $filtered1->where('price', '<=', $priceMax);
-        $filtered3 = $filtered2->where('beds_n', '>=', $bedNumber);
+        $filtered3 = $filtered2->where('beds_n', '>=', $bedsNumber);
         $filtered4 = $filtered3->where('rooms_n', '>=', $roomsNumber);
 
         return response()->json($filtered4);

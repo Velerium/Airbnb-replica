@@ -74,13 +74,14 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h5>Price range</h5>
+                            <h5>Prezzo per notte</h5>
                             <div class="priceFilter">
                                 <Slider v-model="value" v-on:change="getApartments"
                                     :min="this.priceMin"
                                     :max="this.priceMax"
                                     />
                             </div>
+
                             <div class="minorFilters">
                                 <div class="minorLeft">
                                     <div class="beds">
@@ -102,8 +103,16 @@
                                     <div>
                                     </div>
                                 </div>
-                                <div class="minorRight"></div>
+                                <!-- <div class="minorRight"></div>  Fill with something maybe? -->
                             </div>
+
+                            <div class="servicesFilter">
+                                <div v-for="service in services" :key="service.id"  :id="service.id" :name="service.service_name">
+                                    <input v-on:change="addParameter(this.queryURL, 'service', service.id, false)" type="checkbox">
+                                    <label :for="service.service_name">{{service.service_name}}</label>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" v-on:click="filterReset">Reset</button>
@@ -163,22 +172,24 @@ export default {
         return {
             apartments: [],
             services: [],
+            filterService: [],
+            queryURL: '/api/apartments/?priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}&rooms=${this.roomsNumber}&service=1',
             currentPage: 1,
             totalPage: 0,
             guestNumber: 0,
             guestWord: 'Ospiti',
             bedsNumber: 0,
+            roomsNumber: 0,
             value: [50, 1000],
             priceMin: 50,
             priceMax: 1000,
-            roomsNumber: 0,
         }
     },
 
     methods: {
 
         getApartments() {
-            axios.get(`/api/apartments/?guests=${this.guestNumber}&priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}&rooms=${this.roomsNumber}`).then((response) => {
+            axios.get(this.queryURL).then((response) => {
                 this.apartments = response.data;
             });
         },
@@ -245,6 +256,16 @@ export default {
             this.getApartments();
         },
 
+        serviceChange(id) {
+            console.log(id);
+            if (this.filterService.includes(id)) {
+                var value = this.filterService.indexOf(id);
+                this.filterService.splice(value, 1);
+            } else {
+                this.filterService.push(id);
+            }
+        },
+
         guestsReset() {
             this.guestNumber = 0;
             this.getApartments();
@@ -257,7 +278,50 @@ export default {
             this.roomsNumber = 0;
 
             this.getApartments();
-        }
+        },
+
+        addParameter(url, parameterName, parameterValue, atStart/*Add param before others*/){
+            replaceDuplicates = true;
+            if(url.indexOf('#') > 0){
+                var cl = url.indexOf('#');
+                urlhash = url.substring(url.indexOf('#'),url.length);
+            } else {
+                urlhash = '';
+                cl = url.length;
+            }
+            sourceUrl = url.substring(0,cl);
+
+            var urlParts = sourceUrl.split("?");
+            var newQueryString = "";
+
+            if (urlParts.length > 1)
+            {
+                var parameters = urlParts[1].split("&");
+                for (var i=0; (i < parameters.length); i++)
+                {
+                    var parameterParts = parameters[i].split("=");
+                    if (!(replaceDuplicates && parameterParts[0] == parameterName))
+                    {
+                        if (newQueryString == "")
+                            newQueryString = "?";
+                        else
+                            newQueryString += "&";
+                        newQueryString += parameterParts[0] + "=" + (parameterParts[1]?parameterParts[1]:'');
+                    }
+                }
+            }
+            if (newQueryString == "")
+                newQueryString = "?";
+
+            if(atStart){
+                newQueryString = '?'+ parameterName + "=" + parameterValue + (newQueryString.length>1?'&'+newQueryString.substring(1):'');
+            } else {
+                if (newQueryString !== "" && newQueryString != '?')
+                    newQueryString += "&";
+                newQueryString += parameterName + "=" + (parameterValue?parameterValue:'');
+            }
+            return urlParts[0] + newQueryString + urlhash;
+        },
     },
 }
 </script>
@@ -354,6 +418,7 @@ margin: 0 80px;
                                 display: flex;
                                 flex-direction: column;
                                 align-items: center;
+                                margin-bottom: 30px;
 
                                 h5 {
                                     margin-bottom: 15px;
