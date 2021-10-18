@@ -173,7 +173,7 @@ export default {
             apartments: [],
             services: [],
             filterService: [],
-            queryURL: '/api/apartments/?priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}&rooms=${this.roomsNumber}&service=1',
+            queryURL: '/api/apartments/?guests=${this.guestNumber}&priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}&rooms=${this.roomsNumber}',
             currentPage: 1,
             totalPage: 0,
             guestNumber: 0,
