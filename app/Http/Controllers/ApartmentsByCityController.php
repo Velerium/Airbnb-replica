@@ -19,7 +19,6 @@ class ApartmentsByCityController extends Controller
         dd($data);
         $string = array_keys($data);
 
-
         $aptByCity= DB::table('apartments')->where('address',  'like', '%' . $string)->get();
   
 
