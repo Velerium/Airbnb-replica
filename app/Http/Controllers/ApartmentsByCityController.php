@@ -21,7 +21,6 @@ class ApartmentsByCityController extends Controller
 
         $aptByCity= DB::table('apartments')->where('address',  'like', '%' . $string)->get();
   
-
         return view('AptByCity.index',compact('$aptByCity'));
     }
 
