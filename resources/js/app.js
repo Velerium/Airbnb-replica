@@ -7,7 +7,6 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-import Chart from 'chart.js/auto';
 
 /**
  * The following block of code may be used to automatically register your

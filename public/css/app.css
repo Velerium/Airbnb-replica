@@ -15843,6 +15843,101 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   width: 1000px;
 }
 
+.dashboard-main-container {
+  background-color: black;
+  color: white;
+  padding-bottom: 60px;
+}
+
+.dashboard-main-container .container h1 {
+  padding-top: 36px;
+}
+
+.dashboard-main-container .container p {
+  margin-bottom: 24px;
+}
+
+.dashboard-main-container .container .no-apt-cont {
+  border-radius: 30px;
+  background-color: #ff385c;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+.dashboard-main-container .container .no-apt-cont .title-no-apt {
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.dashboard-main-container .container .no-apt-cont .link-no-apt {
+  padding-top: 24px;
+}
+
+.dashboard-main-container .container .no-apt-cont .link-no-apt a {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-radius: 25px;
+  background-color: #ff385c;
+  font-size: 18px;
+  font-weight: bolder;
+  padding: 12px 24px;
+}
+
+.dashboard-main-container .container .no-apt-cont .link-no-apt a:hover {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: none;
+  border-right: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+  font-weight: normal;
+  color: #ff385c;
+}
+
+.dashboard-main-container .container .link-all a {
+  display: inline;
+  color: white;
+}
+
+.dashboard-main-container .container .link-all a:hover {
+  color: #ff385c;
+}
+
+.dashboard-main-container .container .box-apartment {
+  border: 1px solid #ff385c;
+  background-color: #ff385c;
+  border-radius: 20px;
+  display: flex;
+}
+
+.dashboard-main-container .container .box-apartment .img-box-apt {
+  width: 200px;
+}
+
+.dashboard-main-container .container .box-apartment .img-box-apt img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.dashboard-main-container .container .box-apartment .info-box-apt {
+  padding: 0 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: black;
+}
+
+.dashboard-main-container .container .box-apartment .info-box-apt h4 {
+  font-size: 20px;
+}
+
+.dashboard-main-container .container .box-apartment .info-box-apt :nth-child(2) {
+  font-size: 16px;
+}
+
 a {
   color: black;
 }
