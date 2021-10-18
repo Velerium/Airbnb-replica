@@ -20,7 +20,6 @@
             </div>
         </div>
     </div>
-
     <div class="container recommended-section my-3 p-3">
         <h1 class="font-weight-bold">Esplora i dintorni</h1>
         <div class="row recommended-top">

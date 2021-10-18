@@ -21,6 +21,7 @@ Route::get('/', 'HomeController@index')->name('homepage');
 /* Apt for city */
 Route::get('ByCity/{string}','ApartmentsByCityController@index' )->name('AptByCity');
 Route::resource('ByCity', 'ApartmentsByCityController');
+ 
 
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

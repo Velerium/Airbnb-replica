@@ -16,9 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $allApt = Apartment::all();
-
 
         $string='(FI)';
 
