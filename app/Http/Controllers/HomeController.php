@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Apartment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -14,6 +16,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('homepage');
+
+        $allApt = Apartment::all();
+
+
+        $string='(FI)';
+
+        return view('homepage',compact('string'));
     }
 }

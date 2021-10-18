@@ -24,93 +24,109 @@
     <div class="container recommended-section my-3 p-3">
         <h1 class="font-weight-bold">Esplora i dintorni</h1>
         <div class="row recommended-top">
-            <div class="col-3 recommended-city-card">
-                <div class="recommended-city-pfp pointer">
-                    <img src="{{asset('image/pfp.jpg')}}" alt="">
-                </div>
-                <div class="recommended-city-details pointer">
-                    <div>
-                        <h3>Roma</h3>
-                        <p>$ ore di auto</p>
+            <div  class="col-3 recommended-city-card">
+                <a href="{{route('AptByCity', $string )}}">
+                    <div class="recommended-city-pfp pointer">
+                        <img src="{{asset('image/pfp.jpg')}}" alt="">
                     </div>
-                </div>
+                    <div class="recommended-city-details pointer">
+                        <div>
+                            <h3>Firenze</h3>
+                            <p>$ ore di auto</p>
+                        </div>
+                    </div>
+                </a>
             </div>
             <div class="col-3 recommended-city-card">
-                <div class="recommended-city-pfp pointer">
-                    <img src="{{asset('image/pfp.jpg')}}" alt="">
-                </div>
-                <div class="recommended-city-details pointer">
-                    <div>
-                        <h3>Roma</h3>
-                        <p>$ ore di auto</p>
+                <a href="{{route('AptByCity', '(RM)' )}}">
+                    <div class="recommended-city-pfp pointer">
+                        <img src="{{asset('image/pfp.jpg')}}" alt="">
                     </div>
-                </div>
+                    <div class="recommended-city-details pointer">
+                        <div>
+                            <h3>Roma</h3>
+                            <p>$ ore di auto</p>
+                        </div>
+                    </div>
+                </a>
             </div>
             <div class="col-3 recommended-city-card">
-                <div class="recommended-city-pfp pointer">
-                    <img src="{{asset('image/pfp.jpg')}}" alt="">
-                </div>
-                <div class="recommended-city-details pointer">
-                    <div>
-                        <h3>Roma</h3>
-                        <p>$ ore di auto</p>
+                <a href="{{route('AptByCity', '(BA)' )}}">
+                    <div class="recommended-city-pfp pointer">
+                        <img src="{{asset('image/pfp.jpg')}}" alt="">
                     </div>
-                </div>
+                    <div class="recommended-city-details pointer">
+                        <div>
+                            <h3>Bari</h3>
+                            <p>$ ore di auto</p>
+                        </div>
+                    </div>
+                </a>
             </div>
             <div class="col-3 recommended-city-card">
-                <div class="recommended-city-pfp pointer">
-                    <img src="{{asset('image/pfp.jpg')}}" alt="">
-                </div>
-                <div class="recommended-city-details pointer">
-                    <div>
-                        <h3>Roma</h3>
-                        <p>$ ore di auto</p>
+                <a href="{{route('AptByCity', '(TO)' )}}">
+                    <div class="recommended-city-pfp pointer">
+                        <img src="{{asset('image/pfp.jpg')}}" alt="">
                     </div>
-                </div>
+                    <div class="recommended-city-details pointer">
+                        <div>
+                            <h3>Torino</h3>
+                            <p>$ ore di auto</p>
+                        </div>
+                    </div>
+                </a>
             </div>
             <div class="col-3 recommended-city-card">
-                <div class="recommended-city-pfp pointer">
-                    <img src="{{asset('image/pfp.jpg')}}" alt="">
-                </div>
-                <div class="recommended-city-details pointer">
-                    <div>
-                        <h3>Roma</h3>
-                        <p>$ ore di auto</p>
+                <a href="{{route('AptByCity', '(NA)' )}}">
+                    <div class="recommended-city-pfp pointer">
+                        <img src="{{asset('image/pfp.jpg')}}" alt="">
                     </div>
-                </div>
+                    <div class="recommended-city-details pointer">
+                        <div>
+                            <h3>Napoli</h3>
+                            <p>$ ore di auto</p>
+                        </div>
+                    </div>
+                </a>
             </div>
             <div class="col-3 recommended-city-card">
-                <div class="recommended-city-pfp pointer">
-                    <img src="{{asset('image/pfp.jpg')}}" alt="">
-                </div>
-                <div class="recommended-city-details pointer">
-                    <div>
-                        <h3>Roma</h3>
-                        <p>$ ore di auto</p>
+                <a href="{{route('AptByCity', '(MI)' )}}">
+                    <div class="recommended-city-pfp pointer">
+                        <img src="{{asset('image/pfp.jpg')}}" alt="">
                     </div>
-                </div>
+                    <div class="recommended-city-details pointer">
+                        <div>
+                            <h3>Milano</h3>
+                            <p>$ ore di auto</p>
+                        </div>
+                    </div>
+                </a>
             </div>
             <div class="col-3 recommended-city-card">
-                <div class="recommended-city-pfp pointer">
-                    <img src="{{asset('image/pfp.jpg')}}" alt="">
-                </div>
-                <div class="recommended-city-details pointer">
-                    <div>
-                        <h3>Roma</h3>
-                        <p>$ ore di auto</p>
+                <a href="{{route('AptByCity', '(GE)' )}}">
+                    <div class="recommended-city-pfp pointer">
+                        <img src="{{asset('image/pfp.jpg')}}" alt="">
                     </div>
-                </div>
+                    <div class="recommended-city-details pointer">
+                        <div>
+                            <h3>Genova</h3>
+                            <p>$ ore di auto</p>
+                        </div>
+                    </div>
+                </a>
             </div>
             <div class="col-3 recommended-city-card">
-                <div class="recommended-city-pfp pointer">
-                    <img src="{{asset('image/pfp.jpg')}}" alt="">
-                </div>
-                <div class="recommended-city-details pointer">
-                    <div>
-                        <h3>Roma</h3>
-                        <p>$ ore di auto</p>
+                <a href="{{route('AptByCity', '(LE)' )}}">
+                    <div class="recommended-city-pfp pointer">
+                        <img src="{{asset('image/pfp.jpg')}}" alt="">
                     </div>
-                </div>
+                    <div class="recommended-city-details pointer">
+                        <div>
+                            <h3>Lecce</h3>
+                            <p>$ ore di auto</p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
 
