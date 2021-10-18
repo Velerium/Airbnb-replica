@@ -54,7 +54,7 @@
         <div class="row">
             @foreach ($images as $image)
                 <div class="col-2">
-                    <img src="{{ asset('storage/'.$image->url) }}" alt="{{ $apt->title }}">
+                    <img src="{{ asset($image->url) }}" alt="{{ $apt->title }}">
                     {{-- TODO: A form post method delete button on each image to a route so the owner can also decide to delete the image he wants --}}
                 </div>
             @endforeach
