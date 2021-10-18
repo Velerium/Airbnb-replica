@@ -82,6 +82,8 @@ class UserApartmentsController extends Controller
         $apt = Apartment::findOrFail($id);
 
         $images= Image::where('apartment_id', $apt->id)->get();
+        // $images = Image::all();
+        // dd($images);
         $sponsorships = Sponsorship::all();
         $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->first();
         // dd($sponsored);
@@ -115,7 +117,7 @@ class UserApartmentsController extends Controller
     {
         $apt = Apartment::find($id);
         $this->createAndSave($apt, $request);
-        return redirect()->route('userApartments.show', 'apt');
+        return redirect()->route('userApartments.show', $apt->id);
     }
 
     /**
