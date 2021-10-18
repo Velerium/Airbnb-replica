@@ -17,15 +17,20 @@
     
         <h1>Titolo: {{ $apt->title }}</h1>
         <div>Descrizione: {{ $apt->summary }}</div>
-        <div>Il numero di visitatori è: {{ $visitorsNumber }}</div>
 
         <h4>Extra servizi: </h4>
         @foreach ($apt->service as $service)
             <li>{{ $service->service_name }}</li>
         @endforeach 
+
+        {{-- Statistics --}}
+        <div class="">
+            <h2>Le statistiche del tuo appartamento</h2>
+            <button><a href="{{ route('statistics', $apt->id) }}">Vai</a></button>
+        </div>
+        {{-- End Statistics --}}
         
         {{-- SPONSORSHIPS --}}
-            
         {{-- @dd($sponsored); --}}
         @if ($sponsored == null)
             <h2>Non hai nessuna sponsorizzazione su questo appartamento! Sponsorizzalo ora per metterlo in evidenza!</h2>
@@ -54,8 +59,7 @@
                     <input type="submit" class="btn btn-primary" value="Acquista">
                 </form>
             @endforeach
-        </div>
-                    
+        </div>    
         {{-- END SPONSORSHIPS --}}
     
         @foreach ($images as $image)

@@ -80,20 +80,13 @@ class UserApartmentsController extends Controller
     public function show($id)
     {
         $apt = Apartment::findOrFail($id);
-        
-        // getting visitor's number
-        $arrayViews = DB::table('apartment_visitor')->where('apartment_id', $apt->id)->get();
-        $visitorsNumber = count($arrayViews);
-        // get IP Address on click
-        $hostname = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-        $this->addVisitors($hostname, $apt);
 
         $images= Image::where('apartment_id', $apt->id)->get();
         $sponsorships = Sponsorship::all();
         $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->first();
         // dd($sponsored);
         
-        return view('userApartments.show', compact('apt', 'visitorsNumber', 'images', 'sponsorships', 'sponsored'));
+        return view('userApartments.show', compact('apt', 'images', 'sponsorships', 'sponsored'));
     }
 
     /**
@@ -141,21 +134,6 @@ class UserApartmentsController extends Controller
         $apt->delete();
 
         return redirect()->route('userApartments.index');
-    }
-
-    
-
-    public function addVisitors($hostname, $apt) { 
-        
-        $allVisitors = Visitor::all();
-
-        if(!in_array($hostname, compact('allVisitors') )) {
-            $visitor = new Visitor();
-            $visitor->IP_address = $hostname;
-            $visitor->save();
-
-            $apt->visitor()->attach($visitor->id);
-        }
     }
 
     private function createAndSave(Apartment $apt, Request $request) {

@@ -15834,6 +15834,15 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   background: #000;
 }
 
+.statistics-container h1 {
+  margin: 48px 0;
+}
+
+.statistics-container .statistics-content {
+  margin-bottom: 60px;
+  width: 1000px;
+}
+
 a {
   color: black;
 }
