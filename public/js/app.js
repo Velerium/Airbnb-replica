@@ -4378,7 +4378,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       return "/api/apartments/?guests=".concat(this.guestNumber, "&priceMin=").concat(this.value[0], "&priceMax=").concat(this.value[1], "&beds=").concat(this.bedsNumber, "&rooms=").concat(this.roomsNumber);
     },
     newQueryURL: function newQueryURL() {
-      return "/api/apartments/".concat(this.newQuery);
+      return "".concat(this.newQuery);
     }
   },
   methods: {
@@ -4390,6 +4390,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
           _this.apartments = response.data;
         });
       } else {
+        this.newQuery = this.newQuery.replace(/(priceMin=)[^\&]+/, '$1' + this.value[0]);
+        this.newQuery = this.newQuery.replace(/(priceMax=)[^\&]+/, '$1' + this.value[1]);
         axios.get(this.newQueryURL).then(function (response) {
           _this.apartments = response.data;
         });
@@ -4464,8 +4466,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       this.getApartments();
     },
     serviceChange: function serviceChange(id) {
-      console.log(id);
-
       if (this.filterService.includes(id)) {
         var value = this.filterService.indexOf(id);
         this.filterService.splice(value, 1);
@@ -4484,59 +4484,15 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       this.roomsNumber = 0;
       this.getApartments();
     },
-    addParameter: function addParameter(url, parameterName, parameterValue, atStart
-    /*Add param before others*/
-    ) {
-      // if(this.newQuery !== ``) {
-      //     this.newQuery = ``;
-      //     this.getApartments();
-      //     return;
-      // }
-      if (this.filterFlag) {
-        this.newQuery += '&' + parameterName + "[]" + '=' + parameterValue;
-      } else {
-        var replaceDuplicates = true;
+    newFilterQuery: function newFilterQuery(id) {
+      this.serviceChange(id);
+      this.newQuery = this.queryURL;
 
-        if (url.indexOf('#') > 0) {
-          var cl = url.indexOf('#');
-          var urlhash = url.substring(url.indexOf('#'), url.length);
-        } else {
-          var urlhash = '';
-          var cl = url.length;
-        }
-
-        var sourceUrl = url.substring(0, cl);
-        var urlParts = sourceUrl.split("?");
-        var newQueryString = "";
-
-        if (urlParts.length > 1) {
-          var parameters = urlParts[1].split("&");
-
-          for (var i = 0; i < parameters.length; i++) {
-            var parameterParts = parameters[i].split("=");
-
-            if (!(replaceDuplicates && parameterParts[0] == parameterName)) {
-              if (newQueryString == "") newQueryString = "?";else newQueryString += "&";
-              newQueryString += parameterParts[0] + "=" + (parameterParts[1] ? parameterParts[1] : '');
-            }
-          }
-        }
-
-        if (newQueryString == "") newQueryString = "?";
-
-        if (atStart) {
-          newQueryString = '?' + parameterName + "=" + parameterValue + (newQueryString.length > 1 ? '&' + newQueryString.substring(1) : '');
-        } else {
-          if (newQueryString !== "" && newQueryString != '?') newQueryString += "&";
-          newQueryString += parameterName + "[]" + "=" + (parameterValue ? parameterValue : '');
-        }
-
-        this.newQuery =
-        /*urlParts[0] + */
-        newQueryString + urlhash;
+      for (var i = 0; i < this.filterService.length; i++) {
+        this.newQuery += "&service[]=".concat(this.filterService[i]);
       }
 
-      this.filterFlag = true;
+      console.log(this.newQuery);
       this.getApartmentsServices();
     }
   }
@@ -54508,12 +54464,7 @@ var render = function() {
                               attrs: { type: "checkbox" },
                               on: {
                                 change: function($event) {
-                                  return _vm.addParameter(
-                                    _vm.queryURL,
-                                    "service",
-                                    service.id,
-                                    false
-                                  )
+                                  return _vm.newFilterQuery(service.id)
                                 }
                               }
                             }),

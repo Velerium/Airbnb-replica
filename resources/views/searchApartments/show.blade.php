@@ -3,7 +3,7 @@
 @section('content')
 
     <h2 style="margin-top: 30px; text-align: center">SHOW.BLADE.PHP (Diamoci 'na mossa dajeeee)</h2>
-    <div style="display: flex; justify-content: center">
+    <div style="display: flex; justify-content: center; height: 800px">
     </div>
 
     <div id='map-div' class='map-div' style=" position: absolute; right: 50px; top: 250px; width: 30vw; height: 30vw;"></div>

@@ -42,6 +42,7 @@ class ApartmentsFilterController extends Controller
                 foreach ($apartment->service as $service) {
                     $aptServices[] = $service->id;
                 };
+                sort($aptServices, SORT_NUMERIC);
                 if(array_intersect($aptServices, $serviceID) == $serviceID) {
                     $servicedApt[] = $apartment;
                 };
