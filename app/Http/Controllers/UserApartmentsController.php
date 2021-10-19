@@ -20,6 +20,12 @@ class UserApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         // get user Id
@@ -27,7 +33,7 @@ class UserApartmentsController extends Controller
         // get all the apartments of this current user
         $aptByIdUser = DB::table('apartments')->where('user_id', '=', $user->id)->get();
 
-        return view('userApartments.index', compact('aptByIdUser'));
+        return view('userApartments.index', compact('user', 'aptByIdUser'));
     }
 
     /**

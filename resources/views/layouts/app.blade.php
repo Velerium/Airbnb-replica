@@ -21,9 +21,6 @@
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.15.0/services/services-web.min.js"></script>
     
     {{-- Chart.js --}}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js" integrity="sha512-b3xr4frvDIeyC3gqR1/iOi6T+m3pLlQyXNuvn5FiRrrKiMUJK3du2QqZbCywH6JxS5EOfW0DY0M6WwdXFbCBLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="path/to/chartjs/dist/chart.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -62,7 +59,7 @@
 
                     @else
                         @if ((Request::route()->getName() !== 'dashboard') && (Request::route()->getName() !== 'userApartments.index') && (Request::route()->getName() !== 'userApartments.show') && (Request::route()->getName() !== 'userApartments.create') && (Request::route()->getName() !== 'userApartments.edit'))
-                            <div class="nav-item"><a href="{{ route('dashboard') }}">Area personale</a></div>
+                            <div class="nav-item"><a href="{{ route('userApartments.index') }}">Area personale</a></div>
 
                             <div class="nav-item">|</div>
                         @endif
@@ -128,5 +125,7 @@
         @include('layouts.footer')
 
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js" integrity="sha512-b3xr4frvDIeyC3gqR1/iOi6T+m3pLlQyXNuvn5FiRrrKiMUJK3du2QqZbCywH6JxS5EOfW0DY0M6WwdXFbCBLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+
 </body>
 </html>
