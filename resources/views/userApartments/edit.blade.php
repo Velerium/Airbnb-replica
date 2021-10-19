@@ -54,14 +54,14 @@
         <div class="row">
             @foreach ($images as $image)
                 <div class="col-2">
-                    <img src="{{ asset($image->url) }}" alt="{{ $apt->title }}">
+                    <img src="{{ asset('storage/' . $image->url) }}" alt="{{ $apt->title }}">
                     {{-- TODO: A form post method delete button on each image to a route so the owner can also decide to delete the image he wants --}}
                 </div>
             @endforeach
         </div>
 
         <label for="imgFiles">Inserisci nuove immagini del tuo appartamento</label><br>
-        <input type="file" name="imgFiles" multiple><br>
+        <input type="file" class="input-text" name="imgFiles[]" id="imgFiles[]" multiple><br>
 
         <!-- IMAGES END -->
 
