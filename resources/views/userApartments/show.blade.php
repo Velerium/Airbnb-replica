@@ -63,7 +63,7 @@
         {{-- END SPONSORSHIPS --}}
     
         @foreach ($images as $image)
-            <img src="{{ asset($image->url) }}" alt="Immagine di {{ $apt->title }}"> 
+            <img src="{{ asset('storage/'. $image->url) }}" alt="Immagine di {{ $apt->title }}"> 
         @endforeach
 
     </div>

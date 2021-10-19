@@ -167,14 +167,21 @@ class UserApartmentsController extends Controller
         // dd($data['servicesList']);
         foreach($data['servicesList'] as $serviceId) {
             $apt->service()->attach($serviceId);
+        };
+        /* dd($data['imgFiles']); */
+        foreach($data['imgFiles'] as $img){
+            $pathImg = Storage::putFile('images', $img);
+            $newImg= new Image();
+            $newImg->url = $pathImg;
+            $newImg->apartment_id = $apt->id;
+            $newImg->save();
         }
-
-        $newImg= new Image();
+        /* $newImg= new Image();
         $imgFile = Storage::disk('public')->get('images', $data['imgFiles']);
         // dd($data['imgFiles']);
         $newImg->url = $imgFile;
         $newImg->apartment_id = $apt->id;
         // dd($newImg);
-        $newImg->save();
-    }
+        $newImg->save(); */
+    } 
 }
