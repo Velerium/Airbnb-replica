@@ -39,7 +39,8 @@
             {{-- Metter appartamento sponsorizzato fino al... --}}
                 @foreach ($apt->sponsorship as $thisAptSponsorship)
                 {{-- @dd($thisAptSponsorship) --}}
-                    <h2>L'appartamento ha la sponsorizzazione {{ $thisAptSponsorship->type }}</h2>
+                    <h2>L'appartamento ha la sponsorizzazione {{ $thisAptSponsorship->type }}.</h2>
+                    <div>Scadenza sponsorizzazione: il {{$sponsored->format('d-M-Y')}} alle ore {{$sponsored->format('H:m')}}</div>
                 @endforeach
             </div>
         @endif
@@ -65,6 +66,7 @@
         @foreach ($images as $image)
             <img src="{{ asset('storage/'. $image->url) }}" alt="Immagine di {{ $apt->title }}"> 
         @endforeach
+
     </div>
 
 

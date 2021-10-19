@@ -20,9 +20,7 @@ class BraintreeController extends Controller
             'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
             'privateKey' => env('BRAINTREE_PRIVATE_KEY')
         ]);
-
         $token = $gateway->clientToken()->generate();
-        // dd($token);
 
         return view('userApartments/sponsorship', compact('data'), ['token' => $token]);
     }    
@@ -49,17 +47,15 @@ class BraintreeController extends Controller
                 'submitForSettlement' => True
             ]
         ]);
-
         
         if($status->success) {
-            // save the data
+            // save the data            
             $apt = Apartment::find($data['apartment_id']);
             $apt->sponsorship()->attach($data['sponsorship_id']);
-            // $transaction = $status->transaction;
 
             return redirect()->route('userApartments.show', $data['apartment_id']);
         } else {
-            print_r($status->errors);
+            echo 'Ooops, qualcosa è andato storto!';
         }   
     }
 }

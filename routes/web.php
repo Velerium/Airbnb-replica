@@ -18,8 +18,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('homepage');
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-
+/* Apt for city */
+Route::get('ByCity/{string}','ApartmentsByCityController@index' )->name('AptByCity');
+Route::resource('ByCity', 'ApartmentsByCityController');
+ 
 Route::resource('userApartments', 'UserApartmentsController');
 
 Route::resource('searchApartments', 'SearchApartmentsController');

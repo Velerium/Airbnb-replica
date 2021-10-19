@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-4">
                     <ul>
-                        <h6>ASISTENZA</h6>
+                        <h6>ASSISTENZA</h6>
                         <li>
                             <span>La nostra risposta all'emergenza COVID-19</span></li>
                         <li>

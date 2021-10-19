@@ -12,6 +12,7 @@ use App\Image;
 use App\Sponsorship;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class UserApartmentsController extends Controller
 {
@@ -20,6 +21,12 @@ class UserApartmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         // get user Id
@@ -27,7 +34,7 @@ class UserApartmentsController extends Controller
         // get all the apartments of this current user
         $aptByIdUser = DB::table('apartments')->where('user_id', '=', $user->id)->get();
 
-        return view('userApartments.index', compact('aptByIdUser'));
+        return view('userApartments.index', compact('user', 'aptByIdUser'));
     }
 
     /**
@@ -80,12 +87,27 @@ class UserApartmentsController extends Controller
     public function show($id)
     {
         $apt = Apartment::findOrFail($id);
-
-        $images= Image::where('apartment_id', $apt->id)->get();
         $sponsorships = Sponsorship::all();
         $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->first();
-        // dd($sponsored);
+
+        if($sponsored != null) {
+            // calculating the duration from created_at moment
+            $hours = Sponsorship::where('id', $sponsored->sponsorship_id)->pluck('duration')->first();
+            $duration = Carbon::parse($sponsored->created_at)->addHours($hours);
+            $now = Carbon::now();
+            // if sponsosrhsip's duration is more than actual datetime, show me the sponsorship duration
+            if($duration->greaterThan($now)){
+                $sponsored = $duration;
+            // else don't show anything
+            } else {
+                $sponsored = null;
+            };
+        }
         
+        $images= Image::where('apartment_id', $apt->id)->get();
+        // $images = Image::all();
+        // dd($images);
+
         return view('userApartments.show', compact('apt', 'images', 'sponsorships', 'sponsored'));
     }
 
@@ -115,7 +137,7 @@ class UserApartmentsController extends Controller
     {
         $apt = Apartment::find($id);
         $this->createAndSave($apt, $request);
-        return redirect()->route('userApartments.show', 'apt');
+        return redirect()->route('userApartments.show', $apt->id);
     }
 
     /**
@@ -156,17 +178,16 @@ class UserApartmentsController extends Controller
         $apt->user_id = $user->id;
         $apt->save();
 
-        // dd($data['servicesList']);
         foreach($data['servicesList'] as $serviceId) {
             $apt->service()->attach($serviceId);
-        }
+        };
 
-        $newImg= new Image();
-        $imgFile = Storage::disk('public')->get('images', $data['imgFiles']);
-        // dd($data['imgFiles']);
-        $newImg->url = $imgFile;
-        $newImg->apartment_id = $apt->id;
-        // dd($newImg);
-        $newImg->save();
-    }
+        foreach($data['imgFiles'] as $img){
+            $pathImg = Storage::putFile('images', $img);
+            $newImg= new Image();
+            $newImg->url = $pathImg;
+            $newImg->apartment_id = $apt->id;
+            $newImg->save();
+        }
+    } 
 }

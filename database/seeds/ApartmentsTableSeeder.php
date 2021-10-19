@@ -68,18 +68,6 @@ class ApartmentsTableSeeder extends Seeder
             $listSponsorId[] = $sponsorObj->id;
         }
 
-        // for($i = 0; $i < count($functions->sponsorData); $i++) {
-        //     foreach($functions->sponsorData[$i] as $sponsorElement) {
-        //         $sponsorObj = new Sponsorship();
-        //         $sponsorObj->type = $sponsorElement;
-        //         $sponsorObj->cost_sponsorship = $sponsorElement;
-        //         $sponsorObj->duration = $sponsorElement;
-        //         $sponsorObj->save();
-        //         $listSponsorId[] = $sponsorObj->id;
-        //     }
-        // }
-
-
         #VISITOR TABLE
         $functions = new VisitorDataProvider;
         $listVisitorId = [];
@@ -147,7 +135,6 @@ class ApartmentsTableSeeder extends Seeder
             $message->apartment_id = rand(1, 41); // 41 apartments
             $message->save();
         }
-
 
         #IMAGE TABLE
         $functions = new ImageDataProvider;

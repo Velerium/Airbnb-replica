@@ -15550,33 +15550,76 @@ a.text-dark:focus {
 }
 
 .slider-section {
-  width: 100%;
-  height: 550px;
+  height: 1000px;
   background: url("/image/jumbo.jpg");
-  background-size: cover;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .slider-section .slider-container {
-  background: rgba(112, 243, 108, 0.411);
+  padding: 75px 25px;
   height: 100%;
-}
-
-.slider-section .slider-container .slider-top .col-12 {
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .slider-section .slider-container .slider-top .col-12 .input-search {
-  background: #000;
+  background: #FFF;
+  border-radius: 40px;
+  padding: 10px 0;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.slider-section .slider-jumbo {
-  width: 100%;
-  height: 100%;
+.slider-section .slider-container .slider-top .col-12 .input-search .search-space {
+  border-right: 1px solid #DDD;
+  height: 32px;
 }
 
-.slider-section .slider-jumbo img {
-  width: 100%;
-  height: 100%;
+.slider-section .slider-container .slider-top .col-12 .input-search input {
+  border: 0;
+}
+
+.slider-section .slider-container .slider-top .col-12 .input-search input[type=date]::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.slider-section .slider-container .slider-top .col-12 .input-search .search-button {
+  background: #FF385C;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.slider-section .slider-container .slider-bottom .col-12 {
+  display: flex;
+  align-items: center;
+}
+
+.slider-section .slider-container .slider-bottom .col-12 div {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.slider-section .slider-container .slider-bottom .col-12 div .index-button {
+  background: #FFF !important;
+  padding: 15px 30px;
+  border-radius: 50px;
+}
+
+.slider-section .slider-container .slider-bottom .col-12 div .index-button span {
+  font-size: 18px;
+  font-weight: bold;
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .recommended-section h1 {
@@ -15585,6 +15628,7 @@ a.text-dark:focus {
 
 .recommended-section .recommended-top .recommended-city-card {
   margin: 5px 0;
+  padding: 0;
 }
 
 .recommended-section .recommended-top .recommended-city-card .recommended-city-pfp {
@@ -15601,12 +15645,7 @@ a.text-dark:focus {
 .recommended-section .recommended-top .recommended-city-card .recommended-city-details {
   width: calc(60% - 7.5px);
   display: inline-block;
-}
-
-.recommended-section .recommended-top .recommended-city-card .recommended-city-details div {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  height: 100%;
 }
 
 .recommended-section .recommended-bottom .recommended-filters {
@@ -15639,6 +15678,72 @@ a.text-dark:focus {
   border-radius: 10px;
   padding: 10px 20px;
   font-weight: bold;
+}
+
+footer {
+  background: #F0F0F0;
+}
+
+footer .footer-top {
+  padding: 50px 0 25px 0;
+}
+
+footer .footer-top .container .row .col-4 ul {
+  line-height: 40px;
+  list-style: none;
+}
+
+footer .footer-top .container .row .col-4 ul h6 {
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+footer .footer-bottom {
+  border-top: #000 solid 1px;
+}
+
+footer .footer-bottom .row {
+  display: flex;
+}
+
+footer .footer-bottom .row .ft-bottom-left {
+  display: flex;
+}
+
+footer .footer-bottom .row .ft-bottom-left ul {
+  display: flex;
+  list-style: none;
+}
+
+footer .footer-bottom .row .ft-bottom-left ul li {
+  margin-right: 10px;
+}
+
+footer .footer-bottom .row .ft-bottom-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer .footer-bottom .row .ft-bottom-right div {
+  margin-right: 15px;
+}
+
+footer .footer-bottom .row .ft-bottom-right .footer-language {
+  text-decoration: underline;
+}
+
+footer .footer-bottom .row .ft-bottom-right .footer-currency span:last-child {
+  text-decoration: underline;
+}
+
+footer .footer-bottom .row .ft-bottom-right .footer-social {
+  display: flex;
+}
+
+footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
+  width: 18px;
+  height: 18px;
+  background: #000;
 }
 
 nav {
@@ -15841,6 +15946,101 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
 .statistics-container .statistics-content {
   margin-bottom: 60px;
   width: 1000px;
+}
+
+.dashboard-main-container {
+  background-color: black;
+  color: white;
+  padding-bottom: 60px;
+}
+
+.dashboard-main-container .container h1 {
+  padding-top: 36px;
+}
+
+.dashboard-main-container .container p {
+  margin-bottom: 24px;
+}
+
+.dashboard-main-container .container .no-apt-cont {
+  border-radius: 30px;
+  background-color: #ff385c;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+.dashboard-main-container .container .no-apt-cont .title-no-apt {
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.dashboard-main-container .container .no-apt-cont .link-no-apt {
+  padding-top: 24px;
+}
+
+.dashboard-main-container .container .no-apt-cont .link-no-apt a {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-radius: 25px;
+  background-color: #ff385c;
+  font-size: 18px;
+  font-weight: bolder;
+  padding: 12px 24px;
+}
+
+.dashboard-main-container .container .no-apt-cont .link-no-apt a:hover {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: none;
+  border-right: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+  font-weight: normal;
+  color: #ff385c;
+}
+
+.dashboard-main-container .container .link-all a {
+  display: inline;
+  color: white;
+}
+
+.dashboard-main-container .container .link-all a:hover {
+  color: #ff385c;
+}
+
+.dashboard-main-container .container .box-apartment {
+  border: 1px solid #ff385c;
+  background-color: #ff385c;
+  border-radius: 20px;
+  display: flex;
+}
+
+.dashboard-main-container .container .box-apartment .img-box-apt {
+  width: 200px;
+}
+
+.dashboard-main-container .container .box-apartment .img-box-apt img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.dashboard-main-container .container .box-apartment .info-box-apt {
+  padding: 0 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: black;
+}
+
+.dashboard-main-container .container .box-apartment .info-box-apt h4 {
+  font-size: 20px;
+}
+
+.dashboard-main-container .container .box-apartment .info-box-apt :nth-child(2) {
+  font-size: 16px;
 }
 
 a {
