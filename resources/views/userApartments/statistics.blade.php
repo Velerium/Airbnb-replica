@@ -7,20 +7,20 @@
             <h1>I numeri di visitatori mensili dell'appartamento {{ $apartment->title }}</h1>
         </div>
         <div class="statistics-content">
-            <canvas id="myChart"></canvas>
+            <canvas id="statistics"></canvas>
         </div>
     </div>
 
     <script type="application/javascript">
              
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
+        var ctx = document.getElementById('statistics').getContext('2d');
+        var statistics = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
                 datasets: [{
                     label: 'Numero di visitatori',
-                    data: [540, 458, 320, 130, 299, 325, 560, 480, 465, 514, 259, 489],
+                    data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
