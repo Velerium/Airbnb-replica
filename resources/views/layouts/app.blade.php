@@ -58,7 +58,7 @@
                     @guest
 
                     @else
-                        @if ((Request::route()->getName() !== 'dashboard') && (Request::route()->getName() !== 'userApartments.index') && (Request::route()->getName() !== 'userApartments.show') && (Request::route()->getName() !== 'userApartments.create') && (Request::route()->getName() !== 'userApartments.edit'))
+                        @if ((Request::route()->getName() !== 'userApartments.index') && (Request::route()->getName() !== 'userApartments.show') && (Request::route()->getName() !== 'userApartments.create') && (Request::route()->getName() !== 'userApartments.edit'))
                             <div class="nav-item"><a href="{{ route('userApartments.index') }}">Area personale</a></div>
 
                             <div class="nav-item">|</div>

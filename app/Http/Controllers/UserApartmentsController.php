@@ -12,6 +12,7 @@ use App\Image;
 use App\Sponsorship;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class UserApartmentsController extends Controller
 {
@@ -86,14 +87,24 @@ class UserApartmentsController extends Controller
     public function show($id)
     {
         $apt = Apartment::findOrFail($id);
+        $sponsorships = Sponsorship::all();
+        $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->first();
+        // calculating the duration from created_at moment
+        $hours = Sponsorship::where('id', $sponsored->sponsorship_id)->pluck('duration')->first();
+        $duration = Carbon::parse($sponsored->created_at)->addHours($hours);
+        $now = Carbon::now();
+        // if sponsosrhsip's duration is more than actual datetime, show me the sponsorship duration
+        if($duration->greaterThan($now)){
+            $sponsored = $duration;
+        // else don't show anything
+        } else {
+            $sponsored = null;
+        };
 
         $images= Image::where('apartment_id', $apt->id)->get();
         // $images = Image::all();
         // dd($images);
-        $sponsorships = Sponsorship::all();
-        $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->first();
-        // dd($sponsored);
-        
+
         return view('userApartments.show', compact('apt', 'images', 'sponsorships', 'sponsored'));
     }
 

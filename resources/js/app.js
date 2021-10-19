@@ -5,8 +5,6 @@
  */
 
 require('./bootstrap');
-import Chart from 'chart.js/auto';
-window.Chart = Chart;
 
 window.Vue = require('vue');
 
@@ -32,4 +30,51 @@ Vue.component('card', require('./components/Card.vue').default);
 
 const app = new Vue({
     el: '#app',
+    data() {
+        return {
+            json_by_month: [],
+            date: [],
+            views: [],
+        }
+    },
+
+    mounted() {
+        var myId = document.getElementById('statistics').getContext('2d');
+        if(myId) {
+            var statistics = new Chart(myId, {
+                type: 'bar',
+                data: {
+                    labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+                    datasets: [{
+                        label: 'Numero di visitatori',
+                        data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132)',
+                            'rgba(54, 162, 235)',
+                            'rgba(255, 206, 86)',
+                            'rgba(75, 192, 192)',
+                            'rgba(153, 102, 255)',
+                            'rgba(255, 159, 64)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    },
 });
