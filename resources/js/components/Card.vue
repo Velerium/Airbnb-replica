@@ -6,6 +6,9 @@
                 Guests: {{ guests_n }}
                 <br>
                 Beds: {{ beds_n }}
+                <br>
+                <br>
+                Services: {{ service }}, {{ service2 }}
             </div>
         </div>
         <div class="itemDetails">
@@ -30,6 +33,7 @@ export default {
         title: String,
         price: String,
         service: String,
+        service2: String,
         guests_n: Number,
         beds_n: Number,
     }

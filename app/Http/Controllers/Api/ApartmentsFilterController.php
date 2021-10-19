@@ -19,33 +19,40 @@ class ApartmentsFilterController extends Controller
     {   
         
         $apartments = Apartment::with('service')->get();
+        $flag = false;
 
         try {
-            $guestsNumber = $_GET['guests'];
-        } catch (Exception $guestsNumber) {
-            $guestsNumber = 0;
+            $serviceID = $_GET['service'];
+        } catch (Exception $e) {
+            $flag = true;
         }
         
+        $guestsNumber = $_GET['guests'];
         $priceMin = $_GET['priceMin'];
         $priceMax = $_GET['priceMax'];
         $bedsNumber = $_GET['beds'];
         $roomsNumber = $_GET['rooms'];
-        $serviceID = $_GET['service'];
 
-        $filteredServices = [];
-        $filteredServices[] = $serviceID;
-
-        $servicedApt = collect(new Apartment);
-        
-        foreach ($apartments as $apartment) {
-            foreach ($apartment->service as $service) {
-                if(in_array($service->id, $filteredServices)) {
+        if (!$flag) {
+    
+            $servicedApt = collect(new Apartment);
+            
+            foreach ($apartments as $apartment) {
+                $aptServices = [];
+                foreach ($apartment->service as $service) {
+                    $aptServices[] = $service->id;
+                };
+                if(array_intersect($aptServices, $serviceID) == $serviceID) {
                     $servicedApt[] = $apartment;
                 };
-            };
+            }
         }
 
-        $filtered = $servicedApt->where('guests_n', '>=', $guestsNumber);
+        if (!$flag) {
+            $filtered = $servicedApt->where('guests_n', '>=', $guestsNumber);
+        } else {
+            $filtered = $apartments->where('guests_n', '>=', $guestsNumber);
+        }
         $filtered1 = $filtered->where('price', '>=', $priceMin);
         $filtered2 = $filtered1->where('price', '<=', $priceMax);
         $filtered3 = $filtered2->where('beds_n', '>=', $bedsNumber);

@@ -108,7 +108,7 @@
 
                             <div class="servicesFilter">
                                 <div v-for="service in services" :key="service.id"  :id="service.id" :name="service.service_name">
-                                    <input v-on:change="addParameter(this.queryURL, 'service', service.id, false)" type="checkbox">
+                                    <input v-on:change="addParameter(queryURL, 'service', service.id, false)" type="checkbox">
                                     <label :for="service.service_name">{{service.service_name}}</label>
                                 </div>
                             </div>
@@ -135,6 +135,8 @@
                 :price="apartment.price"
                 :guests_n="apartment.guests_n"
                 :beds_n="apartment.beds_n"
+                :service="apartment.service[0].service_name"
+                :service2="apartment.service[1].service_name"
             />
                 
         </div>
@@ -173,7 +175,6 @@ export default {
             apartments: [],
             services: [],
             filterService: [],
-            queryURL: '/api/apartments/?guests=${this.guestNumber}&priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}&rooms=${this.roomsNumber}',
             currentPage: 1,
             totalPage: 0,
             guestNumber: 0,
@@ -183,13 +184,36 @@ export default {
             value: [50, 1000],
             priceMin: 50,
             priceMax: 1000,
+            newQuery: ``,
+            filterFlag: false,
         }
+    },
+
+    computed: {
+        queryURL() {
+            return `/api/apartments/?guests=${this.guestNumber}&priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}&rooms=${this.roomsNumber}`;
+        },
+        newQueryURL() {
+            return `/api/apartments/${this.newQuery}`;
+        },
     },
 
     methods: {
 
         getApartments() {
-            axios.get(this.queryURL).then((response) => {
+            if (this.newQuery === ``) {
+                axios.get(this.queryURL).then((response) => {
+                    this.apartments = response.data;
+                });
+            } else {
+                axios.get(this.newQueryURL).then((response) => {
+                    this.apartments = response.data;
+                });
+            }
+        },
+
+        getApartmentsServices() {
+            axios.get(this.newQueryURL).then((response) => {
                 this.apartments = response.data;
             });
         },
@@ -281,15 +305,26 @@ export default {
         },
 
         addParameter(url, parameterName, parameterValue, atStart/*Add param before others*/){
-            replaceDuplicates = true;
+
+            // if(this.newQuery !== ``) {
+            //     this.newQuery = ``;
+            //     this.getApartments();
+            //     return;
+            // }
+
+            if (this.filterFlag) {
+                this.newQuery += '&' + parameterName + "[]" + '=' + parameterValue;
+            } else {
+
+            var replaceDuplicates = true;
             if(url.indexOf('#') > 0){
                 var cl = url.indexOf('#');
-                urlhash = url.substring(url.indexOf('#'),url.length);
+                var urlhash = url.substring(url.indexOf('#'),url.length);
             } else {
-                urlhash = '';
-                cl = url.length;
+                var urlhash = '';
+                var cl = url.length;
             }
-            sourceUrl = url.substring(0,cl);
+            var sourceUrl = url.substring(0,cl);
 
             var urlParts = sourceUrl.split("?");
             var newQueryString = "";
@@ -310,6 +345,7 @@ export default {
                     }
                 }
             }
+
             if (newQueryString == "")
                 newQueryString = "?";
 
@@ -318,9 +354,13 @@ export default {
             } else {
                 if (newQueryString !== "" && newQueryString != '?')
                     newQueryString += "&";
-                newQueryString += parameterName + "=" + (parameterValue?parameterValue:'');
+                newQueryString += parameterName + "[]" + "=" + (parameterValue?parameterValue:'');
             }
-            return urlParts[0] + newQueryString + urlhash;
+            this.newQuery = /*urlParts[0] + */ newQueryString + urlhash;
+            }
+
+            this.filterFlag = true; 
+            this.getApartmentsServices();
         },
     },
 }

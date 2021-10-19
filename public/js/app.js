@@ -4339,6 +4339,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4358,7 +4360,6 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       apartments: [],
       services: [],
       filterService: [],
-      queryURL: '/api/apartments/?guests=${this.guestNumber}&priceMin=${this.value[0]}&priceMax=${this.value[1]}&beds=${this.bedsNumber}&rooms=${this.roomsNumber}',
       currentPage: 1,
       totalPage: 0,
       guestNumber: 0,
@@ -4367,22 +4368,45 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       roomsNumber: 0,
       value: [50, 1000],
       priceMin: 50,
-      priceMax: 1000
+      priceMax: 1000,
+      newQuery: "",
+      filterFlag: false
     };
+  },
+  computed: {
+    queryURL: function queryURL() {
+      return "/api/apartments/?guests=".concat(this.guestNumber, "&priceMin=").concat(this.value[0], "&priceMax=").concat(this.value[1], "&beds=").concat(this.bedsNumber, "&rooms=").concat(this.roomsNumber);
+    },
+    newQueryURL: function newQueryURL() {
+      return "/api/apartments/".concat(this.newQuery);
+    }
   },
   methods: {
     getApartments: function getApartments() {
       var _this = this;
 
-      axios.get(this.queryURL).then(function (response) {
-        _this.apartments = response.data;
+      if (this.newQuery === "") {
+        axios.get(this.queryURL).then(function (response) {
+          _this.apartments = response.data;
+        });
+      } else {
+        axios.get(this.newQueryURL).then(function (response) {
+          _this.apartments = response.data;
+        });
+      }
+    },
+    getApartmentsServices: function getApartmentsServices() {
+      var _this2 = this;
+
+      axios.get(this.newQueryURL).then(function (response) {
+        _this2.apartments = response.data;
       });
     },
     getAllServices: function getAllServices() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("/api/services").then(function (response) {
-        _this2.services = response.data;
+        _this3.services = response.data;
       });
     },
     changePage: function changePage(nPage) {
@@ -4463,43 +4487,57 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
     addParameter: function addParameter(url, parameterName, parameterValue, atStart
     /*Add param before others*/
     ) {
-      replaceDuplicates = true;
-
-      if (url.indexOf('#') > 0) {
-        var cl = url.indexOf('#');
-        urlhash = url.substring(url.indexOf('#'), url.length);
+      // if(this.newQuery !== ``) {
+      //     this.newQuery = ``;
+      //     this.getApartments();
+      //     return;
+      // }
+      if (this.filterFlag) {
+        this.newQuery += '&' + parameterName + "[]" + '=' + parameterValue;
       } else {
-        urlhash = '';
-        cl = url.length;
-      }
+        var replaceDuplicates = true;
 
-      sourceUrl = url.substring(0, cl);
-      var urlParts = sourceUrl.split("?");
-      var newQueryString = "";
+        if (url.indexOf('#') > 0) {
+          var cl = url.indexOf('#');
+          var urlhash = url.substring(url.indexOf('#'), url.length);
+        } else {
+          var urlhash = '';
+          var cl = url.length;
+        }
 
-      if (urlParts.length > 1) {
-        var parameters = urlParts[1].split("&");
+        var sourceUrl = url.substring(0, cl);
+        var urlParts = sourceUrl.split("?");
+        var newQueryString = "";
 
-        for (var i = 0; i < parameters.length; i++) {
-          var parameterParts = parameters[i].split("=");
+        if (urlParts.length > 1) {
+          var parameters = urlParts[1].split("&");
 
-          if (!(replaceDuplicates && parameterParts[0] == parameterName)) {
-            if (newQueryString == "") newQueryString = "?";else newQueryString += "&";
-            newQueryString += parameterParts[0] + "=" + (parameterParts[1] ? parameterParts[1] : '');
+          for (var i = 0; i < parameters.length; i++) {
+            var parameterParts = parameters[i].split("=");
+
+            if (!(replaceDuplicates && parameterParts[0] == parameterName)) {
+              if (newQueryString == "") newQueryString = "?";else newQueryString += "&";
+              newQueryString += parameterParts[0] + "=" + (parameterParts[1] ? parameterParts[1] : '');
+            }
           }
         }
+
+        if (newQueryString == "") newQueryString = "?";
+
+        if (atStart) {
+          newQueryString = '?' + parameterName + "=" + parameterValue + (newQueryString.length > 1 ? '&' + newQueryString.substring(1) : '');
+        } else {
+          if (newQueryString !== "" && newQueryString != '?') newQueryString += "&";
+          newQueryString += parameterName + "[]" + "=" + (parameterValue ? parameterValue : '');
+        }
+
+        this.newQuery =
+        /*urlParts[0] + */
+        newQueryString + urlhash;
       }
 
-      if (newQueryString == "") newQueryString = "?";
-
-      if (atStart) {
-        newQueryString = '?' + parameterName + "=" + parameterValue + (newQueryString.length > 1 ? '&' + newQueryString.substring(1) : '');
-      } else {
-        if (newQueryString !== "" && newQueryString != '?') newQueryString += "&";
-        newQueryString += parameterName + "=" + (parameterValue ? parameterValue : '');
-      }
-
-      return urlParts[0] + newQueryString + urlhash;
+      this.filterFlag = true;
+      this.getApartmentsServices();
     }
   }
 });
@@ -4535,6 +4573,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Card',
   data: function data() {
@@ -4544,6 +4585,7 @@ __webpack_require__.r(__webpack_exports__);
     title: String,
     price: String,
     service: String,
+    service2: String,
     guests_n: Number,
     beds_n: Number
   }
@@ -54467,7 +54509,7 @@ var render = function() {
                               on: {
                                 change: function($event) {
                                   return _vm.addParameter(
-                                    this.queryURL,
+                                    _vm.queryURL,
                                     "service",
                                     service.id,
                                     false
@@ -54526,7 +54568,9 @@ var render = function() {
             title: apartment.title,
             price: apartment.price,
             guests_n: apartment.guests_n,
-            beds_n: apartment.beds_n
+            beds_n: apartment.beds_n,
+            service: apartment.service[0].service_name,
+            service2: apartment.service[1].service_name
           }
         })
       }),
@@ -54728,7 +54772,19 @@ var render = function() {
             "\n            Guests: " + _vm._s(_vm.guests_n) + "\n            "
           ),
           _c("br"),
-          _vm._v("\n            Beds: " + _vm._s(_vm.beds_n) + "\n        ")
+          _vm._v(
+            "\n            Beds: " + _vm._s(_vm.beds_n) + "\n            "
+          ),
+          _c("br"),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(
+            "\n            Services: " +
+              _vm._s(_vm.service) +
+              ", " +
+              _vm._s(_vm.service2) +
+              "\n        "
+          )
         ]
       )
     ]),
