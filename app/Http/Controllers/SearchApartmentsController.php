@@ -15,9 +15,7 @@ class SearchApartmentsController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::with('service')->get();
-        $services = Service::all();
-        return view('app/advancedSearch', compact('apartments', 'services'));
+        return view('app/advancedSearch');
     }
 
     /**
@@ -49,9 +47,9 @@ class SearchApartmentsController extends Controller
      */
     public function show($id)
     {
-        $apt = Apartment::find($id);
-        // dd($apt->address);
-        return view('searchApartments.show', compact('apt'));
+        $apartment = Apartment::find($id);
+        // dd($apartment->title);
+        return view('searchApartments.show', compact('apartment'));
     }
 
     /**

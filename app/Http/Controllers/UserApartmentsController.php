@@ -108,7 +108,7 @@ class UserApartmentsController extends Controller
         // $images = Image::all();
         // dd($images);
 
-        return view('userApartments.private-show', compact('apt', 'images', 'sponsorships', 'sponsored'));
+        return view('userApartments.show', compact('apt', 'images', 'sponsorships', 'sponsored'));
     }
 
     /**

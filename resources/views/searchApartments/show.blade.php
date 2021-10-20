@@ -2,11 +2,57 @@
 
 @section('content')
 
-    <h2 style="margin-top: 30px; text-align: center">SHOW.BLADE.PHP (Diamoci 'na mossa dajeeee)</h2>
-    <div style="display: flex; justify-content: center">
+    <div class="show-container">
+        <div class="show-box container">
+                <div class="row">
+                    <div class="col-12">
+                        <div>
+                            <h4>{{ $apartment->title }}</h4>
+                        </div>
+                        <div>
+                            <span>{{$apartment->address}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-gallery row my-4">
+                    <div class="col-6">
+                        <div class="show-thumbnail">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="side-pics"></div>
+                        <div class="side-pics"></div>
+                        <div class="side-pics"></div>
+                        <div class="side-pics"></div>
+                    </div>
+                </div>
+                <div class="bio row">
+                    <div class="bio-left col-8">
+                    <div>Descrizione: {{$apartment->summary}}</div>
+                    </div>
+                    <div class="bio-right col-4">
+                        <div id='map-div' class='map-div' style="width: 100%; height: 350px;"></div>
+                    </div>
+                </div>
+                <div class="show-services row my-4">
+                    <div class="services-left col-6">
+                        <span>Servizi inclusi</span>
+                        <ul>
+                                <li class="price"><span>€{{$apartment->price}} / notte</span></li>
+                                <li><span>Numero di ospiti: {{$apartment->guests_n}}</span></li>
+                                <li><span>Numero di stanze: {{$apartment->rooms_n}}</span></li>
+                                <li><span>Numero di letti: {{$apartment->beds_n}}</span></li>
+                                <li><span>Numero di bagni: {{$apartment->bathrooms_n}}</span></li>
+                            @foreach ($apartment->service as $service)
+                                <li>{{$service->service_name}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
     </div>
 
-    <div id='map-div' class='map-div' style=" position: absolute; right: 50px; top: 250px; width: 30vw; height: 30vw;"></div>
+
 
     <script>
 
@@ -15,7 +61,7 @@
 
     tt.services.fuzzySearch({
         key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
-        query: '{{$apt->address}}',
+        query: '{{$apartment->address}}',
         limit: 10,
         radius: 200,
     })

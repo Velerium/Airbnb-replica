@@ -22,10 +22,9 @@
                             <a href="{{route('userApartments.create')}}">Aggiungi subito la tua prima proprietà e diventa Host!</a>
                         </div>
                     </div>
+                    
                 @else
     
-
-
                 <div class="dashboard-index">
                     <table class="index-container">
                         <thead>
@@ -62,13 +61,15 @@
                                     <td id="index-beds">{{$apt->visible}}</td>
                                     <td>
                                         <a href="{{ route('userApartments.show', $apt->id) }}">
-                                            <div class="btn btn-primary">View</div>
+                                            <div class="btn btn-primary">Visualizza</div>
                                         </a>
-                                        <div class="btn btn-primary">Edit</div>
-                                        <form class="btn" action="{{ route('userApartments.destroy', $apt->id) }}"  method="POST">
+                                        <div class="btn btn-primary">
+                                            <a href="{{ route('userApartments.edit', $apt->id) }}">Modifica</a>
+                                        </div>
+                                        <form action="{{ route('userApartments.destroy', $apt->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <div class="btn btn-danger">Delete</div>
+                                            <button type="submit" class="btn btn-outline-danger">Cancella</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -77,30 +78,5 @@
                     </table>
                 </div>
             @endif
-        {{-- @if (count($aptByIdUser) === 0)
-        
-            <div>
-                Non hai nessun appartmento.
-            </div>
-        
-            <button>
-                <a href="{{ route('userApartments.create') }}">Aggiungi un nuovo appartamento</a>
-            </button>
-
-        @else 
-
-            @foreach ($aptByIdUser as $apt)
-                <h4>Titolo: {{$apt->title}}</h4>
-                <button>
-                    <a href="{{ route('userApartments.show', $apt->id) }}">Dettagli appartamento</a>
-                </button>
-            @endforeach
-        
-            <div>
-                <button>
-                    <a href="{{ route('userApartments.create') }}">Aggiungi un nuovo appartamento</a>
-                </button>
-            </div>
-        @endif --}}
     </div>            
 @endsection
