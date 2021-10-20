@@ -30,19 +30,19 @@
                     <div class="bio-left col-8">
                     <div>Descrizione: {{$apartment->summary}}</div>
                     </div>
-                    <div class="bio-right col-4">
-                        <div id='map-div' class='map-div' style="width: 100%; height: 350px;"></div>
+                    <div id="app" class="bio-right col-4">
+                        <message-box/>
                     </div>
                 </div>
                 <div class="show-services row my-4">
                     <div class="services-left col-6">
                         <span>Servizi inclusi</span>
                         <ul>
-                                <li class="price"><span>€{{$apartment->price}} / notte</span></li>
-                                <li><span>Numero di ospiti: {{$apartment->guests_n}}</span></li>
-                                <li><span>Numero di stanze: {{$apartment->rooms_n}}</span></li>
-                                <li><span>Numero di letti: {{$apartment->beds_n}}</span></li>
-                                <li><span>Numero di bagni: {{$apartment->bathrooms_n}}</span></li>
+                            <li class="price"><span>€{{$apartment->price}} / notte</span></li>
+                            <li><span>Numero di ospiti: {{$apartment->guests_n}}</span></li>
+                            <li><span>Numero di stanze: {{$apartment->rooms_n}}</span></li>
+                            <li><span>Numero di letti: {{$apartment->beds_n}}</span></li>
+                            <li><span>Numero di bagni: {{$apartment->bathrooms_n}}</span></li>
                             @foreach ($apartment->service as $service)
                                 <li>{{$service->service_name}}</li>
                             @endforeach
@@ -50,6 +50,8 @@
                     </div>
                 </div>
             </div>
+            
+            <div id='map-div' class='map-div' style="width: 100%; height: 350px;"></div>
     </div>
 
 

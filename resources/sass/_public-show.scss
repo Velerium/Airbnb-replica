@@ -2,8 +2,8 @@
     color: #FFF;
     background: #1B1B1B;
     display: flex;
-    justify-content: center;
     padding: 75px;
+    flex-direction: column;
 
     .show-box {
         border: 1px solid #FFF;
