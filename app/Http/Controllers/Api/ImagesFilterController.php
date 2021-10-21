@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Apartment;
-use App\Message;
-use App\User;
-use App\Visitor;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
+use App\Image;
 
-class SearchApartmentsController extends Controller
+class ImagesFilterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +15,8 @@ class SearchApartmentsController extends Controller
      */
     public function index()
     {
-        return view('app/advancedSearch');
+        $images = Image::all();
+        return response()->json($images);
     }
 
     /**
@@ -51,11 +48,7 @@ class SearchApartmentsController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', Auth::id())->get();
-        // dd($user);
-        $apartment = Apartment::find($id);
-
-        return view('searchApartments.show', compact('apartment', 'user'));
+        //
     }
 
     /**
