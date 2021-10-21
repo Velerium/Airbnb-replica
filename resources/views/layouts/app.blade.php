@@ -38,7 +38,7 @@
 
         {{-- NAVBAR --}}
 
-        <nav class="navbar-expand-md shadow-sm">
+        <nav class="navbar-expand-md">
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 {{--LOGO  --}}

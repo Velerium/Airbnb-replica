@@ -15550,8 +15550,8 @@ a.text-dark:focus {
 }
 
 .slider-section {
-  height: 1000px;
-  background: url("/image/jumbo.jpg");
+  height: 700px;
+  background: url("/image/jumbotron.jpeg");
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -15568,7 +15568,7 @@ a.text-dark:focus {
   background: #FFF;
   border-radius: 40px;
   padding: 10px 0;
-  margin: 0 auto;
+  margin: 100px auto 60px auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -15588,11 +15588,35 @@ a.text-dark:focus {
   -webkit-appearance: none;
 }
 
-.slider-section .slider-container .slider-top .col-12 .input-search .search-button {
-  background: #FF385C;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+.slider-section .slider-container .slider-top .col-12 .input-search .search-button i {
+  font-size: 24px;
+  background-color: #ff385c;
+  padding: 12px;
+  border-radius: 100%;
+  color: white;
+}
+
+.slider-section .slider-container .slider-top .col-12 .advanced-search {
+  text-align: center;
+}
+
+.slider-section .slider-container .slider-top .col-12 .advanced-search button {
+  border: 1px solid white;
+  border-radius: 40px;
+  padding: 10px 60px;
+  background-color: white;
+  font-size: 30px;
+}
+
+.slider-section .slider-container .slider-top .col-12 .advanced-search button a {
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.slider-section .slider-container .slider-top .col-12 .advanced-search button a:hover {
+  text-decoration: none;
+  color: #ff385c;
 }
 
 .slider-section .slider-container .slider-bottom .col-12 {
@@ -15748,7 +15772,7 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
 
 nav {
   background-color: white;
-  padding: 12px 24px;
+  padding: 6px 16px;
 }
 
 nav .navbar-collapse {
@@ -15756,7 +15780,7 @@ nav .navbar-collapse {
 }
 
 nav .navbar-collapse .img-container {
-  width: 170px;
+  width: 160px;
   padding-right: 6px;
   padding-top: 6px;
 }
@@ -15766,9 +15790,21 @@ nav .navbar-collapse .img-container img {
 }
 
 nav .navbar-collapse .nav-item {
-  color: black;
+  color: #ff385c;
   font-size: 18px;
   padding: 0 6px;
+  font-weight: bold;
+}
+
+nav .navbar-collapse .nav-item a {
+  color: #ff385c;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+nav .navbar-collapse .nav-item a:hover {
+  text-decoration: none;
+  font-weight: normal;
 }
 
 .video-host-container {
@@ -16194,6 +16230,11 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
 }
 
 a {
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
   color: black;
 }
 

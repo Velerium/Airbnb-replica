@@ -52,7 +52,6 @@ class SearchApartmentsController extends Controller
     public function show($id)
     {
         $user = User::where('id', Auth::id())->get();
-        // dd($user);
         $apartment = Apartment::find($id);
 
         return view('searchApartments.show', compact('apartment', 'user'));

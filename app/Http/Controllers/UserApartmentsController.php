@@ -90,9 +90,13 @@ class UserApartmentsController extends Controller
         $sponsorships = Sponsorship::all();
         $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->first();
         $messages = Message::where('apartment_id', $apt->id)->get();
-        foreach($messages as $msg) {
-            $senders = User::where('id', $msg->user_id)->get();
-            // dd($senders);
+        
+        if($messages->isEmpty()) {
+            $sender = User::where('id', null);
+        } else {
+            foreach($messages as $msg) {
+                $sender = User::where('id', $msg->user_id)->first();
+            }
         }
 
         if($sponsored != null) {
@@ -111,7 +115,7 @@ class UserApartmentsController extends Controller
         
         $images= Image::where('apartment_id', $apt->id)->get();
 
-        return view('userApartments.show', compact('apt', 'images', 'sponsorships', 'sponsored', 'messages', 'senders'));
+        return view('userApartments.show', compact('apt', 'images', 'sponsorships', 'sponsored', 'messages', 'sender'));
     }
 
     /**

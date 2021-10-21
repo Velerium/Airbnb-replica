@@ -22,6 +22,7 @@ class CreateApartmentsTable extends Migration
             $table->unsignedTinyInteger('guests_n');
             $table->unsignedSmallInteger('square_meters');
             $table->text('summary');
+            $table->text('cover')->nullable();
             $table->string('address', 150);
             $table->float('latitude', 7,4);
             $table->float('longitude', 7,4);

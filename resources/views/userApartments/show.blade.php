@@ -100,8 +100,14 @@
                     @endif
                 </div>
             </div>
+
             <div class="show-message">
                 <h3><i class="fas fa-inbox"></i> Casella messaggi</h3>
+
+                @if ($messages->isEmpty())
+                    <h5 class="mt-2">Non hai ancora nessun messaggio!</h5>
+                @else 
+
                 <table class="messages-container">
                     <thead>
                         <tr>
@@ -114,11 +120,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            @foreach ($senders as $sender)
-                                <td class="message-name">{{$sender->first_name}}</td>
-                                <td class="message-name">{{$sender->last_name}}</td>
-                                <td class="message-name">{{$sender->email}}</td>  
-                            @endforeach
+                            <td class="message-name">{{$sender->first_name}}</td>
+                            <td class="message-name">{{$sender->last_name}}</td>
+                            <td class="message-name">{{$sender->email}}</td>  
                             @foreach($messages as $msg)
                                 <td class="message-name">{{$msg->content}}</td>
                                 <td class="message-name">{{$msg->created_at}}</td>
@@ -126,7 +130,11 @@
                             </tr>
                     </tbody>
                 </table>
+
+                @endif
+
             </div>
+                
         </div>
     </div>
 
