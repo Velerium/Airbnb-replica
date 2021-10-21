@@ -15,12 +15,11 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name', 30);
-            $table->string('last_name', 40);
-            $table->string('email', 100);
             $table->text('content');
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade')->index(); 
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade'); 
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
             $table->timestamps();
         });
     }

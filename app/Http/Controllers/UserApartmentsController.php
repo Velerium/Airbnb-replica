@@ -75,7 +75,6 @@ class UserApartmentsController extends Controller
 
         $this->createAndSave($apt, $request);
         return redirect()->route('userApartments.show', $apt->id);
-      
     }
 
     /**
@@ -105,8 +104,6 @@ class UserApartmentsController extends Controller
         }
         
         $images= Image::where('apartment_id', $apt->id)->get();
-        // $images = Image::all();
-        // dd($images);
 
         return view('userApartments.show', compact('apt', 'images', 'sponsorships', 'sponsored'));
     }

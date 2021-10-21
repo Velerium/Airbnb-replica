@@ -30,8 +30,55 @@
                     <div class="bio-left col-8">
                     <div>Descrizione: {{$apartment->summary}}</div>
                     </div>
-                    <div id="app" class="bio-right col-4">
-                        <message-box/>
+                    <div class="col-4">
+
+                        {{-- empty($user)  Not working ? --}}
+                        @if(isset($user)) 
+                            <h3>
+                                <a href="{{ route('register') }}">Registrati per poter mandare un messaggio all'Host dell'appartamento!</a>
+                            </h3>
+                            <div class="d-flex form-group">
+                                <input type="text" class="form-control mr-1" placeholder="Nome">
+                                <input type="text" class="form-control ml-1" placeholder="Cognome">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="nomeutente@esempio.com">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" placeholder="Inserisci qui il tuo messaggio..."></textarea>
+                            </div>
+                        @else
+                            @foreach ($user as $item) 
+                                @if (session('status'))
+                                    <div class="alert alert-success">
+                                        {{ session('status') }}
+                                    </div>
+                                @else 
+                                    <h3 class="mt-4">Manda un messaggio all'Host</h3>
+                                @endif
+                                <form action="{{ route('messages.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method("POST")
+
+                                    <div class="d-flex form-group">
+                                        <input type="text" class="form-control mr-1" name="first_name" value="{{ $item->first_name }}" placeholder="Nome">
+                                        <input type="text" class="form-control ml-1" name="last_name" value="{{ $item->last_name }}" placeholder="Cognome">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" value="{{$item->email}}" placeholder="nomeutente@esempio.com">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" name="content" placeholder="Inserisci qui il tuo messaggio..."></textarea>
+                                        <input type="hidden" name="user_id" value="{{$item->id}}">
+                                        <input type="hidden" name="apartment_id" value="{{$apartment->id}}">
+                                        {{-- @dd($apartment->id) --}}
+                                    </div>
+                                    <button type="submit" class="btn btn-light">Send</button>
+                                </form> 
+                            @endforeach
+                        @endif
+                        
                     </div>
                 </div>
                 <div class="show-services row my-4">

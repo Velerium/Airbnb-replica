@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Apartment;
-use App\Message;
-use App\User;
-use App\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
+use App\Message;
+use App\Apartment;
 
-class SearchApartmentsController extends Controller
+class MessagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +16,7 @@ class SearchApartmentsController extends Controller
      */
     public function index()
     {
-        return view('app/advancedSearch');
+        //
     }
 
     /**
@@ -29,7 +26,7 @@ class SearchApartmentsController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -40,7 +37,20 @@ class SearchApartmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        // dd($data);
+        $request->validate([
+            'content'=>'required',
+        ]);
+        
+        $newMessage = new Message();
+        $data['user_id'] = Auth::id(); 
+        $newMessage->content = $data['content'];
+        $newMessage->apartment_id = $data['apartment_id'];
+        $newMessage->user_id = $data['user_id'];
+        $newMessage->save();
+
+        return redirect()->route('searchApartments.show', $newMessage->apartment_id)->with('status', "Messaggio inviato correttamente all'Host dell'appartamento. Riceverai una sua risposta entro 24 ore!");
     }
 
     /**
@@ -51,10 +61,7 @@ class SearchApartmentsController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', Auth::id())->get();
-        $apartment = Apartment::find($id);
-
-        return view('searchApartments.show', compact('apartment', 'user'));
+        //
     }
 
     /**

@@ -128,11 +128,9 @@ class ApartmentsTableSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             $message = new Message();
-            $message->first_name = $faker->firstName($gender = null);
-            $message->last_name = $faker->lastName();
-            $message->email = $faker->safeEmail();
             $message->content = $faker->paragraph(2);
             $message->apartment_id = rand(1, 41); // 41 apartments
+            $message->user_id = rand(1, 15);
             $message->save();
         }
 
