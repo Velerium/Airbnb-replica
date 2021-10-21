@@ -15995,7 +15995,7 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   color: #FFF;
   background: #1B1B1B;
   display: flex;
-  padding: 75px;
+  padding: 60px 0;
   flex-direction: column;
 }
 
@@ -16060,17 +16060,29 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
 
 .show-container {
   color: #FFF;
-  background: #1B1B1B;
+  background: white;
   display: flex;
-  padding: 75px;
+  padding: 60px 0;
   flex-direction: column;
 }
 
 .show-container .show-box {
-  border: 1px solid #FFF;
+  border: 1px solid white;
   border-radius: 10px;
   box-shadow: 9px 7px 2px #424242;
   padding: 25px;
+  background-color: black;
+}
+
+.show-container .show-box .tools-edit-charts a {
+  color: #ff385c;
+  font-size: 26px;
+  padding: 0 6px;
+}
+
+.show-container .show-box .tools-edit-charts a:hover {
+  color: white;
+  font-size: 24px;
 }
 
 .show-container .show-box .show-gallery .col-6 .show-thumbnail {
@@ -16118,10 +16130,67 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   padding: 0;
 }
 
+.show-container .show-box .no-sponsor {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.show-container .show-box .no-sponsor img {
+  width: 60%;
+}
+
 .show-container .show-box .show-sponsor .bla {
-  border: 1px solid #FFF;
+  border-left: 1px solid #FFF;
   border-radius: 10px;
   padding: 15px;
+}
+
+.show-container .show-box .show-sponsor .bla .btn-acquista {
+  background-color: #ff385c;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 6px 12px;
+  color: white;
+  margin-top: 20px;
+}
+
+.show-container .show-box .show-sponsor .bla .btn-acquista:hover {
+  opacity: 0.7;
+  color: black;
+}
+
+.show-container .show-box .show-message {
+  border-top: 1px solid white;
+  padding: 12px;
+  border-radius: 20px;
+  margin-top: 72px;
+}
+
+.show-container .show-box .show-message h3 {
+  margin-top: 12px;
+}
+
+.show-container .show-box .show-message .messages-container {
+  width: 100%;
+  margin-top: 36px;
+  margin-bottom: 72px;
+}
+
+.show-container .show-box .show-message .messages-container thead {
+  border-bottom: 1px solid white;
+}
+
+.show-container .show-box .show-message .messages-container thead .table-name {
+  color: #ff385c;
+  border-left: 1px solid white;
+  padding: 6px;
+}
+
+.show-container .show-box .show-message .messages-container .message-name {
+  border-left: 1px solid white;
+  padding: 12px 6px 3px 6px;
 }
 
 a {

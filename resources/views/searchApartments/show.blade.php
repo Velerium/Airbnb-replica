@@ -32,30 +32,15 @@
                     </div>
                     <div class="col-4">
 
-                        {{-- empty($user)  Not working ? --}}
-                        @if(isset($user)) 
-                            <h3>
-                                <a href="{{ route('register') }}">Registrati per poter mandare un messaggio all'Host dell'appartamento!</a>
-                            </h3>
-                            <div class="d-flex form-group">
-                                <input type="text" class="form-control mr-1" placeholder="Nome">
-                                <input type="text" class="form-control ml-1" placeholder="Cognome">
+                        @if (isset($user))
+                            @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
                             </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="nomeutente@esempio.com">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="5" placeholder="Inserisci qui il tuo messaggio..."></textarea>
-                            </div>
-                        @else
+                            @endif
+
                             @foreach ($user as $item) 
-                                @if (session('status'))
-                                    <div class="alert alert-success">
-                                        {{ session('status') }}
-                                    </div>
-                                @else 
-                                    <h3 class="mt-4">Manda un messaggio all'Host</h3>
-                                @endif
+                                <h3 class="mt-4">Manda un messaggio all'Host</h3>
                                 <form action="{{ route('messages.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method("POST")
@@ -77,8 +62,25 @@
                                     <button type="submit" class="btn btn-light">Send</button>
                                 </form> 
                             @endforeach
+
+                        @else
+
+                            <h3>
+                                <a href="{{ route('register') }}">Registrati per poter mandare un messaggio all'Host dell'appartamento!</a>
+                            </h3>
+                            <div class="d-flex form-group">
+                                <input type="text" class="form-control mr-1" placeholder="Nome">
+                                <input type="text" class="form-control ml-1" placeholder="Cognome">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="nomeutente@esempio.com">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" placeholder="Inserisci qui il tuo messaggio..."></textarea>
+                            </div>
+
                         @endif
-                        
+
                     </div>
                 </div>
                 <div class="show-services row my-4">
@@ -104,8 +106,6 @@
             </div>
             
     </div>
-
-
 
 <script>
 
