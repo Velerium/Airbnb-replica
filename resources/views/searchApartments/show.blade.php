@@ -49,14 +49,18 @@
                         </ul>
                     </div>
                 </div>
+                <div class="show-maps row mt-5">
+                    <div class="col-12">
+                        <div id="map-div" class="map-div"></div>
+                    </div>
+                </div>
             </div>
             
-            <div id='map-div' class='map-div' style="width: 100%; height: 350px;"></div>
     </div>
 
 
 
-    <script>
+<script>
 
     tt.setProductInfo('BoolBnB', '0.1.4');
     var map;
@@ -97,6 +101,6 @@
             marker.setPopup(popup).togglePopup();
     });
         
-    </script>
+</script>
     
 @endsection
