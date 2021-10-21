@@ -106,7 +106,7 @@
         {{-- End Statistics --}}
         
         {{-- SPONSORSHIPS --}}
-        @dd($sponsored);
+        {{-- @dd($sponsored); --}}
         @if ($sponsored == null)
             <h2>Non hai nessuna sponsorizzazione su questo appartamento! Sponsorizzalo ora per metterlo in evidenza!</h2>
         @else
