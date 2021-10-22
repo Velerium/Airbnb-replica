@@ -18,11 +18,7 @@
                 @if (count($aptByIdUser) === 0)
                     <div class="no-apt-cont row">
                         <div class="title-no-apt">Sembra che tu non abbia ancora nessuna proprietà su BoolBnb!</div>
-                        <div class="link-no-apt">
-                            <a href="{{route('userApartments.create')}}">Aggiungi subito la tua prima proprietà e diventa Host!</a>
-                        </div>
                     </div>
-                    
                 @else
     
                 <div class="dashboard-index">
@@ -37,9 +33,9 @@
                                 <th>Numero stanze</th>
                                 <th>Numero letti</th>
                                 <th>Numero bagni</th>
-                                <th>Numero ospiti (max)</th>
+                                <th>Numero ospiti</th>
                                 <th>Metri quadrati</th>
-                                <th>Prezzo ( € )</th>
+                                <th>Prezzo (€)</th>
                                 <th>Visibilitá</th>
                                 <th>Extra tools</th>
                             </tr>

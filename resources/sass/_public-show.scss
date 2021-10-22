@@ -13,27 +13,37 @@
 
         .show-gallery {
 
-            .col-4 {
+            .col-12 {
+                --gap: 16px;
+                --num-cols: 4;
+                --row-height: 200px;
+                padding: var(--gap);
 
-                .show-thumbnail {
-                    background-image: url("/image/puppy.jpg");
-                    height: 300px;
-                    width: 300px;
-                    border-radius: 15px;
+                display: grid;
+                grid-template-columns: repeat(var(--num-cols), 1fr);
+                grid-auto-rows: var(--row-height);
+                gap: var(--gap);
+
+                .show-pics {
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 15px;
+                    }
                 }
-
-            }
-            .col-8 {
-                display: flex;
-                
-                .side-pics {
-                    background-image: url("/image/puppy.jpg");
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                    height: 300px;
-                    width: 25%;
-                    border-radius: 15px;
-
+                .image-grid-col-2 {
+                    grid-column: span 2;
+                }
+                .image-grid-row-2 {
+                    grid-row: span 2;
+                }
+                @media screen and (max-width: 1024px) {
+                    .image-grid {
+                      --num-cols: 2;
+                      --row-height: 100px;
+                    }
                 }
             }
         }
