@@ -16106,7 +16106,7 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
 }
 
 .dashboard-main-container .dashboard-index .index-container th {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .dashboard-main-container .dashboard-index td form {
@@ -16127,24 +16127,38 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   padding: 25px;
 }
 
-.show-container .show-box .show-gallery .col-4 .show-thumbnail {
-  background-image: url("/image/puppy.jpg");
-  height: 300px;
-  width: 300px;
+.show-container .show-box .show-gallery .col-12 {
+  --gap: 16px;
+  --num-cols: 4;
+  --row-height: 200px;
+  padding: var(--gap);
+  display: grid;
+  grid-template-columns: repeat(var(--num-cols), 1fr);
+  grid-auto-rows: var(--row-height);
+  gap: var(--gap);
+}
+
+.show-container .show-box .show-gallery .col-12 .show-pics img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 15px;
 }
 
-.show-container .show-box .show-gallery .col-8 {
-  display: flex;
+.show-container .show-box .show-gallery .col-12 .image-grid-col-2 {
+  grid-column: span 2;
 }
 
-.show-container .show-box .show-gallery .col-8 .side-pics {
-  background-image: url("/image/puppy.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 300px;
-  width: 25%;
-  border-radius: 15px;
+.show-container .show-box .show-gallery .col-12 .image-grid-row-2 {
+  grid-row: span 2;
+}
+
+@media screen and (max-width: 1024px) {
+  .show-container .show-box .show-gallery .col-12 .image-grid {
+    --num-cols: 2;
+    --row-height: 100px;
+  }
 }
 
 .show-container .show-box .bio .bio-right {
@@ -16222,11 +16236,6 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   border: 1px solid #FFF;
   border-radius: 10px;
   padding: 15px;
-}
-
-.show-container .show-box .show-services .services-box {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .show-container .show-box .show-services .services-box div {
