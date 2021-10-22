@@ -15984,6 +15984,73 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   width: 1000px;
 }
 
+.edit-container {
+  background-color: black;
+  color: #ff385c;
+}
+
+.edit-container .container {
+  padding: 70px 0;
+}
+
+.edit-container .container form h1 {
+  text-align: center;
+  padding-top: 48px;
+  padding-bottom: 36;
+}
+
+.edit-container .container form h4 {
+  font-size: 30px;
+}
+
+.edit-container .container form label {
+  font-size: 22px;
+}
+
+.edit-container .container form input,
+.edit-container .container form textarea {
+  border-radius: 40px;
+  margin-bottom: 24px;
+}
+
+.edit-container .container form .nmb-inpt {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.edit-container .container form .label-img {
+  font-size: 16px;
+}
+
+.edit-container .container form .img-container img {
+  width: 100%;
+}
+
+.edit-container .container form .services-row {
+  margin-bottom: 60px;
+}
+
+.edit-container .container form .services-row .services-label {
+  font-size: 16px;
+}
+
+.edit-container .container form .public-label {
+  font-size: 30px;
+}
+
+.edit-container .container form .btn-save-box {
+  text-align: right;
+}
+
+.edit-container .container form .btn-save-box .btn-save {
+  text-align: right;
+  font-size: 30px;
+  border: none;
+  background-color: #ff385c;
+  border-radius: 100px;
+  padding: 6px 24px;
+}
+
 .dashboard-main-container {
   background: #1B1B1B;
   color: white;

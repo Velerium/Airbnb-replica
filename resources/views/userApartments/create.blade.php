@@ -88,7 +88,6 @@
                     <label class="services-label">{{$service->service_name}}</label>
                 </div>
                 @endforeach
-
             </div>
             {{-- END EXTRA SERVICES --}}
     
