@@ -73,6 +73,10 @@
                     height: 500px;
                     border: 1px solid #FFF;
                     border-radius: 10px;
+
+                    .mapboxgl-popup {
+                        color: black !important;
+                    }
                 }
             }
         }

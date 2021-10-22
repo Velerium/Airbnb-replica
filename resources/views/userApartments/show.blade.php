@@ -32,7 +32,7 @@
             </div>
             <div class="bio row my-5">
                 <div class="bio-left col-8">
-                <div>Descrizione: {{$apt->summary}}</div>
+                <div>{{$apt->summary}}</div>
                 </div>
                 <div class="bio-right col-4">
                     <div>
