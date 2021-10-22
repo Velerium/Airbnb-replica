@@ -76,7 +76,9 @@
             <div class="col-4 details-container">
                 <h1 class="font-weight-bold">Prova ad ospitare</h1>
                 <p class="mb-4">Condividi il tuo spazio per guadagnare qualcosa in più e cogliere nuove opportunitá.</p>
-                <button>Scopri di più</button>
+                <button>
+                    <a href="{{route('userApartments.create')}}">Scopri di più</a>
+                </button>
             </div>
         </div>
     </div>

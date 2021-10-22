@@ -28,7 +28,7 @@
                 </div>
                 <div class="bio row">
                     <div class="bio-left col-8">
-                    <div>Descrizione: {{$apartment->summary}}</div>
+                    <div>{{$apartment->summary}}</div>
                     </div>
                     <div class="col-4">
 
@@ -128,23 +128,19 @@
             zoom: 17,
         });
     
-            var marker = new tt.Marker().setLngLat(response.results[0].position).addTo(map);
-            var popupOffsets = {
-                top: [0, 0],
-                bottom: [0, -40],
-                'bottom-right': [0, -70],
-                'bottom-left': [0, -70],
-                left: [25, -35],
-                right: [-25, -35]
-            }
+        var marker = new tt.Marker().setLngLat(response.results[0].position).addTo(map);
+        var popupOffsets = {
+            top: [0, 0],
+            bottom: [0, -40],
+            'bottom-right': [0, -70],
+            'bottom-left': [0, -70],
+            left: [25, -35],
+            right: [-25, -35]
+        }
+        
+        var popup = new tt.Popup({offset: popupOffsets}).setHTML(response.results[0].address.freeformAddress);
 
-            // if (response.results[0].type === 'POI') {
-            //     var popup = new tt.Popup({offset: popupOffsets}).setHTML(response.results[0].poi.name);
-            // } else {
-                var popup = new tt.Popup({offset: popupOffsets}).setHTML(response.results[0].address.freeformAddress);
-            // }
-
-            marker.setPopup(popup).togglePopup();
+        marker.setPopup(popup).togglePopup();
     });
         
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Apartment;
+use App\Service;
 use Exception;
 
 class ApartmentsFilterController extends Controller
@@ -18,23 +19,44 @@ class ApartmentsFilterController extends Controller
     {   
         
         $apartments = Apartment::with('service')->get();
-        // dd($apartments);
+        $flag = false;
 
         try {
-            $guestsNumber = $_GET['guests'];
-        } catch (Exception $guestsNumber) {
-            $guestsNumber = 0;
+            $serviceID = $_GET['service'];
+        } catch (Exception $e) {
+            $flag = true;
         }
         
+        $guestsNumber = $_GET['guests'];
         $priceMin = $_GET['priceMin'];
         $priceMax = $_GET['priceMax'];
-        $bedNumber = $_GET['beds'];
+        $bedsNumber = $_GET['beds'];
         $roomsNumber = $_GET['rooms'];
 
-        $filtered = $apartments->where('guests_n', '>=', $guestsNumber);
+        if (!$flag) {
+    
+            $servicedApt = collect(new Apartment);
+            
+            foreach ($apartments as $apartment) {
+                $aptServices = [];
+                foreach ($apartment->service as $service) {
+                    $aptServices[] = $service->id;
+                };
+                sort($aptServices, SORT_NUMERIC);
+                if(array_intersect($aptServices, $serviceID) == $serviceID) {
+                    $servicedApt[] = $apartment;
+                };
+            }
+        }
+
+        if (!$flag) {
+            $filtered = $servicedApt->where('guests_n', '>=', $guestsNumber);
+        } else {
+            $filtered = $apartments->where('guests_n', '>=', $guestsNumber);
+        }
         $filtered1 = $filtered->where('price', '>=', $priceMin);
         $filtered2 = $filtered1->where('price', '<=', $priceMax);
-        $filtered3 = $filtered2->where('beds_n', '>=', $bedNumber);
+        $filtered3 = $filtered2->where('beds_n', '>=', $bedsNumber);
         $filtered4 = $filtered3->where('rooms_n', '>=', $roomsNumber);
 
         return response()->json($filtered4);

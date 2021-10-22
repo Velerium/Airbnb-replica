@@ -1,5 +1,18 @@
 .statistics-container {
-    h1 {margin: 48px 0;}
+    h1 {
+        margin: 60px 0;
+        background-color: black;
+        color: #ff385c;
+        padding: 100px 0;
+        text-align: center;
+        border-radius: 20px;
+    }
+
+    h3 {
+        margin-top: 60px;
+        margin-bottom: 24px;
+        color: #ff385c;
+    }
 
     .statistics-content {
         margin-bottom: 60px;

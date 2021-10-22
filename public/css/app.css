@@ -15976,7 +15976,18 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
 }
 
 .statistics-container h1 {
-  margin: 48px 0;
+  margin: 60px 0;
+  background-color: black;
+  color: #ff385c;
+  padding: 100px 0;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.statistics-container h3 {
+  margin-top: 60px;
+  margin-bottom: 24px;
+  color: #ff385c;
 }
 
 .statistics-container .statistics-content {
@@ -16159,6 +16170,10 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   height: 500px;
   border: 1px solid #FFF;
   border-radius: 10px;
+}
+
+.show-container .show-box .show-maps .col-12 .map-div .mapboxgl-popup {
+  color: black !important;
 }
 
 .show-container {
