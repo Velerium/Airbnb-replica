@@ -4341,6 +4341,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -4351,13 +4354,10 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
     'Card': _Card_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Slider: _vueform_slider_dist_slider_vue2_js__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  mounted: function mounted() {
-    this.getApartments();
-    this.getAllServices();
-  },
   data: function data() {
     return {
       apartments: [],
+      aptByQuery: [],
       services: [],
       filterService: [],
       currentPage: 1,
@@ -4366,11 +4366,23 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       guestWord: 'Ospiti',
       bedsNumber: 0,
       roomsNumber: 0,
-      value: [50, 1000],
-      priceMin: 50,
+      value: [20, 1000],
+      priceMin: 20,
       priceMax: 1000,
+      fuzzySearch: '',
       newQuery: "",
-      filterFlag: false
+      filterFlag: false,
+      searchOptions: {
+        key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
+        language: 'it-IT',
+        limit: 15,
+        center: [9.1881, 45.4636],
+        radius: 100000
+      },
+      autocompleteOptions: {
+        key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
+        language: 'it-IT'
+      }
     };
   },
   computed: {
@@ -4379,7 +4391,21 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
     },
     newQueryURL: function newQueryURL() {
       return "".concat(this.newQuery);
+    },
+    searchBoxOptions: function searchBoxOptions() {
+      return {
+        minNumberofCharacters: 3,
+        searchOptions: this.searchOptions,
+        autocompleteOptions: this.autocompleteOptions
+      };
     }
+  },
+  created: function created() {
+    this.getApartments();
+    this.getAllServices();
+  },
+  mounted: function mounted() {
+    this.fuzzyTimeout();
   },
   methods: {
     getApartments: function getApartments() {
@@ -4494,6 +4520,26 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
 
       console.log(this.newQuery);
       this.getApartmentsServices();
+    },
+    fuzzyTimeout: function fuzzyTimeout() {
+      setTimeout(this.fuzzySetup, 500);
+    },
+    fuzzySetup: function fuzzySetup() {
+      var _this4 = this;
+
+      var ttSearchBox = new tt.plugins.SearchBox(tt.services, this.searchBoxOptions);
+      document.querySelector('.minorRight').appendChild(ttSearchBox.getSearchBoxHTML()); // var apts = JSON.parse(JSON.stringify(this.apartments))
+
+      ttSearchBox.on('tomtom.searchbox.resultselected', function (event) {
+        var coordinates = event.data.result.position;
+        var queryLng = coordinates.lng.toFixed(4);
+        var queryLat = coordinates.lat.toFixed(4);
+        _this4.searchOptions.center = [queryLng, queryLat]; //var aptsValues = Object.values(apts);
+        // delete axios.defaults.headers.common['X-Requested-With'];
+        // axios.get(`https://api.tomtom.com/routing/1/calculateRoute/${queryLng},${queryLat}:${aptLng},${aptLat}/json?language=it-IT&key=pj3fPYZczjgdGuLpmajsU40F64Y5nmpB`).then((response) => {
+        //     console.log(response.data.routes[0].summary.lengthInMeters);
+        // });
+      });
     }
   }
 });
@@ -41149,7 +41195,9 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div")
-                      ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "minorRight" })
                     ]),
                     _vm._v(" "),
                     _c(
@@ -53988,8 +54036,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\adina\Documents\Boolean-Class#37\project-boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\adina\Documents\Boolean-Class#37\project-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Andrea\Desktop\Boolean\Final Project - BoolBnB\project-boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Andrea\Desktop\Boolean\Final Project - BoolBnB\project-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

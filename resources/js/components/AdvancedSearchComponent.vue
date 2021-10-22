@@ -103,7 +103,7 @@
                                     <div>
                                     </div>
                                 </div>
-                                <!-- <div class="minorRight"></div>  Fill with something maybe? -->
+                                <!-- <div class="minorRight"></div> -->
                             </div>
 
                             <div class="servicesFilter">
@@ -165,14 +165,10 @@ export default {
         Slider,
     },
 
-    mounted() {
-        this.getApartments();
-        this.getAllServices();
-    },
-
     data() {
         return {
             apartments: [],
+            aptByQuery: [],
             services: [],
             filterService: [],
             currentPage: 1,
@@ -181,11 +177,25 @@ export default {
             guestWord: 'Ospiti',
             bedsNumber: 0,
             roomsNumber: 0,
-            value: [50, 1000],
-            priceMin: 50,
+            value: [20, 1000],
+            priceMin: 20,
             priceMax: 1000,
+            // fuzzySearch: '',
             newQuery: ``,
             filterFlag: false,
+
+            // searchOptions: {
+            //     key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
+            //     language: 'it-IT',
+            //     limit: 15,
+            //     center: [9.1881, 45.4636],
+            //     radius: 100000,
+            // },
+
+            // autocompleteOptions: {
+            //     key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
+            //     language: 'it-IT',
+            // },
         }
     },
 
@@ -196,6 +206,20 @@ export default {
         newQueryURL() {
             return `${this.newQuery}`;
         },
+
+        // searchBoxOptions() {
+        //     return {
+        //         minNumberofCharacters: 3,
+        //         searchOptions: this.searchOptions,
+        //         autocompleteOptions: this.autocompleteOptions,
+        //     }
+        // } 
+    },
+
+    mounted() {
+        this.getApartments();
+        this.getAllServices();
+        // this.fuzzyTimeout();
     },
 
     methods: {
@@ -316,8 +340,35 @@ export default {
             console.log(this.newQuery);
             this.getApartmentsServices();
         },
-    },
+
+        // fuzzyTimeout() {
+        //     setTimeout(this.fuzzySetup, 500);
+        // },
+
+        // fuzzySetup() {
+        //     var ttSearchBox = new tt.plugins.SearchBox(tt.services, this.searchBoxOptions);
+        //     document.querySelector('.minorRight').appendChild(ttSearchBox.getSearchBoxHTML());
+        //     // var apts = JSON.parse(JSON.stringify(this.apartments))
+        //     ttSearchBox.on('tomtom.searchbox.resultselected', event => {
+        //         var coordinates = event.data.result.position;
+        //         var queryLng = coordinates.lng.toFixed(4);
+        //         var queryLat = coordinates.lat.toFixed(4);
+        //         this.searchOptions.center = [queryLng, queryLat];
+
+                
+
+                //var aptsValues = Object.values(apts);
+
+                    // delete axios.defaults.headers.common['X-Requested-With'];
+                    // axios.get(`https://api.tomtom.com/routing/1/calculateRoute/${queryLng},${queryLat}:${aptLng},${aptLat}/json?language=it-IT&key=pj3fPYZczjgdGuLpmajsU40F64Y5nmpB`).then((response) => {
+                    //     console.log(response.data.routes[0].summary.lengthInMeters);
+                    // });
+                
+        //     });
+        // }
+    }
 }
+
 </script>
 
 <style src="@vueform/slider/themes/default.css"></style>
