@@ -16,7 +16,7 @@
                 </div>
             </div>
                 @if (count($aptByIdUser) === 0)
-                    <div class="no-apt-cont row">
+                    <div class="no-apt-cont row my-5 p-3">
                         <div class="title-no-apt">Sembra che tu non abbia ancora nessuna proprietà su BoolBnb!</div>
                     </div>
                 @else
