@@ -15,15 +15,24 @@
                     </div>
                 </div>
                 <div class="show-gallery row my-4">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="show-thumbnail">
+                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="side-pics"></div>
-                        <div class="side-pics"></div>
-                        <div class="side-pics"></div>
-                        <div class="side-pics"></div>
+                    <div class="col-8">
+                        <div class="side-pics">
+                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
+                        </div>
+                        <div class="side-pics">
+                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
+                        </div>
+                        <div class="side-pics">
+                        <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
+                        </div>
+                        <div class="side-pics">
+                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
+                        </div>
                     </div>
                 </div>
                 <div class="bio row">
@@ -83,18 +92,30 @@
                     </div>
                 </div>
                 <div class="show-services row my-4">
-                    <div class="services-left col-6">
-                        <span>Servizi inclusi</span>
-                        <ul>
-                            <li class="price"><span>€{{$apartment->price}} / notte</span></li>
-                            <li><span>Numero di ospiti: {{$apartment->guests_n}}</span></li>
-                            <li><span>Numero di stanze: {{$apartment->rooms_n}}</span></li>
-                            <li><span>Numero di letti: {{$apartment->beds_n}}</span></li>
-                            <li><span>Numero di bagni: {{$apartment->bathrooms_n}}</span></li>
-                            @foreach ($apartment->service as $service)
-                                <li>{{$service->service_name}}</li>
-                            @endforeach
-                        </ul>
+                    <div class="services-left col-4">
+                        <div>
+                            <span>Servizi inclusi</span>
+                            <ul>
+                                @foreach ($apartment->service as $service)
+                                    <li>{{$service->service_name}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="services-right col-8">
+                        <div>
+                            <span>Dettagli extra</span>
+                            <ul>
+                                <li class="price"><span>€{{$apartment->price}} / notte</span></li>
+                                <li><span>Numero di ospiti: {{$apartment->guests_n}}</span></li>
+                                <li><span>Numero di stanze: {{$apartment->rooms_n}}</span></li>
+                                <li><span>Numero di letti: {{$apartment->beds_n}}</span></li>
+                                <li><span>Numero di bagni: {{$apartment->bathrooms_n}}</span></li>
+                                @foreach ($apartment->service as $service)
+                                    <li>{{$service->service_name}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="show-maps row mt-5">
@@ -103,7 +124,7 @@
                     </div>
                 </div>
             </div>
-            
+        </div>
     </div>
 
 <script>

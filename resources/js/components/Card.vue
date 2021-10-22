@@ -38,7 +38,7 @@ export default {
         width: 18%;
         height: 0;
         padding-bottom: calc(18% + 50px);
-        margin-bottom: 40px;
+        margin-bottom: 50px;
         border-radius: 20px;
         margin-right: 1.6%;
         cursor: pointer;
@@ -53,7 +53,7 @@ export default {
             height: 0;
             padding-bottom: 100%;
             border-radius: 20px;
-            border: 1px solid black;
+            box-shadow: 5px 3px 2px #BBB;
         }
 
         .itemDetails {
