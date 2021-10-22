@@ -23,8 +23,8 @@ Route::get('ByCity/{string}','ApartmentsByCityController@index' )->name('AptByCi
 Route::resource('ByCity', 'ApartmentsByCityController');
  
 Route::resource('userApartments', 'UserApartmentsController');
-
 Route::resource('searchApartments', 'SearchApartmentsController');
+Route::resource('messages', 'MessagesController');
 
 Route::get('/statistics/{userApartment}', 'StatisticsController@show')->name('statistics');
 

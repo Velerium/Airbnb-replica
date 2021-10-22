@@ -10,6 +10,7 @@ use App\Service;
 use App\Visitor;
 use App\Image;
 use App\Sponsorship;
+use App\Message;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -60,7 +61,7 @@ class UserApartmentsController extends Controller
 
         $request->validate([
             'title' => 'required|min:5|max:100',
-            'summary' => 'required|min:10|max:500',
+            'summary' => 'required|min:10|max:1000',
             'rooms_n' => 'required|integer|min:1|max:25',
             'beds_n' => 'required|integer|min:1|max:50',
             'bathrooms_n' => 'required|integer|min:1|max:15',
@@ -75,7 +76,6 @@ class UserApartmentsController extends Controller
 
         $this->createAndSave($apt, $request);
         return redirect()->route('userApartments.show', $apt->id);
-      
     }
 
     /**
@@ -89,6 +89,15 @@ class UserApartmentsController extends Controller
         $apt = Apartment::findOrFail($id);
         $sponsorships = Sponsorship::all();
         $sponsored = DB::table('apartment_sponsorship')->where('apartment_id', $apt->id)->first();
+        $messages = Message::where('apartment_id', $apt->id)->get();
+        
+        if($messages->isEmpty()) {
+            $sender = User::where('id', null);
+        } else {
+            foreach($messages as $msg) {
+                $sender = User::where('id', $msg->user_id)->first();
+            }
+        }
 
         if($sponsored != null) {
             // calculating the duration from created_at moment
@@ -105,10 +114,8 @@ class UserApartmentsController extends Controller
         }
         
         $images= Image::where('apartment_id', $apt->id)->get();
-        // $images = Image::all();
-        // dd($images);
 
-        return view('userApartments.show', compact('apt', 'images', 'sponsorships', 'sponsored'));
+        return view('userApartments.show', compact('apt', 'images', 'sponsorships', 'sponsored', 'messages', 'sender'));
     }
 
     /**

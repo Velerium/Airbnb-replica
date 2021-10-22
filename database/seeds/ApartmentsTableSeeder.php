@@ -79,10 +79,8 @@ class ApartmentsTableSeeder extends Seeder
             $listVisitorId[] = $visitorObj->id;
         }
 
-
         #APARTMENT TABLE
         $functions = new ApartmentDataProvider;
-
         for ($i = 0; $i < count($functions->apartmentData['title']) ; $i++) {
             $apt = new Apartment();
             $apt->title = $functions->getTitle($i);
@@ -92,6 +90,7 @@ class ApartmentsTableSeeder extends Seeder
             $apt->guests_n = $functions->getGuests($i);
             $apt->square_meters = $functions->getSize($i);
             $apt->summary = $functions->getDesc($i);
+            $apt->cover = $functions->getCover($i);
             $apt->address = $functions->getAddress($i);
             $apt->latitude = $functions->getLat($i);
             $apt->longitude = $functions->getLong($i);
@@ -117,9 +116,9 @@ class ApartmentsTableSeeder extends Seeder
             // PIVOT TABLE apartament_sponsorship
             $randSponsorKey = array_rand($listSponsorId, 3);
             $visitor1 = $listVisitorId[$randSponsorKey[0]];
-            $visitor2 = $listVisitorId[$randSponsorKey[1]];
+            // $visitor2 = $listVisitorId[$randSponsorKey[1]];
             $apt->sponsorship()->attach($visitor1);
-            $apt->sponsorship()->attach($visitor2);
+            // $apt->sponsorship()->attach($visitor2);
         }
 
 
@@ -128,11 +127,9 @@ class ApartmentsTableSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             $message = new Message();
-            $message->first_name = $faker->firstName($gender = null);
-            $message->last_name = $faker->lastName();
-            $message->email = $faker->safeEmail();
             $message->content = $faker->paragraph(2);
             $message->apartment_id = rand(1, 41); // 41 apartments
+            $message->user_id = rand(1, 15);
             $message->save();
         }
 

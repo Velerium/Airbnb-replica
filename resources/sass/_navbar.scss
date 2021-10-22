@@ -1,13 +1,13 @@
 nav {
 
     background-color: white;
-    padding: 12px 24px;
+    padding: 6px 16px;
 
     .navbar-collapse {
         justify-content: space-between;
 
         .img-container {
-            width: 170px;
+            width: 160px;
             padding-right: 6px;
             padding-top: 6px;
     
@@ -15,9 +15,23 @@ nav {
         }
     
         .nav-item {
-            color: black;
+            color: #ff385c;
             font-size: 18px;
             padding: 0 6px;
+            font-weight: bold;
+
+            a {
+                color: #ff385c;
+                font-weight: bold;
+                font-size: 18px;
+
+                &:hover {
+                    text-decoration: none;
+                    font-weight: normal;
+
+                }
+            }
+
         }
     }
 

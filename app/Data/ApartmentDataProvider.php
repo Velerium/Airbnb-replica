@@ -94,6 +94,50 @@ class ApartmentDataProvider
             "Appartamento in via mauro amoruso Bari.La struttura si trova in un piccolo condominio silenzioso e tranquillo in posizione centrale. La zona è ben servita , a pochi passi ci sono 2 garage , a 50 metri la fermata dei pullman che collega la zona con la stazione , l' aereoporto , il policlinico e le spiagge . L'appartamento è climatizzato dispone di WIFI gratuito e di 2 TV a schermo piatto.",
         ],
 
+        'cover' => [
+            "https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg",
+            "https://a0.muscache.com/im/pictures/b3585cc9-e890-40eb-8240-7a7ab7a09281.jpg",
+            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-19006655/original/56c61119-d56e-4f81-8eda-80afa1078170.jpeg",
+            "https://a0.muscache.com/im/pictures/f5bcae2f-af87-4c33-b68a-def1aa5aa7df.jpg",
+            "https://a0.muscache.com/im/pictures/934d736b-31c0-4f1c-8736-2e8ad5898cc5.jpg",
+            "https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg?aki_policy=xx_large",
+            "https://a0.muscache.com/im/pictures/871a423d-c66d-45fc-b8d0-f98718b61a1a.jpg?aki_policy=xx_large",
+            "https://a0.muscache.com/im/pictures/c9db035f-7239-4b52-a8fa-b3e8622c8171.jpg?aki_policy=xx_large",
+            "https://a0.muscache.com/im/pictures/35597864/3702e233_original.jpg?aki_policy=x_large",
+            "https://a0.muscache.com/im/pictures/3f4db92f-c393-484a-9b4d-7a3816fee26a.jpg?aki_policy=large",
+            "https://a0.muscache.com/im/pictures/a7e7d66f-f125-41e4-a1c8-fab5e8971cc2.jpg?im_w=1200",
+            'https://a0.muscache.com/im/pictures/567fcd06-5d40-407c-a66f-cc240bb97435.jpg',
+            'https://a0.muscache.com/im/pictures/07eac1e1-daea-4476-85a3-75c0dd94a448.jpg',
+            'https://a0.muscache.com/im/pictures/5a84dd08-a2e8-4721-9149-523488bed095.jpg',
+            'https://a0.muscache.com/im/pictures/pro_photo_tool/Hosting-22681968-unapproved/original/10e0b5fb-a087-478e-9a26-891d15ca0737.JPEG',
+            'https://a0.muscache.com/im/pictures/767b2022-3677-441d-bab8-b459986ee36e.jpg',
+            'https://a0.muscache.com/im/pictures/2a519efa-abf7-406f-9852-ace4b6617fde.jpg',
+            "https://a0.muscache.com/im/pictures/a01d7312-998e-4a5c-bab5-cb5f1e089fae.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/5808be3a-39e3-40e9-aefa-d9bfae1bdbea.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/46de74d2-c8e7-4398-9a34-a1938246bcf5.jpg?im_w=960",
+            "https://a0.muscache.com/im/pictures/d0dd0651-b4e8-4bc4-affd-eeb9d6bf5afa.jpg?im_w=960",
+            "https://a0.muscache.com/im/pictures/f5601ad3-e216-4f57-bbea-e0eac6b4eaaa.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/a58a4312-ab7a-4c5e-af54-bf2b00476b0b.jpg?im_w=960",
+            "https://images.pexels.com/photos/7245093/pexels-photo-7245093.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "https://images.pexels.com/photos/3625734/pexels-photo-3625734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "https://images.pexels.com/photos/565324/pexels-photo-565324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "https://a0.muscache.com/im/pictures/78ed8826-6351-4e1b-816b-fc33c2279de2.jpg?im_w=960",
+            "https://images.pexels.com/photos/7245298/pexels-photo-7245298.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+            "https://a0.muscache.com/im/pictures/a566a698-b7c9-4f2c-87ca-2819a1812444.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/60f88616-8233-4640-9bc5-da1575861780.jpg?im_w=960",
+            "https://a0.muscache.com/im/pictures/f307c913-b4c4-46de-8eb6-c1c1dfa26072.jpg?im_w=960",
+            "https://a0.muscache.com/im/pictures/f639d7b3-bf1c-442c-b463-28b256f58c4a.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/37d1bece-011e-4661-a9cb-4cb27a48c80a.jpg?im_w=960",
+            "https://a0.muscache.com/im/pictures/8c6d989c-ed0f-4768-925c-3ec61fcfbfdc.jpg?im_w=960",
+            "https://a0.muscache.com/im/pictures/28a249f2-f60d-4105-81fc-ee8726efed86.jpg?im_w=960",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-51340122/original/f1732b90-eb70-45b6-aa08-004a00559753.jpeg?im_w=960",
+            "https://a0.muscache.com/im/pictures/5e5aa2a5-0c77-4085-b98f-6e8b7b90648b.jpg?im_w=960",
+            "https://a0.muscache.com/im/pictures/83cbc730-5b02-4a8d-be44-efda3662a33c.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/fdbc4c98-267a-440b-980a-819822f88130.jpg?im_w=960",
+            "https://a0.muscache.com/im/pictures/41411b64-5fcc-4c37-b29d-0a3cf11ed6d2.jpg?im_w=960",
+        ],
+
         'rooms_n' => [
             3, 11, 7, 5, 3, 1, 3, 3, 5, 3, 4, 5, 7, 4, 10, 5, 9, 4, 2, 1, 3, 2, 3, 4, 
             2, 2, 6, 6, 3, 3, 2, 2, 4, 4, 8, 4, 3, 4, 5, 7, 6,
@@ -195,6 +239,11 @@ class ApartmentDataProvider
     public function getDesc($id)
     {
         return $this->apartmentData['description'][$id];
+    }
+
+    public function getCover($id)
+    {
+        return $this->apartmentData['cover'][$id];
     }
 
     public function getRooms($id)

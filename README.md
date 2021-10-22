@@ -1,3 +1,9 @@
+Please, guys.
+Stop pushing directly to master, I'm *BEGGING* you.
+Everytime I merge I'm scared I'll lose everything >.>
+
+## Info
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">

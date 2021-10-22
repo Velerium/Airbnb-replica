@@ -6,14 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
-
-    // one to many relations between User and Apartment
-    public function apartment() {
-        return $this->hasMany(Apartment::class);
-    }
-
     use Notifiable;
 
     /**
@@ -22,7 +17,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'date_of_birth', 'email', 'password',
+        'first_name', 
+        'last_name', 
+        'date_of_birth', 
+        'email', 
+        'password',
     ];
 
     /**
@@ -42,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // one to many relations between User and Apartment
+    public function apartment() {
+        return $this->hasMany(Apartment::class);
+    }
+
+    public function messages()
+    {
+      return $this->hasMany(Apartment::class);
+    }
 }

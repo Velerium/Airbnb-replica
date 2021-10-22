@@ -94,7 +94,7 @@
         {{-- END SERVICES --}}
         
 
-        <button type="submit" class="btn btn-dark mt-3 mb-5" type="submit">Salva modifiche</button>
+        <button type="submit" class="btn btn-dark mt-3 mb-5">Salva modifiche</button>
 
     </form>
 

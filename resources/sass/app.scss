@@ -17,10 +17,17 @@
 @import 'statistics';
 @import 'editView';
 @import 'dashboard';
+@import 'public-show';
+@import 'private-show';
 
 
 a {
     color: black;
+
+    &:hover {
+        text-decoration: none;
+        color: black;
+    }
 }
 
 .pointer {
