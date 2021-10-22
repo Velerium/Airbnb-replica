@@ -48,16 +48,18 @@
             @foreach ($allApt as $apt)
                 @foreach ($apt->sponsorship as $sponsorship)
                     @if ($sponsorship->id !== null)
-                        <div class="col-2 recommended-filters">
+                        <div class="col-3 recommended-filters">
                             <a href="{{ route('searchApartments.show', $apt->id) }}">
                                 <div class="recommended-filters-pfp">
                                     <img src="{{ asset($apt->cover) }}" alt="{{$apt->title}} copertina">
                                 </div>
-                                <div class="font-weight-bold pointer">
-                                    {{$apt->title}}
+                                <div class="recommended-filters-details">
+                                    <div class="font-weight-bold pointer">
+                                        {{$apt->title}}
+                                    </div>
+                                    <div><i class="fas fa-map-marker-alt"></i> {{$apt->address}}</div>
+                                    <div>{{$apt->price}}€</div>
                                 </div>
-                                <div><i class="fas fa-map-marker-alt"></i> {{$apt->address}}</div>
-                                <div>{{$apt->price}}€</div>
                             </a>
                         </div>
                     @else
@@ -69,7 +71,7 @@
         </div>
     </div>
 
-    <div class=" owner-section p-5">
+    <div class=" owner-section container p-5">
         <div class="row owner-details my-5">
             <div class="col-4 details-container">
                 <h1 class="font-weight-bold">Prova ad ospitare</h1>
