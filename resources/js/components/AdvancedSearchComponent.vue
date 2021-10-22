@@ -101,7 +101,7 @@
                                 <h5>Servizi</h5>
                                 <div class="services">
                                     <div v-for="service in services" :key="service.id"  :id="service.id" :name="service.service_name">
-                                        <input v-on:change="newFilterQuery(service.id)" type="checkbox">
+                                        <input v-on:change="newFilterQuery(service.id)" type="checkbox" name="service">
                                         <label :for="service.service_name">{{service.service_name}}</label>
                                     </div>
                                 </div>
@@ -228,6 +228,8 @@ export default {
                 
                 this.newQuery = this.newQuery.replace(/(priceMin=)[^\&]+/, '$1' + this.value[0]);
                 this.newQuery = this.newQuery.replace(/(priceMax=)[^\&]+/, '$1' + this.value[1]);
+                this.newQuery = this.newQuery.replace(/(beds=)[^\&]+/, '$1' + this.bedsNumber);
+                this.newQuery = this.newQuery.replace(/(rooms=)[^\&]+/, '$1' + this.roomsNumber);
 
                 axios.get(this.newQueryURL).then((response) => {
                     this.apartments = response.data;
@@ -326,6 +328,15 @@ export default {
             Vue.set(this.value, 1, 1000);
             this.bedsNumber = 0;
             this.roomsNumber = 0;
+
+            var items = document.getElementsByName('service');
+            items.forEach(service => {
+                if (service.type === 'checkbox')
+                    service.checked = false;
+            });
+
+            this.filterService = [];
+            this.newQuery = ``;
 
             this.getApartments();
         },

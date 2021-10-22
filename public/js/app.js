@@ -4407,6 +4407,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       } else {
         this.newQuery = this.newQuery.replace(/(priceMin=)[^\&]+/, '$1' + this.value[0]);
         this.newQuery = this.newQuery.replace(/(priceMax=)[^\&]+/, '$1' + this.value[1]);
+        this.newQuery = this.newQuery.replace(/(beds=)[^\&]+/, '$1' + this.bedsNumber);
+        this.newQuery = this.newQuery.replace(/(rooms=)[^\&]+/, '$1' + this.roomsNumber);
         axios.get(this.newQueryURL).then(function (response) {
           _this.apartments = response.data;
         });
@@ -4500,6 +4502,12 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(this.value, 1, 1000);
       this.bedsNumber = 0;
       this.roomsNumber = 0;
+      var items = document.getElementsByName('service');
+      items.forEach(function (service) {
+        if (service.type === 'checkbox') service.checked = false;
+      });
+      this.filterService = [];
+      this.newQuery = "";
       this.getApartments();
     },
     newFilterQuery: function newFilterQuery(id) {
@@ -41184,7 +41192,7 @@ var render = function() {
                             },
                             [
                               _c("input", {
-                                attrs: { type: "checkbox" },
+                                attrs: { type: "checkbox", name: "service" },
                                 on: {
                                   change: function($event) {
                                     return _vm.newFilterQuery(service.id)
