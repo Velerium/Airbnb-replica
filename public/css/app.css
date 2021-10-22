@@ -15647,7 +15647,7 @@ a.text-dark:focus {
 }
 
 .recommended-section h1 {
-  margin: 35px 0 10px 0;
+  margin: 30px 0;
 }
 
 .recommended-section .recommended-top .recommended-city-card {
@@ -15662,7 +15662,7 @@ a.text-dark:focus {
 }
 
 .recommended-section .recommended-top .recommended-city-card .recommended-city-pfp img {
-  max-width: 100%;
+  width: 100%;
   border-radius: 15px;
 }
 
@@ -15677,19 +15677,19 @@ a.text-dark:focus {
 }
 
 .recommended-section .recommended-bottom .recommended-filters .recommended-filters-pfp {
-  width: 100%;
-  height: 60%;
-  margin-bottom: 15px;
-}
-
-.recommended-section .recommended-bottom .recommended-filters .recommended-filters-pfp img {
-  max-width: 100%;
-  max-height: 100%;
+  height: 250px;
   border-radius: 15px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .recommended-section .recommended-bottom .recommended-filters .recommended-filters-details {
   height: 40%;
+  text-align: center;
+}
+
+.recommended-section .recommended-bottom .recommended-filters .recommended-filters-details i {
+  margin-right: 5px;
 }
 
 .owner-section {

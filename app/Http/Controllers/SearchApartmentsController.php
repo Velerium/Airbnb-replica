@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
+use App\Image;
 use App\Message;
 use App\User;
 use App\Visitor;
@@ -53,8 +54,9 @@ class SearchApartmentsController extends Controller
     {
         $user = User::where('id', Auth::id())->get();
         $apartment = Apartment::find($id);
+        $images = Image::where('apartment_id', '=', $id)->get();
 
-        return view('searchApartments.show', compact('apartment', 'user'));
+        return view('searchApartments.show', compact('apartment', 'user', 'images'));
     }
 
     /**

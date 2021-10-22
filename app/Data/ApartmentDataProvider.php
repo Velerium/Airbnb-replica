@@ -11,7 +11,6 @@ class ApartmentDataProvider
         'Villa Sarezzano',
         'Tiny but Spacious House',
         'Two-room apartment in vintage villa',
-        'Casa albero',
         'Bilocale',
         'Splendido Loft',
         'Villa a Bari',
@@ -56,7 +55,6 @@ class ApartmentDataProvider
             'Historical manor house "Villa Sarezzano", built in 1930. 400 m from the centre of Sarezzano, 8 km from the centre of Tortona, 21 km from the centre of Alessandria, 75 km from the sea.',
             'Surrounded by greenery, in a small agricultural setting you can enjoy privacy and relaxation.',
             'Seafront, nice apartment in the Residence of the beautiful vintage Villa De Raymondi, in the centre of Finale Ligure. Your 4-legged friends are welcome! The Villa has a spacious solarium terrace on the top floor, accessible to all guests, where you can sunbathe on the sun loungers (free) and enjoy the breathtaking view!',
-            'Assorbi l\' energia della natura vivendo in questa meravigliosa casa posta su di un albero. Confortevole e vintage, panoramica e intima, ti regalerà colori e istanti indimenticabili mentre i pini che la circondano ti sussurreranno storie secolari.',
             'Bilocale di nuovissima costruzione, ideale per due persone.',
             'Il mio loft e uno spazio ricavato in palazzo del XXVI secolo nel cuore di Roma.',
             'Splendida villa con pietra a vista.',
@@ -100,7 +98,6 @@ class ApartmentDataProvider
             "https://a0.muscache.com/im/pictures/prohost-api/Hosting-19006655/original/56c61119-d56e-4f81-8eda-80afa1078170.jpeg",
             "https://a0.muscache.com/im/pictures/f5bcae2f-af87-4c33-b68a-def1aa5aa7df.jpg",
             "https://a0.muscache.com/im/pictures/934d736b-31c0-4f1c-8736-2e8ad5898cc5.jpg",
-            "https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg?aki_policy=xx_large",
             "https://a0.muscache.com/im/pictures/871a423d-c66d-45fc-b8d0-f98718b61a1a.jpg?aki_policy=xx_large",
             "https://a0.muscache.com/im/pictures/c9db035f-7239-4b52-a8fa-b3e8622c8171.jpg?aki_policy=xx_large",
             "https://a0.muscache.com/im/pictures/35597864/3702e233_original.jpg?aki_policy=x_large",
@@ -139,37 +136,36 @@ class ApartmentDataProvider
         ],
 
         'rooms_n' => [
-            3, 11, 7, 5, 3, 1, 3, 3, 5, 3, 4, 5, 7, 4, 10, 5, 9, 4, 2, 1, 3, 2, 3, 4, 
+            3, 11, 7, 5, 3, 3, 3, 5, 3, 4, 5, 7, 4, 10, 5, 9, 4, 2, 1, 3, 2, 3, 4, 
             2, 2, 6, 6, 3, 3, 2, 2, 4, 4, 8, 4, 3, 4, 5, 7, 6,
         ],
 
         'beds_n' => [
-            0, 9, 6, 4, 1, 2, 2, 3, 3, 2, 2, 2, 6, 2, 8, 3, 4, 4, 1, 1, 4, 2, 6, 2,
+            0, 9, 6, 4, 1, 2, 3, 3, 2, 2, 2, 6, 2, 8, 3, 4, 4, 1, 1, 4, 2, 6, 2,
             2, 3, 4, 4, 2, 1, 1, 1, 2, 2, 4 ,1 ,1, 2, 3, 3, 3,
         ],
 
         'bathrooms_n' => [
-            1, 2, 4, 2, 1, 1, 1, 2, 3, 1, 2, 1, 2, 1, 4, 1, 2, 1, 1, 1, 1, 1, 1, 2,
+            1, 2, 4, 2, 1, 1, 2, 3, 1, 2, 1, 2, 1, 4, 1, 2, 1, 1, 1, 1, 1, 1, 2,
             1, 2, 2, 2, 1, 1, 1, 1, 1, 2, 2, 3, 2, 2, 2, 3, 3,
         ],
 
         'guests_n' =>[
-            4, 9, 10, 4, 4, 2, 2, 3, 5, 2, 3, 6, 8, 3, 8, 6, 8, 6, 2, 2, 6, 4, 6, 2, 
+            4, 9, 10, 4, 4, 2, 3, 5, 2, 3, 6, 8, 3, 8, 6, 8, 6, 2, 2, 6, 4, 6, 2, 
             2, 3, 4, 3, 2, 1, 1, 1, 2, 2, 4, 1, 1, 2, 3, 3, 3, 
         ],
 
         'square_meters' => [
-            60, 410, 290, 32, 70, 50, 120, 100, 80, 230, 110, 50, 175, 125, 250, 96, 
+            60, 410, 290, 32, 70, 120, 100, 80, 230, 110, 50, 175, 125, 250, 96, 
             196, 75, 55, 35, 95, 60, 75, 60, 50, 60, 320, 120, 60, 80, 55, 50, 160, 110, 248, 165, 109 ,  160, 135 , 300, 190,
         ],
 
         'address' => [
-            'Via Orsi 12, Vallemaio (FR)',
+            'Via Volterrana 89, Firenze (FI)',
             'Borgo Pecetto 133, Macugnaga (VB)',
             'Via Rocca Grue 8, Sarezzano (AL)',
             'Via Paolonga, Lazise (VR)',
             'Via Torino 137, Finale Ligure (SV)',
-            'Via Volterrana 89, Firenze (FI)',
             'Corso Europa 18, Milano (MI)',
             'Via Margutta 33, Roma (RM)',
             'Via Nicolò Piccini 28, Bari (BA)',
@@ -193,29 +189,29 @@ class ApartmentDataProvider
             'Largo Mare Nostro, Pisa (PI)',
             'San Pietro, Barga (LU)',
             'Vicolo Curie, Modena (MO)',
-            'Via Robert Mallet Roma (RM)',
-            'Via Luigi Gastinelli Roma (RM)',
-            'Via Arturo Danuss Romao (RM)',
-            'Via Comunale Margherita Napoli (NA)',
-            'Via Chiaiano Napoli (NA)',
-            'Viale San Ignazio Napoli (NA)' ,
-            'Via Foro Buonparte Milano (MI)',
-            'Via Broletto  Milano (MI)',
-            'Via CUSANI Milano (MI)',
-            'Via delle Murge Bari (BA)',
-            'Via Gaetano Devitofrancesco Bari (BA)',
-            'Via mauro amoruso Bari (BA)',
+            'Via Robert Mallet, Roma (RM)',
+            'Via Luigi Gastinelli, Roma (RM)',
+            'Via Arturo Danuss, Romao (RM)',
+            'Via Comunale Margherita, Napoli (NA)',
+            'Via Chiaiano, Napoli (NA)',
+            'Viale San Ignazio, Napoli (NA)' ,
+            'Via Foro Buonparte, Milano (MI)',
+            'Via Broletto, Milano (MI)',
+            'Via Cusani, Milano (MI)',
+            'Via delle Murge, Bari (BA)',
+            'Via Gaetano Devitofrancesco, Bari (BA)',
+            'Via Mauro Amoruso, Bari (BA)',
         ],
 
         'latitude' => [
-            41.3828, 45.9719, 44.8652, 45.4704, 44.1707, 43.7323, 45.4698, 41.9089, 41.1255, 45.0663, 43.7774, 46.6513,
+            43.7323, 45.9719, 44.8652, 45.4704, 44.1707, 45.4698, 41.9089, 41.1255, 45.0663, 43.7774, 46.6513,
             46.7377, 46.5206, 45.1721, 46.8759, 39.1964, 41.8971, 45.4538, 45.4983, 46.8130, 40.6363,  45.5263, 
             43.8788, 43.8853, 43.6692, 43.6395, 44.0761, 44.6420, 41.9100, 41.9048, 41.9041, 40.8822, 40.8909, 40.8630, 
             45.4704, 45.4672, 45.4687, 41.1102, 41.1153, 41.1034,
         ],
 
         'longitude' => [
-            13.8012, 7.9572, 8.9189, 10.7741, 8.3505, 11.2165, 9.1968, 12.4792, 16.8706, 7.6935, 11.2447, 11.1649,
+            11.2165, 7.9572, 8.9189, 10.7741, 8.3505, 9.1968, 12.4792, 16.8706, 7.6935, 11.2447, 11.1649,
             10.8485, 11.3553, 7.9060, 11.4858, 9.1521, 12.4525, 11.0021, 9.1941, 11.9332, 14.5945, 10.7417, 
             10.2384, 10.2471, 10.2770, 10.2913, 10.4797, 10.8965, 12.6484, 12.6565, 12.6611, 14.2119, 14.2173,
             14.2047, 9.1832, 9.1857, 9.1840,  16.8536, 16.8663, 16.8583,
@@ -224,7 +220,7 @@ class ApartmentDataProvider
         'visible' => true,
 
         'price' => [
-            30.00, 190.00, 199.00, 135.00, 158.00, 240.00, 350.00, 410.00, 550.00, 220.00, 210.00, 193.00,
+            30.00, 190.00, 199.00, 135.00, 158.00, 350.00, 410.00, 550.00, 220.00, 210.00, 193.00,
             112.00, 191.00, 287.00, 140.00, 236.00, 99.00, 120.00, 60.00, 140.00, 100.00, 109.00,
             250.00, 150.00, 200.00, 490.00, 290.00, 130.00 , 69.00, 49.00, 39.00, 95.00, 49.00, 50.00,
             50.00 , 300.00, 650.00, 90.00, 50.00, 95.00,

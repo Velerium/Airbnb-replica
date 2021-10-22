@@ -172,8 +172,8 @@ export default {
             guestWord: 'Ospiti',
             bedsNumber: 0,
             roomsNumber: 0,
-            value: [35, 1000],
-            priceMin: 35,
+            value: [20, 1000],
+            priceMin: 20,
             priceMax: 1000,
             // fuzzySearch: '',
             newQuery: ``,
@@ -324,7 +324,7 @@ export default {
         },
 
         filterReset() {
-            Vue.set(this.value, 0, 35);
+            Vue.set(this.value, 0, 20);
             Vue.set(this.value, 1, 1000);
             this.bedsNumber = 0;
             this.roomsNumber = 0;

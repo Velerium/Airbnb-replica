@@ -4,150 +4,169 @@
 
     <div class="show-container">
         <div class="show-box container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="d-flex justify-content-between">
+                <div class="row">
+                    <div class="col-12">
                         <div>
-                            <h4>{{ $apt->title }}</h4>
-                            <span>{{$apt->address}}</span>
+                            <h4>{{ $apartment->title }}</h4>
                         </div>
-                        <div class="tools-edit-charts">
-                            <a href="{{ route('userApartments.edit', $apt) }}"><i class="far fa-edit"></i></i></a>
-                            <a href="{{ route('statistics', $apt->id) }}"><i class="far fa-chart-bar"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="show-gallery row my-4">
-                <div class="col-12">
-                        <div class="show-pics image-grid-col-2 image-grid-row-2">
-                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
-                        </div>
-                        <div class="show-pics">
-                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
-                        </div>
-                        <div class="show-pics">
-                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
-                        </div>
-                        <div class="show-pics">
-                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
-                        </div>
-                        <div class="show-pics">
-                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
-                        </div>
-                </div>
-            </div>
-            <div class="bio row my-5">
-                <div class="bio-left col-8">
-                <div>{{$apt->summary}}</div>
-                </div>
-                <div class="bio-right col-4">
-                    <div>
-                        <ul>
-                            <li class="price"><span>€{{$apt->price}} / notte</span></li>
-                            <li><span>Numero di ospiti: {{$apt->guests_n}}</span></li>
-                            <li><span>Numero di stanze: {{$apt->rooms_n}}</span></li>
-                            <li><span>Numero di letti: {{$apt->beds_n}}</span></li>
-                            <li><span>Numero di bagni: {{$apt->bathrooms_n}}</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="show-services row my-5">
-                <div class="services-box col-6">
-                    <span>Servizi inclusi</span>
-                    <ul>
-                        @foreach ($apt->service as $service)
-                            <li>{{$service->service_name}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-            <div class="row my-4">
-                <div class="col-12 mb-3">
-                    @if ($sponsored == null)
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="no-sponsor">
-                                <h4>Non hai nessuna sponsorizzazione su questo appartamento  <i class="fas fa-frown" style="vertical-align: middle"></i></h4>
-                                <h4 class="mt-1">Sponsorizzalo ora per metterlo in evidenza!</h4>
-                                <img src="{{ asset('image/arrow.png') }}" alt="Arrow">
-                            </div>
-                        </div>
-
-                        <div class="col-8">
-                            <div class="show-sponsor row">
-                                @foreach ($sponsorships as $sponsorship)
-                                    <div class="bla col-4">
-                                        <form action="{{route('sponsorship')}}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            <h4>{{$sponsorship->type}}</h4>
-                                            <h4>€ {{$sponsorship->cost_sponsorship}}</h4>
-                                            <h5>Sponsorizza il tuo appartamento per {{$sponsorship->duration}} ore</h5>
-                                            <input type="hidden" name="apartment_id" value="{{$apt->id}}">
-                                            <input type="hidden" name="cost_sponsorship" value="{{$sponsorship->cost_sponsorship}}">
-                                            <input type="hidden" name="sponsorship_id" value="{{$sponsorship->id}}">
-                                            @csrf
-                                            @method('GET')
-                                            <input type="submit" class="btn-acquista" value="Acquista">
-                                        </form>
-                                    </div>
-                                @endforeach  
-                            </div>
-                        </div>
-
-                    </div>
-                    @else
                         <div>
-                            @if (session('status'))
-                                <div class="alert alert-success">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-                            @foreach ($apt->sponsorship as $thisAptSponsorship)
-                                <h4>L'appartamento ha la sponsorizzazione {{ $thisAptSponsorship->type }}.</h4>
-                                <div>Scadenza sponsorizzazione: il {{$sponsored->format('d-M-Y')}} alle ore {{$sponsored->format('H:m')}}</div>
-                            @endforeach
+                            <span>{{$apartment->address}}</span>
                         </div>
-                    @endif
+                    </div>
                 </div>
-            </div>
-
-            <div class="show-message">
-                <h3><i class="fas fa-inbox"></i> Casella messaggi</h3>
-
-                @if ($messages->isEmpty())
-                    <h5 class="mt-2">Non hai ancora nessun messaggio!</h5>
-                @else 
-
-                <table class="messages-container">
-                    <thead>
-                        <tr>
-                            <th class="table-name">Nome</th>
-                            <th class="table-name">Cognome</th>
-                            <th class="table-name">Email</th>
-                            <th class="table-name">Messaggio</th>
-                            <th class="table-name">Mandato il</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="message-name">{{$sender->first_name}}</td>
-                            <td class="message-name">{{$sender->last_name}}</td>
-                            <td class="message-name">{{$sender->email}}</td>  
-                            @foreach($messages as $msg)
-                                <td class="message-name">{{$msg->content}}</td>
-                                <td class="message-name">{{$msg->created_at}}</td>
-                            @endforeach
-                            </tr>
-                    </tbody>
-                </table>
-
-                @endif
-
-            </div>
                 
+                <div class="show-gallery row my-4">
+                    <div class="col-12">
+                        <div class="show-pics image-grid-col-2 image-grid-row-2">
+                            <img src="{{$apartment->cover}}">
+                        </div>
+                        <div class="show-pics">
+                            <img src="{{$images[1]->url}}">
+                        </div>
+                        <div class="show-pics">
+                            <img src="{{$images[2]->url}}">
+                        </div>
+                        <div class="show-pics">
+                        <img src="{{$images[3]->url}}">
+                        </div>
+                        {{-- Some apartments don't even have four images beside the cover... --}}
+                        @if (isset($images[4])) 
+                        <div class="show-pics">
+                            <img src="{{$images[4]->url}}">
+                        </div>
+                        @endif
+                        
+                    </div>
+                </div>
+                <div class="bio row">
+                    <div class="bio-left col-8">
+                    <div>{{$apartment->summary}}</div>
+                    </div>
+                    <div class="col-4">
+
+                        @if (isset($user, $user->id))
+                        
+                            <h3>
+                                <a href="{{ route('register') }}">Registrati per poter mandare un messaggio all'Host dell'appartamento!</a>
+                            </h3>
+                            <div class="d-flex form-group">
+                                <input type="text" class="form-control mr-1" placeholder="Nome">
+                                <input type="text" class="form-control ml-1" placeholder="Cognome">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="nomeutente@esempio.com">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" placeholder="Inserisci qui il tuo messaggio..."></textarea>
+                            </div>
+                            
+                        @else 
+                        
+                            @foreach ($user as $item) 
+                                @if (session('status'))
+                                    <div class="alert alert-success">
+                                        {{ session('status') }}
+                                    </div>
+                                @endif
+                                <h3 class="mt-4">Manda un messaggio all'Host</h3>
+                                <form action="{{ route('messages.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method("POST")
+
+                                    <div class="d-flex form-group">
+                                        <input type="text" class="form-control mr-1" name="first_name" value="{{ $item->first_name }}" placeholder="Nome">
+                                        <input type="text" class="form-control ml-1" name="last_name" value="{{ $item->last_name }}" placeholder="Cognome">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" value="{{$item->email}}" placeholder="nomeutente@esempio.com">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="5" name="content" placeholder="Inserisci qui il tuo messaggio..."></textarea>
+                                        <input type="hidden" name="user_id" value="{{$item->id}}">
+                                        <input type="hidden" name="apartment_id" value="{{$apartment->id}}">
+                                    </div>
+                                    <button type="submit" class="btn btn-light">Send</button>
+                                </form> 
+                            @endforeach
+
+                        @endif
+
+                    </div>
+                </div>
+                <div class="show-services row my-4">
+                    <div class="services-left col-4">
+                        <div>
+                            <span>Servizi inclusi</span>
+                            <ul>
+                                @foreach ($apartment->service as $service)
+                                    <li>{{$service->service_name}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="services-right col-8">
+                        <div>
+                            <span>Dettagli extra</span>
+                            <ul>
+                                <li class="price"><span>€{{$apartment->price}} / notte</span></li>
+                                <li><span>Numero di ospiti: {{$apartment->guests_n}}</span></li>
+                                <li><span>Numero di stanze: {{$apartment->rooms_n}}</span></li>
+                                <li><span>Numero di letti: {{$apartment->beds_n}}</span></li>
+                                <li><span>Numero di bagni: {{$apartment->bathrooms_n}}</span></li>
+                                @foreach ($apartment->service as $service)
+                                    <li>{{$service->service_name}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-maps row mt-5">
+                    <div class="col-12">
+                        <div id="map-div" class="map-div"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+<script>
+
+    tt.setProductInfo('BoolBnB', '0.1.4');
+    var map;
+
+    tt.services.fuzzySearch({
+        key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
+        query: '{{$apartment->address}}',
+        limit: 10,
+        radius: 200,
+    })
+
+    .then(function(response){
+        console.log(response);
+
+        map = tt.map({
+            key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
+            container: 'map-div',
+            center: response.results[0].position,
+            zoom: 17,
+        });
+    
+        var marker = new tt.Marker().setLngLat(response.results[0].position).addTo(map);
+        var popupOffsets = {
+            top: [0, 0],
+            bottom: [0, -40],
+            'bottom-right': [0, -70],
+            'bottom-left': [0, -70],
+            left: [25, -35],
+            right: [-25, -35]
+        }
+        
+        var popup = new tt.Popup({offset: popupOffsets}).setHTML(response.results[0].address.freeformAddress);
+
+        marker.setPopup(popup).togglePopup();
+    });
+        
+</script>
+    
 @endsection

@@ -14,25 +14,31 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="show-gallery row my-4">
                     <div class="col-12">
                         <div class="show-pics image-grid-col-2 image-grid-row-2">
-                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
+                            <img src="{{$apartment->cover}}">
                         </div>
                         <div class="show-pics">
-                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
+                            <img src="{{$images[1]->url}}">
                         </div>
                         <div class="show-pics">
-                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
+                            <img src="{{$images[2]->url}}">
                         </div>
                         <div class="show-pics">
-                        <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
+                        <img src="{{$images[3]->url}}">
                         </div>
+                        {{-- Some apartments don't even have four images beside the cover... --}}
+                        @if (isset($images[4])) 
                         <div class="show-pics">
-                            <img src="https://a0.muscache.com/im/pictures/c1ea79f7-f6ce-4cb9-939d-e6ccdcd5c0a5.jpg">
+                            <img src="{{$images[4]->url}}">
                         </div>
+                        @endif
+                        
                     </div>
                 </div>
+                
                 <div class="bio row">
                     <div class="bio-left col-8">
                     <div>{{$apartment->summary}}</div>

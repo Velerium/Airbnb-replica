@@ -50,9 +50,7 @@
                     @if ($sponsorship->id !== null)
                         <div class="col-3 recommended-filters">
                             <a href="{{ route('searchApartments.show', $apt->id) }}">
-                                <div class="recommended-filters-pfp">
-                                    <img src="{{ asset($apt->cover) }}" alt="{{$apt->title}} copertina">
-                                </div>
+                                <img src="{{ asset($apt->cover) }}" class="recommended-filters-pfp"></img>
                                 <div class="recommended-filters-details">
                                     <div class="font-weight-bold pointer">
                                         {{$apt->title}}

@@ -4358,8 +4358,8 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       guestWord: 'Ospiti',
       bedsNumber: 0,
       roomsNumber: 0,
-      value: [35, 1000],
-      priceMin: 35,
+      value: [20, 1000],
+      priceMin: 20,
       priceMax: 1000,
       // fuzzySearch: '',
       newQuery: "",
@@ -4498,7 +4498,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       this.getApartments();
     },
     filterReset: function filterReset() {
-      vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(this.value, 0, 35);
+      vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(this.value, 0, 20);
       vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(this.value, 1, 1000);
       this.bedsNumber = 0;
       this.roomsNumber = 0;
@@ -53900,8 +53900,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\adina\Documents\Boolean-Class#37\project-boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\adina\Documents\Boolean-Class#37\project-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Andrea\Desktop\Bond\Coding\Airbnb-replica\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Andrea\Desktop\Bond\Coding\Airbnb-replica\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
