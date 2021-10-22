@@ -16122,28 +16122,29 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
 }
 
 .show-container .show-box {
-  border: 1px solid #FFF;
   border-radius: 10px;
   box-shadow: 9px 7px 2px #424242;
   padding: 25px;
 }
 
-.show-container .show-box .show-gallery .col-6 .show-thumbnail {
+.show-container .show-box .show-gallery .col-4 .show-thumbnail {
   background-image: url("/image/puppy.jpg");
   height: 300px;
   width: 300px;
+  border-radius: 15px;
 }
 
-.show-container .show-box .show-gallery .col-6 {
+.show-container .show-box .show-gallery .col-8 {
   display: flex;
 }
 
-.show-container .show-box .show-gallery .col-6 .side-pics {
+.show-container .show-box .show-gallery .col-8 .side-pics {
   background-image: url("/image/puppy.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 300px;
   width: 25%;
+  border-radius: 15px;
 }
 
 .show-container .show-box .bio .bio-right {
@@ -16155,22 +16156,6 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   border: 1px solid #FFF;
   border-radius: 10px;
   padding: 15px;
-}
-
-.show-container .show-box .show-services .services-box {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.show-container .show-box .show-services .services-box div {
-  border: 1px solid #FFF;
-  border-radius: 10px;
-  padding: 15px;
-}
-
-.show-container .show-box .show-services .services-box div ul {
-  list-style: none;
-  padding: 0;
 }
 
 .show-container .show-box .show-maps .col-12 .map-div {
@@ -16193,7 +16178,6 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
 }
 
 .show-container .show-box {
-  border: 1px solid white;
   border-radius: 10px;
   box-shadow: 9px 7px 2px #424242;
   padding: 25px;

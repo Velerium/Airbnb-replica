@@ -9059,7 +9059,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".item[data-v-b9bc2c0a] {\n  width: 18%;\n  height: 0;\n  padding-bottom: calc(18% + 50px);\n  margin-bottom: 40px;\n  border-radius: 20px;\n  margin-right: 1.6%;\n  cursor: pointer;\n}\n.item[data-v-b9bc2c0a]:nth-child(5n+1) {\n  margin-left: 1.6%;\n}\n.item .img[data-v-b9bc2c0a] {\n  position: relative;\n  width: 100%;\n  height: 0;\n  padding-bottom: 100%;\n  border-radius: 20px;\n  border: 1px solid black;\n}\n.item .itemDetails[data-v-b9bc2c0a] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 10px 5px;\n}\n.item .itemDetails .titleDistance[data-v-b9bc2c0a] {\n  max-width: 100%;\n}\n.item .itemDetails .titleDistance h5[data-v-b9bc2c0a] {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.item .itemDetails .titleDistance span[data-v-b9bc2c0a] {\n  color: #666;\n}\n.item .itemDetails .price[data-v-b9bc2c0a] {\n  font-size: 16px;\n}", ""]);
+exports.push([module.i, ".item[data-v-b9bc2c0a] {\n  width: 18%;\n  height: 0;\n  padding-bottom: calc(18% + 50px);\n  margin-bottom: 50px;\n  border-radius: 20px;\n  margin-right: 1.6%;\n  cursor: pointer;\n}\n.item[data-v-b9bc2c0a]:nth-child(5n+1) {\n  margin-left: 1.6%;\n}\n.item .img[data-v-b9bc2c0a] {\n  position: relative;\n  width: 100%;\n  height: 0;\n  padding-bottom: 100%;\n  border-radius: 20px;\n  box-shadow: 5px 3px 2px #BBB;\n}\n.item .itemDetails[data-v-b9bc2c0a] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 10px 5px;\n}\n.item .itemDetails .titleDistance[data-v-b9bc2c0a] {\n  max-width: 100%;\n}\n.item .itemDetails .titleDistance h5[data-v-b9bc2c0a] {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.item .itemDetails .titleDistance span[data-v-b9bc2c0a] {\n  color: #666;\n}\n.item .itemDetails .price[data-v-b9bc2c0a] {\n  font-size: 16px;\n}", ""]);
 
 // exports
 
@@ -53900,8 +53900,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Andrea\Desktop\Boolean\Final Project - BoolBnB\project-boolbnb\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Andrea\Desktop\Boolean\Final Project - BoolBnB\project-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\adina\Documents\Boolean-Class#37\project-boolbnb\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\adina\Documents\Boolean-Class#37\project-boolbnb\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
