@@ -25,7 +25,7 @@
                     </div>
                 </div> -->
                 
-                <button type="button" class="guests" data-toggle="modal" data-target="#guestModal"><span v-if="guestNumber !== 0">{{ this.guestNumber }}</span> {{ this.guestWord }} &#x25BC;</button>
+                <button type="button" class="guests" data-toggle="modal" data-target="#guestModal"><span v-if="guestNumber !== 0">{{ this.guestNumber }}</span> {{ this.guestWord }}</button>
 
                 <div class="modal show" id="guestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog guest" role="document">

@@ -41009,7 +41009,7 @@ var render = function() {
             _vm.guestNumber !== 0
               ? _c("span", [_vm._v(_vm._s(this.guestNumber))])
               : _vm._e(),
-            _vm._v(" " + _vm._s(this.guestWord) + " ▼")
+            _vm._v(" " + _vm._s(this.guestWord))
           ]
         ),
         _vm._v(" "),
