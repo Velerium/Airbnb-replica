@@ -53,7 +53,7 @@ class BraintreeController extends Controller
             $apt = Apartment::find($data['apartment_id']);
             $apt->sponsorship()->attach($data['sponsorship_id']);
 
-            return redirect()->route('userApartments.show', $data['apartment_id']);
+            return redirect()->route('userApartments.show', $data['apartment_id'])->with('status', 'Il pagamento è andato a buon fine!');
         } else {
             echo 'Ooops, qualcosa è andato storto!';
         }   

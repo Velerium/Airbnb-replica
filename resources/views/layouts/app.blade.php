@@ -73,7 +73,7 @@
 
                     <div class="nav-item">|</div>
 
-                    <div class="nav-item"><a href="#">Diventa un host</a></div>
+                    <div class="nav-item"><a href="{{ route('userApartments.create') }}">Diventa un host</a></div>
                 </div>
 
 

@@ -92,6 +92,11 @@
                     </div>
                     @else
                         <div>
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
                             @foreach ($apt->sponsorship as $thisAptSponsorship)
                                 <h4>L'appartamento ha la sponsorizzazione {{ $thisAptSponsorship->type }}.</h4>
                                 <div>Scadenza sponsorizzazione: il {{$sponsored->format('d-M-Y')}} alle ore {{$sponsored->format('H:m')}}</div>

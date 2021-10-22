@@ -17,7 +17,7 @@
       @csrf
       @method("POST")
         <div class="row">
-          <div class="col-md-8 col-md-offset-2">
+          <div class="col mt-5 mb-5">
             <label for="amount">
               <span class="input-label">Importo totale da pagare euro</span>
               <input id="amount" name="amount" placeholder="amount" value="{{$data['cost_sponsorship']}}" disabled>
@@ -27,8 +27,10 @@
               </div>
             </label>
 
-            <div id="dropin-container"></div>
-            <button type="submit">Effetua il pagamento</button>
+            <div id="dropin-container" class="text-center"></div>
+            <div class="text-right">
+              <button type="submit" class="btn btn-success">Effetua il pagamento</button>
+            </div>
           </div>
         </div>
     </form>    

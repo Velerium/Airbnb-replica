@@ -61,7 +61,7 @@ class UserApartmentsController extends Controller
 
         $request->validate([
             'title' => 'required|min:5|max:100',
-            'summary' => 'required|min:10|max:1000',
+            'summary' => 'required|min:10',
             'rooms_n' => 'required|integer|min:1|max:25',
             'beds_n' => 'required|integer|min:1|max:50',
             'bathrooms_n' => 'required|integer|min:1|max:15',
