@@ -4336,14 +4336,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4366,23 +4358,23 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       guestWord: 'Ospiti',
       bedsNumber: 0,
       roomsNumber: 0,
-      value: [20, 1000],
-      priceMin: 20,
+      value: [35, 1000],
+      priceMin: 35,
       priceMax: 1000,
-      fuzzySearch: '',
+      // fuzzySearch: '',
       newQuery: "",
-      filterFlag: false,
-      searchOptions: {
-        key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
-        language: 'it-IT',
-        limit: 15,
-        center: [9.1881, 45.4636],
-        radius: 100000
-      },
-      autocompleteOptions: {
-        key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
-        language: 'it-IT'
-      }
+      filterFlag: false // searchOptions: {
+      //     key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
+      //     language: 'it-IT',
+      //     limit: 15,
+      //     center: [9.1881, 45.4636],
+      //     radius: 100000,
+      // },
+      // autocompleteOptions: {
+      //     key: 'pj3fPYZczjgdGuLpmajsU40F64Y5nmpB',
+      //     language: 'it-IT',
+      // },
+
     };
   },
   computed: {
@@ -4391,21 +4383,18 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
     },
     newQueryURL: function newQueryURL() {
       return "".concat(this.newQuery);
-    },
-    searchBoxOptions: function searchBoxOptions() {
-      return {
-        minNumberofCharacters: 3,
-        searchOptions: this.searchOptions,
-        autocompleteOptions: this.autocompleteOptions
-      };
-    }
-  },
-  created: function created() {
-    this.getApartments();
-    this.getAllServices();
+    } // searchBoxOptions() {
+    //     return {
+    //         minNumberofCharacters: 3,
+    //         searchOptions: this.searchOptions,
+    //         autocompleteOptions: this.autocompleteOptions,
+    //     }
+    // } 
+
   },
   mounted: function mounted() {
-    this.fuzzyTimeout();
+    this.getApartments();
+    this.getAllServices(); // this.fuzzyTimeout();
   },
   methods: {
     getApartments: function getApartments() {
@@ -4436,6 +4425,9 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       axios.get("/api/services").then(function (response) {
         _this3.services = response.data;
       });
+    },
+    redirect: function redirect(id) {
+      window.location.href = '/searchApartments/' + id;
     },
     changePage: function changePage(nPage) {
       this.currentPage = nPage;
@@ -4504,7 +4496,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
       this.getApartments();
     },
     filterReset: function filterReset() {
-      vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(this.value, 0, 50);
+      vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(this.value, 0, 35);
       vue__WEBPACK_IMPORTED_MODULE_1___default.a.set(this.value, 1, 1000);
       this.bedsNumber = 0;
       this.roomsNumber = 0;
@@ -4520,27 +4512,26 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_vue_composition_api__WEBPACK_IMP
 
       console.log(this.newQuery);
       this.getApartmentsServices();
-    },
-    fuzzyTimeout: function fuzzyTimeout() {
-      setTimeout(this.fuzzySetup, 500);
-    },
-    fuzzySetup: function fuzzySetup() {
-      var _this4 = this;
+    } // fuzzyTimeout() {
+    //     setTimeout(this.fuzzySetup, 500);
+    // },
+    // fuzzySetup() {
+    //     var ttSearchBox = new tt.plugins.SearchBox(tt.services, this.searchBoxOptions);
+    //     document.querySelector('.minorRight').appendChild(ttSearchBox.getSearchBoxHTML());
+    //     // var apts = JSON.parse(JSON.stringify(this.apartments))
+    //     ttSearchBox.on('tomtom.searchbox.resultselected', event => {
+    //         var coordinates = event.data.result.position;
+    //         var queryLng = coordinates.lng.toFixed(4);
+    //         var queryLat = coordinates.lat.toFixed(4);
+    //         this.searchOptions.center = [queryLng, queryLat];
+    //var aptsValues = Object.values(apts);
+    // delete axios.defaults.headers.common['X-Requested-With'];
+    // axios.get(`https://api.tomtom.com/routing/1/calculateRoute/${queryLng},${queryLat}:${aptLng},${aptLat}/json?language=it-IT&key=pj3fPYZczjgdGuLpmajsU40F64Y5nmpB`).then((response) => {
+    //     console.log(response.data.routes[0].summary.lengthInMeters);
+    // });
+    //     });
+    // }
 
-      var ttSearchBox = new tt.plugins.SearchBox(tt.services, this.searchBoxOptions);
-      document.querySelector('.minorRight').appendChild(ttSearchBox.getSearchBoxHTML()); // var apts = JSON.parse(JSON.stringify(this.apartments))
-
-      ttSearchBox.on('tomtom.searchbox.resultselected', function (event) {
-        var coordinates = event.data.result.position;
-        var queryLng = coordinates.lng.toFixed(4);
-        var queryLat = coordinates.lat.toFixed(4);
-        _this4.searchOptions.center = [queryLng, queryLat]; //var aptsValues = Object.values(apts);
-        // delete axios.defaults.headers.common['X-Requested-With'];
-        // axios.get(`https://api.tomtom.com/routing/1/calculateRoute/${queryLng},${queryLat}:${aptLng},${aptLat}/json?language=it-IT&key=pj3fPYZczjgdGuLpmajsU40F64Y5nmpB`).then((response) => {
-        //     console.log(response.data.routes[0].summary.lengthInMeters);
-        // });
-      });
-    }
   }
 });
 
@@ -4569,15 +4560,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Card',
   data: function data() {
@@ -4585,6 +4567,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     title: String,
+    cover: String,
     price: String,
     service: String,
     service2: String,
@@ -9049,7 +9032,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".indexContainer[data-v-6c4d5998] {\n  margin: 0 80px;\n}\n#indexNav[data-v-6c4d5998] {\n  height: 110px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 30px;\n}\n#indexNav ul[data-v-6c4d5998] {\n  list-style-type: none;\n  display: flex;\n  margin-bottom: 0;\n  padding-left: 0;\n}\n#indexNav ul li[data-v-6c4d5998] {\n  margin-right: 25px;\n}\n#indexNav .filters[data-v-6c4d5998] {\n  display: flex;\n  position: relative;\n}\n#indexNav .filters .time[data-v-6c4d5998], #indexNav .filters .guests[data-v-6c4d5998], #indexNav .filters .other[data-v-6c4d5998] {\n  padding: 10px 15px;\n  margin-left: 10px;\n  border: 1px solid #ccc;\n  border-radius: 30px;\n  cursor: pointer;\n}\n#indexNav .filters .modal.show[data-v-6c4d5998] {\n  inset: 0px !important;\n}\n#indexNav .filters .modal.show .modal-dialog[data-v-6c4d5998] {\n  position: absolute;\n  padding: 5px;\n  width: 45vw;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-header[data-v-6c4d5998] {\n  position: relative;\n  justify-content: center;\n  border-bottom: none;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-header .close[data-v-6c4d5998] {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .guestsFilter[data-v-6c4d5998] {\n  margin-top: 20px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .priceFilter[data-v-6c4d5998] {\n  width: 80%;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters[data-v-6c4d5998] {\n  display: flex;\n  width: 100%;\n  margin-top: 30px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters > div[data-v-6c4d5998] {\n  width: 50%;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 30px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds h5[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms h5[data-v-6c4d5998] {\n  margin-bottom: 15px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds .bedButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds .roomButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms .bedButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms .roomButtons[data-v-6c4d5998] {\n  display: flex;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body button[data-v-6c4d5998] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 0 15px;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  font-size: 20px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body > h5[data-v-6c4d5998] {\n  margin-bottom: 50px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-footer[data-v-6c4d5998] {\n  display: flex;\n  justify-content: space-between;\n}\n#indexNav .filters .modal.show .modal-dialog.duration[data-v-6c4d5998] {\n  top: 120px;\n  right: 300px;\n}\n#indexNav .filters .modal.show .modal-dialog.guest[data-v-6c4d5998] {\n  top: 120px;\n  right: 200px;\n}\n#indexNav .filters .modal.show .modal-dialog.filter.dark[data-v-6c4d5998] {\n  position: static;\n  width: 50%;\n  max-width: unset;\n}\n#indexContent[data-v-6c4d5998] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.pagination[data-v-6c4d5998] {\n  justify-content: center;\n}\n.modal-backdrop[data-v-6c4d5998] {\n  background-color: #fff !important;\n}\n.modal-backdrop.show[data-v-6c4d5998] {\n  opacity: 0 !important;\n}", ""]);
+exports.push([module.i, ".indexContainer[data-v-6c4d5998] {\n  margin: 60px 80px 30px;\n  text-align: center;\n}\n#indexNav[data-v-6c4d5998] {\n  height: 110px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 30px;\n}\n#indexNav ul[data-v-6c4d5998] {\n  list-style-type: none;\n  display: flex;\n  margin-bottom: 0;\n  padding-left: 0;\n}\n#indexNav ul li[data-v-6c4d5998] {\n  margin-right: 25px;\n}\n#indexNav .filters[data-v-6c4d5998] {\n  display: flex;\n  position: relative;\n  margin: 0 auto;\n}\n#indexNav .filters .time[data-v-6c4d5998], #indexNav .filters .guests[data-v-6c4d5998], #indexNav .filters .other[data-v-6c4d5998] {\n  padding: 10px 15px;\n  margin-left: 10px;\n  border: 1px solid #ccc;\n  border-radius: 30px;\n  cursor: pointer;\n}\n#indexNav .filters .modal.show[data-v-6c4d5998] {\n  inset: 0px !important;\n}\n#indexNav .filters .modal.show .modal-dialog[data-v-6c4d5998] {\n  position: absolute;\n  padding: 5px;\n  width: 45vw;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-header[data-v-6c4d5998] {\n  position: relative;\n  justify-content: center;\n  border-bottom: none;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-header .close[data-v-6c4d5998] {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  text-align: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .guestsFilter[data-v-6c4d5998] {\n  margin-top: 20px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .priceFilter[data-v-6c4d5998] {\n  width: 80%;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters[data-v-6c4d5998] {\n  display: flex;\n  width: 50%;\n  margin: 40px 0;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters > div[data-v-6c4d5998] {\n  width: 50%;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorRight[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorRight .beds[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorRight .rooms[data-v-6c4d5998] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  margin-bottom: 30px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds h5[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms h5[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorRight .beds h5[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorRight .rooms h5[data-v-6c4d5998] {\n  margin-bottom: 15px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds .bedButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .beds .roomButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms .bedButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorLeft .rooms .roomButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorRight .beds .bedButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorRight .beds .roomButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorRight .rooms .bedButtons[data-v-6c4d5998], #indexNav .filters .modal.show .modal-dialog .modal-body .minorFilters .minorRight .rooms .roomButtons[data-v-6c4d5998] {\n  display: flex;\n  align-items: center;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body button[data-v-6c4d5998] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin: 0 15px;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  font-size: 20px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body > h5[data-v-6c4d5998] {\n  margin-bottom: 50px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .servicesFilter h5[data-v-6c4d5998] {\n  margin-bottom: 30px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .servicesFilter .services[data-v-6c4d5998] {\n  display: flex;\n  flex-wrap: wrap;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .servicesFilter .services div[data-v-6c4d5998] {\n  width: 33.3333333333%;\n  margin-bottom: 20px;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-body .servicesFilter .services label[data-v-6c4d5998] {\n  vertical-align: middle;\n  margin-left: 5px;\n  font-size: 14px;\n  font-weight: bold;\n}\n#indexNav .filters .modal.show .modal-dialog .modal-footer[data-v-6c4d5998] {\n  display: flex;\n  justify-content: space-between;\n}\n#indexNav .filters .modal.show .modal-dialog.guest[data-v-6c4d5998] {\n  top: 230px;\n  right: 0;\n  bottom: 0;\n  left: 0;\n}\n#indexNav .filters .modal.show .modal-dialog.filter.dark[data-v-6c4d5998] {\n  position: static;\n  width: 50%;\n  max-width: unset;\n}\n#indexContent[data-v-6c4d5998] {\n  display: flex;\n  flex-wrap: wrap;\n}\n.pagination[data-v-6c4d5998] {\n  justify-content: center;\n}\n.modal-backdrop[data-v-6c4d5998] {\n  background-color: #fff !important;\n}\n.modal-backdrop.show[data-v-6c4d5998] {\n  opacity: 0 !important;\n}", ""]);
 
 // exports
 
@@ -9068,7 +9051,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".item[data-v-b9bc2c0a] {\n  width: 18%;\n  height: 0;\n  padding-bottom: calc(18% + 50px);\n  margin-bottom: 40px;\n  border-radius: 20px;\n  margin-right: 1.6%;\n}\n.item[data-v-b9bc2c0a]:nth-child(5n+1) {\n  margin-left: 1.6%;\n}\n.item .img[data-v-b9bc2c0a] {\n  position: relative;\n  width: 100%;\n  height: 0;\n  padding-bottom: 100%;\n  border-radius: 20px;\n  border: 1px solid black;\n}\n.item .img .favorite[data-v-b9bc2c0a] {\n  position: absolute;\n  top: 0px;\n  right: 10px;\n  font-size: 32px;\n}\n.item .itemDetails[data-v-b9bc2c0a] {\n  display: flex;\n  justify-content: space-between;\n  padding: 10px 5px;\n}\n.item .itemDetails .titleDistance[data-v-b9bc2c0a] {\n  max-width: 60%;\n}\n.item .itemDetails .titleDistance h5[data-v-b9bc2c0a] {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.item .itemDetails .titleDistance span[data-v-b9bc2c0a] {\n  color: #666;\n}\n.item .itemDetails .price[data-v-b9bc2c0a] {\n  font-size: 16px;\n}", ""]);
+exports.push([module.i, ".item[data-v-b9bc2c0a] {\n  width: 18%;\n  height: 0;\n  padding-bottom: calc(18% + 50px);\n  margin-bottom: 40px;\n  border-radius: 20px;\n  margin-right: 1.6%;\n  cursor: pointer;\n}\n.item[data-v-b9bc2c0a]:nth-child(5n+1) {\n  margin-left: 1.6%;\n}\n.item .img[data-v-b9bc2c0a] {\n  position: relative;\n  width: 100%;\n  height: 0;\n  padding-bottom: 100%;\n  border-radius: 20px;\n  border: 1px solid black;\n}\n.item .itemDetails[data-v-b9bc2c0a] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 10px 5px;\n}\n.item .itemDetails .titleDistance[data-v-b9bc2c0a] {\n  max-width: 100%;\n}\n.item .itemDetails .titleDistance h5[data-v-b9bc2c0a] {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n.item .itemDetails .titleDistance span[data-v-b9bc2c0a] {\n  color: #666;\n}\n.item .itemDetails .price[data-v-b9bc2c0a] {\n  font-size: 16px;\n}", ""]);
 
 // exports
 
@@ -41000,25 +40983,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "indexContainer" }, [
+    _c("h1", [_vm._v("I nostri appartamenti")]),
+    _vm._v(" "),
     _c("div", { attrs: { id: "indexNav" } }, [
-      _vm._m(0),
-      _vm._v(" "),
       _c("div", { staticClass: "filters" }, [
-        _c(
-          "button",
-          {
-            staticClass: "time",
-            attrs: {
-              type: "button",
-              "data-toggle": "modal",
-              "data-target": "#timeModal"
-            }
-          },
-          [_vm._v("Anytime ▼")]
-        ),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
         _c(
           "button",
           {
@@ -41058,7 +41026,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "modal-content" }, [
-                  _vm._m(2),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
                     _c("span", [_vm._v("Quante persone alloggeranno?")]),
@@ -41136,7 +41104,7 @@ var render = function() {
               },
               [
                 _c("div", { staticClass: "modal-content" }, [
-                  _vm._m(3),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
                     _c("h5", [_vm._v("Prezzo per notte")]),
@@ -41176,8 +41144,10 @@ var render = function() {
                               _c("span", [_vm._v("+")])
                             ])
                           ])
-                        ]),
-                        _vm._v(" "),
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "minorRight" }, [
                         _c("div", { staticClass: "rooms" }, [
                           _c("h5", [_vm._v("Camere:")]),
                           _vm._v(" "),
@@ -41192,47 +41162,47 @@ var render = function() {
                               _c("span", [_vm._v("+")])
                             ])
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "minorRight" })
+                        ])
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "servicesFilter" },
-                      _vm._l(_vm.services, function(service) {
-                        return _c(
-                          "div",
-                          {
-                            key: service.id,
-                            attrs: {
-                              id: service.id,
-                              name: service.service_name
-                            }
-                          },
-                          [
-                            _c("input", {
-                              attrs: { type: "checkbox" },
-                              on: {
-                                change: function($event) {
-                                  return _vm.newFilterQuery(service.id)
-                                }
+                    _c("div", { staticClass: "servicesFilter" }, [
+                      _c("h5", [_vm._v("Servizi")]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "services" },
+                        _vm._l(_vm.services, function(service) {
+                          return _c(
+                            "div",
+                            {
+                              key: service.id,
+                              attrs: {
+                                id: service.id,
+                                name: service.service_name
                               }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              { attrs: { for: service.service_name } },
-                              [_vm._v(_vm._s(service.service_name))]
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
+                            },
+                            [
+                              _c("input", {
+                                attrs: { type: "checkbox" },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.newFilterQuery(service.id)
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                { attrs: { for: service.service_name } },
+                                [_vm._v(_vm._s(service.service_name))]
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-footer" }, [
@@ -41271,11 +41241,17 @@ var render = function() {
           key: apartment.id,
           attrs: {
             title: apartment.title,
+            cover: apartment.cover,
             price: apartment.price,
             guests_n: apartment.guests_n,
             beds_n: apartment.beds_n,
             service: apartment.service[0].service_name,
             service2: apartment.service[1].service_name
+          },
+          nativeOn: {
+            click: function($event) {
+              return _vm.redirect(apartment.id)
+            }
           }
         })
       }),
@@ -41284,108 +41260,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", [
-      _c("li", [_vm._v("Home type")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Home type")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Home type")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Home type")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Home type")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Home type")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Home type")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("Home type")]),
-      _vm._v(" "),
-      _c("li", [_vm._v("More ▼")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "modal show",
-        attrs: {
-          id: "timeModal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog duration", attrs: { role: "document" } },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    staticClass: "modal-title",
-                    attrs: { id: "exampleModalLabel" }
-                  },
-                  [_vm._v("Pick your favourite setting!")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
-                    }
-                  },
-                  [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _vm._v(
-                  "\n                        *filter here would be useful if we actually included booking*\n                    "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
-                  [_vm._v("Save")]
-                )
-              ])
-            ])
-          ]
-        )
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -41417,9 +41291,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c(
-        "h5",
+        "h3",
         { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
-        [_vm._v("Filtri")]
+        [_vm._v("Personalizza la tua esperienza")]
       ),
       _vm._v(" "),
       _c(
@@ -41459,46 +41333,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "item" }, [
-    _c("div", { staticClass: "img", staticStyle: { position: "relative" } }, [
-      _c("div", { staticClass: "favorite" }, [_vm._v("♡")]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
+    _c(
+      "div",
+      {
+        staticClass: "img",
+        staticStyle: { position: "relative", "background-size": "cover" },
+        style: "background-image: url(" + _vm.cover + ")"
+      },
+      [
+        _c("div", {
           staticStyle: {
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)"
           }
-        },
-        [
-          _vm._v(
-            "\n            Guests: " + _vm._s(_vm.guests_n) + "\n            "
-          ),
-          _c("br"),
-          _vm._v(
-            "\n            Beds: " + _vm._s(_vm.beds_n) + "\n            "
-          ),
-          _c("br"),
-          _vm._v(" "),
-          _c("br"),
-          _vm._v(
-            "\n            Services: " +
-              _vm._s(_vm.service) +
-              ", " +
-              _vm._s(_vm.service2) +
-              "\n        "
-          )
-        ]
-      )
-    ]),
+        })
+      ]
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "itemDetails" }, [
       _c("div", { staticClass: "titleDistance" }, [
-        _c("h5", [_vm._v(_vm._s(_vm.title))]),
-        _vm._v(" "),
-        _c("span", [_vm._v("distance")])
+        _c("h5", [_vm._v(_vm._s(_vm.title))])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "price" }, [

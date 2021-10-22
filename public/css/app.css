@@ -16094,6 +16094,10 @@ footer .footer-bottom .row .ft-bottom-right .footer-social .black-block {
   border-radius: 10px;
 }
 
+.show-container .show-box .show-maps .col-12 .map-div .mapboxgl-popup {
+  color: black !important;
+}
+
 .show-container {
   color: #FFF;
   background: white;

@@ -1,21 +1,11 @@
 <template>
     <div class="indexContainer">
+        <h1>I nostri appartamenti</h1>
         <div id="indexNav">
-            <ul>
-                <li>Home type</li>
-                <li>Home type</li>
-                <li>Home type</li>
-                <li>Home type</li>
-                <li>Home type</li>
-                <li>Home type</li>
-                <li>Home type</li>
-                <li>Home type</li>
-                <li>More &#x25BC;</li>
-            </ul>
             <div class="filters">
-                <button type="button" class="time" data-toggle="modal" data-target="#timeModal">Anytime &#x25BC;</button>
+            <!-- <button type="button" class="time" data-toggle="modal" data-target="#timeModal">Anytime &#x25BC;</button>
 
-                <div class="modal show" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal show" id="timeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog duration" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
@@ -33,7 +23,7 @@
                         </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
                 <button type="button" class="guests" data-toggle="modal" data-target="#guestModal"><span v-if="guestNumber !== 0">{{ this.guestNumber }}</span> {{ this.guestWord }} &#x25BC;</button>
 
@@ -68,7 +58,7 @@
                     <div class="modal-dialog filter dark" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Filtri</h5>
+                            <h3 class="modal-title" id="exampleModalLongTitle">Personalizza la tua esperienza</h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -92,6 +82,8 @@
                                             <button v-on:click="bedIncrease"><span>+</span></button>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="minorRight">
                                     <div class="rooms">
                                         <h5>Camere:</h5>
                                         <div class="roomButtons">
@@ -100,16 +92,18 @@
                                             <button v-on:click="roomIncrease"><span>+</span></button>
                                         </div>
                                     </div>
-                                    <div>
-                                    </div>
                                 </div>
-                                <!-- <div class="minorRight"></div> -->
                             </div>
 
+
+
                             <div class="servicesFilter">
-                                <div v-for="service in services" :key="service.id"  :id="service.id" :name="service.service_name">
-                                    <input v-on:change="newFilterQuery(service.id)" type="checkbox">
-                                    <label :for="service.service_name">{{service.service_name}}</label>
+                                <h5>Servizi</h5>
+                                <div class="services">
+                                    <div v-for="service in services" :key="service.id"  :id="service.id" :name="service.service_name">
+                                        <input v-on:change="newFilterQuery(service.id)" type="checkbox">
+                                        <label :for="service.service_name">{{service.service_name}}</label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -130,8 +124,9 @@
         </div> -->
 
         <div id="indexContent">
-            <card v-for="apartment in apartments" :key="apartment.id"
+            <card v-on:click.native="redirect(apartment.id)" v-for="apartment in apartments" :key="apartment.id"
                 :title="apartment.title"
+                :cover="apartment.cover"
                 :price="apartment.price"
                 :guests_n="apartment.guests_n"
                 :beds_n="apartment.beds_n"
@@ -177,8 +172,8 @@ export default {
             guestWord: 'Ospiti',
             bedsNumber: 0,
             roomsNumber: 0,
-            value: [20, 1000],
-            priceMin: 20,
+            value: [35, 1000],
+            priceMin: 35,
             priceMax: 1000,
             // fuzzySearch: '',
             newQuery: ``,
@@ -252,6 +247,10 @@ export default {
             });
         },
 
+        redirect(id) {
+            window.location.href = '/searchApartments/' + id;
+        },
+
         changePage(nPage) {
             this.currentPage = nPage;
             this.getApartments();
@@ -323,7 +322,7 @@ export default {
         },
 
         filterReset() {
-            Vue.set(this.value, 0, 50);
+            Vue.set(this.value, 0, 35);
             Vue.set(this.value, 1, 1000);
             this.bedsNumber = 0;
             this.roomsNumber = 0;
@@ -375,7 +374,8 @@ export default {
 <style lang="scss" scoped>
 
 .indexContainer {
-margin: 0 80px;
+    margin: 60px 80px 30px;
+    text-align: center;
 }
 
 #indexNav {
@@ -400,6 +400,7 @@ margin: 0 80px;
     .filters {
         display: flex;
         position: relative;
+        margin: 0 auto;
 
         .time, .guests, .other {
             padding: 10px 15px;
@@ -448,14 +449,14 @@ margin: 0 80px;
 
                     .minorFilters {
                         display: flex;
-                        width: 100%;
-                        margin-top: 30px;
+                        width: 50%;
+                        margin: 40px 0;
 
                         & > div {
                             width: 50%;
                         }
 
-                        .minorLeft {
+                        .minorLeft, .minorRight {
                             display: flex;
                             flex-direction: column;
 
@@ -491,6 +492,30 @@ margin: 0 80px;
                     & > h5 {
                         margin-bottom: 50px;
                     }
+
+                    .servicesFilter {
+
+                        h5 {
+                            margin-bottom: 30px;
+                        }
+
+                        .services {
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            div {
+                                width: calc(100%/3);
+                                margin-bottom: 20px;
+                            }
+
+                            label {
+                                vertical-align: middle;
+                                margin-left: 5px;
+                                font-size: 14px;
+                                font-weight: bold;
+                            }
+                        }
+                    }
                 }
 
                 .modal-footer {
@@ -498,14 +523,11 @@ margin: 0 80px;
                     justify-content: space-between;
                 }
 
-                &.duration {
-                    top: 120px;
-                    right: 300px;
-                }
-
                 &.guest {
-                    top: 120px;
-                    right: 200px;
+                    top: 230px;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
                 }
 
                 &.filter.dark {
